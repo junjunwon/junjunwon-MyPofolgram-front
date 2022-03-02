@@ -1,4 +1,4 @@
-# instagram-front
+# mypofolgram-front
 
 ## Project setup
 ```
