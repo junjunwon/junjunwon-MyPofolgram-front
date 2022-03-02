@@ -1,9 +1,5 @@
-<<<<<<< HEAD:mypofolgram-front/README.md
 # mypofolgram-front
-=======
-# instagram-front
-instagram-front는 **instagram 프로젝트에서 프론트엔드** 코드를 관리하기 위해 생성했습니다.
->>>>>>> 8dca5d0e0f8a8d42feaa13ef2a5b6061d4811453:instagram-front/README.md
+mypofolgram-front는 **mypofolgram 프로젝트에서 프론트엔드** 코드를 관리하기 위해 생성했습니다.
 
 ## 폴더구조
 ```bash
