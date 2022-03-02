@@ -11,12 +11,13 @@ instagram-front는 **instagram 프로젝트에서 프론트엔드** 코드를 �
 ├── src
 │   ├── App.vue
 │   ├── api
-│   ├── api
+│   ├── router
+│   ├── store  
 │   ├── components 
 │   │    ├── Footer.vue
 │   │    └── Header.vue
 │   └── views
-└── main.js
+└── └── main.js
 ``` 
 - api : api 통신과 관련된 모듈 작성 -> 컴포넌트에서 호출하여 사용
 - components
