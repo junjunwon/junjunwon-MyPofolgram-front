@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header />
-        <section>메인화면에 출력된 리스트</section>
+        <router-view />
         <Footer />
     </div>
 </template>
