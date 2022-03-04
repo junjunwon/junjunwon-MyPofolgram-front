@@ -4,4 +4,31 @@
 }
 body{
     font-family: "NotoSans";
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+p{
+    margin: 0;
+}
+
+/* StoryList */
+.storyList .story{
+    display: inline-block;
+    padding: 5px;
+}
+.storyList .story img{
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+.storyList .story p{
+    font-size: 14px;
+    width:75px;
+    text-align: center;
+    overflow:hidden; 
+    text-overflow:ellipsis; 
+    white-space:nowrap;
 }
