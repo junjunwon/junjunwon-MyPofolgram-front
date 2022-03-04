@@ -8,8 +8,39 @@ body{
     margin: 0;
     text-decoration: none;
 }
+h1{
+    margin: 0;
+}
 p{
     margin: 0;
+}
+
+/* Header */
+.header{
+    padding: 10px 20px;
+}
+.logo{
+    display: inline-block;
+}
+.logo img{
+    width: 100px;
+}
+.iconList{
+    display: flex;
+    float: right;
+}
+/* .iconList i{
+    margin: 5px;
+} */
+.iconList i{
+    font-size: 22px;
+    margin-left: 10px;
+}
+.iconList img{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-left: 10px;
 }
 
 /* StoryList */
