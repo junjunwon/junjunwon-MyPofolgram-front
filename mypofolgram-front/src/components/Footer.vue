@@ -1,3 +1,10 @@
 <template>
-    <h1>footer</h1>
+    <div class="footerWrap">
+        <div class="footer">
+            <i class="fa-solid fa-house"></i>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-clapperboard"></i>
+            <i class="fa-solid fa-circle-user"></i>
+        </div>
+    </div>
 </template>

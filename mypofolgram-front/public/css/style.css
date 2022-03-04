@@ -45,6 +45,26 @@ p{
     margin-left: 15px;
 }
 
+/* Footer */
+/* .footerWrap{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+} */
+.footer{
+    padding: 10px 20px;
+    border-top: 1px solid #dbdbdb;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.footer i{
+    font-size: 22px;
+}
+
 /* StoryList */
 .storyList{
     padding: 5px 20px;
