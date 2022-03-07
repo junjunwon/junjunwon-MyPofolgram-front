@@ -1,16 +1,18 @@
 <template>
     <div>
         <StoryList />
-        <div>게시물 리스트</div>
+        <PostList />
     </div>
 </template>
 
 <script>
 import StoryList from "@/components/StoryList.vue";
+import PostList from "@/components/PostList.vue";
 
 export default {
     components: {
         StoryList,
+        PostList
     },
 };
 </script>
