@@ -9,6 +9,10 @@ const routes = [
         path:'/mypage',
         component: () => import("../views/Mypage.vue"),
     },
+    {
+        path: "/mypage/follow/:page",
+        component: () => import("../views/Follow.vue"),
+    },
 ]
 
 let router = createRouter({

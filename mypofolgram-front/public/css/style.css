@@ -39,6 +39,23 @@ input:focus{
 .right{
     float: right;
 }
+
+/* common-components */
+.empty{
+    text-align: center;
+    min-height: 300px;
+    position: relative;
+}
+.empty div{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.empty i{
+    font-size: 30px;
+}
+
 /* Header */
 .header {
     padding: 10px 20px;
