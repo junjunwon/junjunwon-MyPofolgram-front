@@ -1,9 +1,11 @@
 <template>
     <div class="mypage">
-        <div class="header">
+        <div class="mypageHeader">
             <h2 class="nickname">eunj_eong</h2>
-            <i class="fa-solid fa-square-plus"></i>
-            <i class="fa-solid fa-bars"></i>
+            <dis class="right">
+                <i class="fa-solid fa-square-plus"></i>
+                <i class="fa-solid fa-bars"></i>
+            </dis>
         </div>
         <div class="top">
             <div>
@@ -24,12 +26,24 @@
         </div>
         <div class="modify">프로필 편집</div>
         <div class="mypost">
-            <img src="/images/example.jpeg" alt="고양이" />
-            <img src="/images/example.jpeg" alt="고양이" />
-            <img src="/images/example.jpeg" alt="고양이" />
-            <img src="/images/example.jpeg" alt="고양이" />
-            <img src="/images/example.jpeg" alt="고양이" />
-            <img src="/images/example.jpeg" alt="고양이" />
+            <div class="post">
+                <img src="/images/example.jpeg" alt="고양이" />
+            </div>
+            <div class="post">
+                <img src="/images/example.jpeg" alt="고양이" />
+            </div>
+            <div class="post">
+                <img src="/images/example.jpeg" alt="고양이" />
+            </div>
+            <div class="post">
+                <img src="/images/example.jpeg" alt="고양이" />
+            </div>
+            <div class="post">
+                <img src="/images/example.jpeg" alt="고양이" />
+            </div>
+            <div class="post">
+                <img src="/images/example.jpeg" alt="고양이" />
+            </div>
         </div>
     </div>
 </template>
