@@ -5,6 +5,10 @@ const routes = [
         path:'/',
         component: () => import("../views/Main.vue"),
     },
+    {
+        path:'/mypage',
+        component: () => import("../views/Mypage.vue"),
+    },
 ]
 
 let router = createRouter({
