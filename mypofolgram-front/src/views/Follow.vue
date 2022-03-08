@@ -1,5 +1,10 @@
 <template>
-    <div>팔로워/팔로잉</div>
+    <div class="follow">
+        <ul class="followMenu">
+            <li @click="viewPage = 'follower'" :class="{on:viewPage === 'follower'}">{{followerCount}} 팔로워</li>
+            <li @click="viewPage = 'following'" :class="{on:viewPage === 'following'}">{{followingCount}} 팔로잉</li>
+        </ul>
+    </div>
 
     <Follower v-if="viewPage === 'follower'"/>
     <Following v-if="viewPage === 'following'"/>
@@ -18,11 +23,14 @@ export default{
     data(){
         return{
             viewPage:"",
+            followerCount:1,
+            followingCount:3,
         }
     },
 
     mounted(){
         this.viewPage = this.$route.params.page;
+        // follower/following Count vuex로 얻기? 
     }
 
 }

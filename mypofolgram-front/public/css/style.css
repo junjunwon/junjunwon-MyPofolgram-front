@@ -19,41 +19,49 @@ input {
     border-radius: 4px;
     box-shadow: none;
     font-size: 1em;
-    -webkit-border-radius:0;
+    -webkit-border-radius: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
     -o-appearance: none;
     appearance: none;
 }
-input:focus{
-    outline:none;
+input:focus {
+    outline: none;
+}
+ul {
+    margin: 0;
+    padding: 0;
 }
 /* common */
-.button{
+.button {
     color: #0095f6;
     display: inline-block;
 }
-.left{
+.left {
     float: left;
 }
-.right{
+.right {
     float: right;
 }
 
 /* common-components */
-.empty{
+.empty {
     text-align: center;
     min-height: 300px;
     position: relative;
+    font-size: 20px;
 }
-.empty div{
+.empty div {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
-.empty i{
+.empty i {
     font-size: 30px;
+}
+.empty span {
+    font-size: 16px;
 }
 
 /* Header */
@@ -180,52 +188,52 @@ input:focus{
     padding: 5px 15px;
     margin-top: 10px;
 }
-.post .commentArea i{
+.post .commentArea i {
     font-size: 20px;
     margin-right: 10px;
 }
-.post .commentArea .button{
+.post .commentArea .button {
     float: right;
 }
 
 /* Mypage */
-.mypage .mypageHeader{
+.mypage .mypageHeader {
     display: flex;
     align-items: baseline;
     padding: 10px 20px;
     justify-content: space-between;
 }
-.mypage .mypageHeader i{
+.mypage .mypageHeader i {
     font-size: 20px;
     margin-left: 20px;
 }
-.mypage .top{
+.mypage .top {
     padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     text-align: center;
 }
-.mypage .top div{
+.mypage .top div {
     flex-basis: 30%;
 }
-.mypage .top div:first-child{
+.mypage .top div:first-child {
     flex-basis: 40%;
     display: flex;
 }
-.mypage .top img{
+.mypage .top img {
     width: 77px;
     height: 77px;
     border-radius: 50%;
 }
-.mypage .modify{
+.mypage .modify {
     margin: 10px 20px;
     border: 1px solid #dbdbdb;
     border-radius: 5px;
     padding: 5px;
     text-align: center;
 }
-.mypage .post{
+.mypage .post {
     width: 32.8%;
     height: 246px;
     margin-top: -4px;
@@ -234,10 +242,86 @@ input:focus{
     border-right: 1px solid #000;
     border-bottom: 1px solid #000;
 }
-.mypage .post:nth-child(3n){
+.mypage .post:nth-child(3n) {
     border-right: none;
 }
-.mypage .post img{
+.mypage .post img {
     width: 100%;
     height: 100%;
+}
+
+/* Follow */
+.follow .followMenu {
+    display: flex;
+    margin-bottom: 20px;
+}
+.follow .followMenu li {
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    height: 30px;
+}
+.follow .followMenu li.on::after {
+    position: absolute;
+    width: 100%;
+    content: "";
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    background-color: #000;
+}
+.people {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+}
+.people img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.people span {
+    flex-basis: 80%;
+}
+.people .button {
+    color: #000;
+    border-radius: 5px;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 2px 25px;
+}
+
+/* 미디어쿼리 */
+@media screen and (max-width: 745px) {
+    .people span {
+        flex-basis: 70%;
+    }
+}
+@media screen and (max-width: 504px) {
+    .people span {
+        flex-basis: 65%;
+    }
+}
+@media screen and (max-width: 435px) {
+    .people span {
+        flex-basis: 60%;
+    }
+}
+@media screen and (max-width: 383px) {
+    .people span {
+        flex-basis: 55%;
+    }
+}
+@media screen and (max-width: 342px) {
+    .people span {
+        flex-basis: 48%;
+    }
+}
+@media screen and (max-width: 299px) {
+    .people span {
+        flex-basis: 43%;
+    }
 }

@@ -17,11 +17,11 @@
             </div>
             <div @click="gotoFollowWhen('follower', user.followerCount > 0)">
                 <p>팔로워</p>
-                <span>10</span>
+                <span>{{user.followerCount}}</span>
             </div>
             <div @click="gotoFollowWhen('following', user.followingCount > 0)">
                 <p>팔로잉</p>
-                <span>122</span>
+                <span>{{user.followingCount}}</span>
             </div>
         </div>
         <div class="modify">프로필 편집</div>
@@ -64,6 +64,10 @@ export default{
                 followingCount:1
             },
         }
+    },
+
+    mounted(){
+        // follower/following Count vuex로 얻기?
     },
 
     methods:{
