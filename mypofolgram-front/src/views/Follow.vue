@@ -1,4 +1,8 @@
 <template>
+    <div class="topBack">
+        <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
+        <p>eunj_eong</p>
+    </div>
     <div class="follow">
         <ul class="followMenu">
             <li @click="viewPage = 'follower'" :class="{on:viewPage === 'follower'}">{{followerCount}} 팔로워</li>

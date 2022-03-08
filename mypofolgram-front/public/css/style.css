@@ -63,6 +63,19 @@ ul {
 .empty span {
     font-size: 16px;
 }
+.topBack{
+    position: relative;
+    text-align: center;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.topBack i{
+    position: absolute;
+    left: 20px;
+    top: 15px;
+}
 
 /* Header */
 .header {
@@ -254,6 +267,7 @@ ul {
 .follow .followMenu {
     display: flex;
     margin-bottom: 20px;
+    border-bottom: 1px solid #dbdbdb;
 }
 .follow .followMenu li {
     width: 50%;
@@ -268,7 +282,7 @@ ul {
     width: 100%;
     content: "";
     left: 0;
-    bottom: 0;
+    bottom: -1px;
     height: 1px;
     background-color: #000;
 }
