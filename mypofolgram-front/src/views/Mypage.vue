@@ -24,7 +24,7 @@
                 <span>{{user.followingCount}}</span>
             </div>
         </div>
-        <div class="modify">프로필 편집</div>
+        <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div>
         <div class="mypost" v-if="!isEmpty">
             <div class="post">
                 <img src="/images/example.jpeg" alt="고양이" />

@@ -2,7 +2,7 @@
     <div>
         <Header v-if="showHeader"/>
         <router-view />
-        <Footer />
+        <Footer v-if="showFooter"/>
     </div>
 </template>
 
@@ -20,6 +20,11 @@ export default {
     computed:{
         showHeader(){
             let hidePaths = ["/mypage"];
+            hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
+            return hidePaths.length ===0;
+        },
+        showFooter(){
+            let hidePaths = ["/mypage/modify"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         }

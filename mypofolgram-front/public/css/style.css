@@ -43,6 +43,9 @@ ul {
 .right {
     float: right;
 }
+.point {
+    color: #0095f6;
+}
 
 /* common-components */
 .empty {
@@ -63,7 +66,7 @@ ul {
 .empty span {
     font-size: 16px;
 }
-.topBack{
+.topBack {
     position: relative;
     text-align: center;
     padding: 10px 20px;
@@ -71,12 +74,17 @@ ul {
     font-size: 20px;
     margin-bottom: 10px;
 }
-.topBack i{
+.topBack i {
     position: absolute;
     left: 20px;
     top: 15px;
 }
-
+.topWithButton {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dbdbdb;
+}
 /* Header */
 .header {
     padding: 10px 20px;
@@ -306,6 +314,40 @@ ul {
     border: 1px solid #000;
     display: inline-block;
     padding: 2px 25px;
+}
+
+/* Modify */
+.profile {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+.profile img {
+    width: 77px;
+    height: 77px;
+}
+.modifyList+p, .modifyList+p+p {
+    border-top: 1px solid #dbdbdb;
+    padding: 5px 20px;
+}
+.modifyList{
+    border-top: 1px solid #dbdbdb;
+}
+.modifyList li{
+    padding: 5px 20px;
+}
+.modifyList li span{
+    width: 100px;
+    display: inline-block;
+}
+.modifyList li input{
+    width: calc(100% - 120px);
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 5px;
+}
+.modifyList li:nth-child(4) input{
+    border-bottom: none;
 }
 
 /* 미디어쿼리 */
