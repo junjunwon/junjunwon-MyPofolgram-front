@@ -5,6 +5,18 @@ const routes = [
         path:'/',
         component: () => import("../views/Main.vue"),
     },
+    {
+        path:'/mypage',
+        component: () => import("../views/Mypage.vue"),
+    },
+    {
+        path: "/mypage/follow/:page",
+        component: () => import("../views/Follow.vue"),
+    },
+    {
+        path: "/mypage/modify",
+        component: () => import("../views/Modify.vue"),
+    },
 ]
 
 let router = createRouter({
