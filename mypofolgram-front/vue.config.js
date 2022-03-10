@@ -1,4 +1,6 @@
 module.exports = {
+  outputDir: "../../MyPofolgram-back/src/main/resources/static/",
+  indexPath: "../static/index.html",
   lintOnSave: false,
   css: {
     loaderOptions: {
