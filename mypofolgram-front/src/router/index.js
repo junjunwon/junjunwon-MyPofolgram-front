@@ -17,6 +17,12 @@ const routes = [
         path: "/mypage/modify",
         component: () => import("../views/Modify.vue"),
     },
+    {
+        path: "/mypage/modifyProfile",
+        name:"modifyProfile",
+        props:true,
+        component: () => import("../views/ModifyProfile.vue"),
+    },
 ]
 
 let router = createRouter({

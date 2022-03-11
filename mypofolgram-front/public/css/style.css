@@ -7,6 +7,8 @@ body {
     padding: 0;
     margin: 0;
     text-decoration: none;
+    color: #333;
+    font-size: 16px;
 }
 h1 {
     margin: 0;
@@ -32,6 +34,10 @@ ul {
     margin: 0;
     padding: 0;
 }
+i{
+    color: #333;
+}
+
 /* common */
 .button {
     color: #0095f6;
@@ -45,6 +51,20 @@ ul {
 }
 .point {
     color: #0095f6;
+}
+.line{
+    border-bottom: 1px solid #dbdbdb;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.bold{
+    font-weight: bold;
+}
+.small{
+    font-size: 10px;
+}
+.medium{
+    font-size: 14px;
 }
 
 /* common-components */
@@ -85,6 +105,7 @@ ul {
     padding: 10px 20px;
     border-bottom: 1px solid #dbdbdb;
 }
+
 /* Header */
 .header {
     padding: 10px 20px;
@@ -348,6 +369,11 @@ ul {
 }
 .modifyList li:nth-child(4) input{
     border-bottom: none;
+}
+
+/* ModifyProfile */
+.modifyProfile{
+    padding: 10px 20px;
 }
 
 /* 미디어쿼리 */
