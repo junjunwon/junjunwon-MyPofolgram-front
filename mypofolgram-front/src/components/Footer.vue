@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
-        <i class="fa-solid fa-house"></i>
-        <i class="fa-solid fa-magnifying-glass"></i>
+        <i class="fa-solid fa-house" @click="moveTo('/')"></i>
+        <i class="fa-solid fa-magnifying-glass" @click="moveTo('/search')"></i>
         <i class="fa-solid fa-clapperboard"></i>
         <i class="fa-solid fa-circle-user" @click="moveTo('/mypage')"></i>
     </div>

@@ -238,6 +238,46 @@ i{
     float: right;
 }
 
+/* Search */
+.searchForm{
+    padding: 10px 20px;
+    position: relative;
+}
+.searchForm input{
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ddd;
+    border-radius: 5px;
+    padding: 5px 5px 5px 40px;
+}
+.searchForm i{
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.container{
+    display: grid;
+    row-gap: 10px;
+    column-gap: 10px;
+    grid:'. . .';
+    margin-bottom: 10px;
+}
+.container .item{
+    border: 1px solid #000;
+    min-height: 200px;
+}
+.search .container:nth-child(even) .item:nth-child(3){
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 3;
+}
+.search .container:nth-child(odd) .item:nth-child(1){
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column: 1;
+}
+
 /* Mypage */
 .mypage .mypageHeader {
     display: flex;
