@@ -19,7 +19,7 @@ export default {
 
     computed:{
         showHeader(){
-            let hidePaths = ["/mypage"];
+            let hidePaths = ["/mypage", "/activity"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         },

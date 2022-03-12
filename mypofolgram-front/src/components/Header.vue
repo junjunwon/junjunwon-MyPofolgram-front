@@ -23,7 +23,7 @@
                     </ul>
                 </div>
             </div>
-            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart" @click="moveTo('/activity')"></i>
             <i class="fa-solid fa-paper-plane"></i>
             <img src="/images/example.jpeg" alt="유저이미지" />
         </div>
@@ -34,7 +34,7 @@
 export default {
     data() {
         return {
-            isCreate: true,
+            isCreate: false,
         };
     },
     methods: {

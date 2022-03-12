@@ -6,6 +6,10 @@ const routes = [
         component: () => import("../views/Main.vue"),
     },
     {
+        path:'/activity',
+        component: () => import("../views/Activity.vue"),
+    },
+    {
         path:'/search',
         component: () => import("../views/Search.vue"),
     },
