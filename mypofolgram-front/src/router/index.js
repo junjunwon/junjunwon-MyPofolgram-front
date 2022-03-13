@@ -6,6 +6,14 @@ const routes = [
         component: () => import("../views/Main.vue"),
     },
     {
+        path:'/activity',
+        component: () => import("../views/Activity.vue"),
+    },
+    {
+        path:'/search',
+        component: () => import("../views/Search.vue"),
+    },
+    {
         path:'/mypage',
         component: () => import("../views/Mypage.vue"),
     },
@@ -16,6 +24,12 @@ const routes = [
     {
         path: "/mypage/modify",
         component: () => import("../views/Modify.vue"),
+    },
+    {
+        path: "/mypage/modifyProfile",
+        name:"modifyProfile",
+        props:true,
+        component: () => import("../views/ModifyProfile.vue"),
     },
 ]
 
