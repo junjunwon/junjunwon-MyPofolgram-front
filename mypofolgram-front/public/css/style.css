@@ -44,6 +44,18 @@ i{
     color: #0095f6;
     display: inline-block;
 }
+.buttonBackground {
+    background-color: #0095f6;
+    color: #fff;
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    margin: 0px 5px;
+    border-radius: 5px;
+    margin-left: auto;
+}
 .left {
     float: left;
 }
@@ -154,6 +166,51 @@ i{
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+}
+
+/* Activity */
+.activity{
+    padding: 20px 0px;
+}
+.activity i.fa-chevron-left{
+    font-size: 24px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.activity .title{
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.activity .followActivity{
+    padding: 10px 20px;
+}
+.activity .time{
+    padding: 10px 20px;
+    font-weight: bold;
+}
+.activity .item{
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+}
+.activity .item img{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.activity .item .text{
+    font-size: 16px;
+    max-width: 70%;
+}
+.activity .item .text b{
+    font-weight: bold;
+}
+.activity .item .date{
+    font-size: 14px;
+    margin-left: 5px;
+    color: #8e8e8e;
 }
 
 /* Footer */
