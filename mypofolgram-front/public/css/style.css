@@ -79,6 +79,15 @@ i{
 .medium{
     font-size: 14px;
 }
+.flexRight{
+    margin-left: auto;
+}
+.bottomModal{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
 
 /* common-components */
 .empty {
@@ -393,7 +402,7 @@ i{
     text-align: center;
 }
 .mypage .post {
-    width: 32.8%;
+    width: 33.3%;
     height: 246px;
     margin-top: -4px;
     display: inline-block;

@@ -16,7 +16,7 @@
                 <div>
                     이미지 더보기 개수
                 </div>
-                <i class="fa-solid fa-bookmark"></i>
+                <i class="fa-solid fa-bookmark flexRight"></i>
             </div>
             <p class="like">좋아요 123,456개</p>
             <p>

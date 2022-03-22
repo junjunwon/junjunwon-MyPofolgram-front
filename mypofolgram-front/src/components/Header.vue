@@ -8,7 +8,7 @@
                 <i class="fa-solid fa-square-plus" @click="toggle"></i>
                 <div class="createModal" v-if="isCreate">
                     <ul>
-                        <li>
+                        <li @click="postModal=true">
                             <span>게시물</span>
                             <i class="fa-solid fa-table-cells"></i>
                         </li>
@@ -28,6 +28,9 @@
             <img src="/images/example.jpeg" alt="유저이미지" />
         </div>
     </div>
+    <div v-if="postModal">
+        <span>게시물 생성 모달</span>
+    </div>
 </template>
 
 <script>
@@ -35,12 +38,15 @@ export default {
     data() {
         return {
             isCreate: false,
+            postModal:false,
         };
     },
     methods: {
         toggle() {
-            console.log(this.isCreate);
             this.isCreate = !this.isCreate;
+            if(this.isCreate == false){
+                this.postModal = false;
+            }
         },
         moveTo(path) {
             this.$router.push({
