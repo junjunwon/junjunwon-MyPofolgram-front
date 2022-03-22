@@ -3,7 +3,7 @@
         <div class="mypageHeader">
             <h2 class="nickname">eunj_eong</h2>
             <dis class="right">
-                <i class="fa-solid fa-square-plus"></i>
+                <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i>
                 <i class="fa-solid fa-bars"></i>
             </dis>
         </div>
@@ -51,6 +51,17 @@
                 <h3>게시물 없음</h3>
             </div>
         </div>
+        <div v-if="createModal" class="bottomModal">
+            <p>만들기</p>
+            <ul>
+                <li>게시물</li>
+                <li>릴스</li>
+                <li>스토리</li>
+                <li>스토리 하이라이트</li>
+                <li>라이브 방송</li>
+                <li>가이드</li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -59,9 +70,10 @@ export default{
     data(){
         return{
             isEmpty:false,
+            createModal:false,
             user:{
                 followerCount:1,
-                followingCount:1
+                followingCount:1,
             },
         }
     },
