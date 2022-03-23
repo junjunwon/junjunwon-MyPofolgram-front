@@ -3,7 +3,7 @@
         <div class="mypageHeader">
             <h2 class="nickname">eunj_eong</h2>
             <dis class="right">
-                <i class="fa-solid fa-square-plus"></i>
+                <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i>
                 <i class="fa-solid fa-bars"></i>
             </dis>
         </div>
@@ -17,11 +17,11 @@
             </div>
             <div @click="gotoFollowWhen('follower', user.followerCount > 0)">
                 <p>팔로워</p>
-                <span>{{user.followerCount}}</span>
+                <span>{{ user.followerCount }}</span>
             </div>
             <div @click="gotoFollowWhen('following', user.followingCount > 0)">
                 <p>팔로잉</p>
-                <span>{{user.followingCount}}</span>
+                <span>{{ user.followingCount }}</span>
             </div>
         </div>
         <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div>
@@ -51,26 +51,56 @@
                 <h3>게시물 없음</h3>
             </div>
         </div>
+        <div v-if="createModal" class="bottomModal">
+            <p class="modalTitle">만들기</p>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-table-cells"></i>
+                    <p>게시물</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <p>릴스</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-circle-plus"></i>
+                    <p>스토리</p>
+                </li>
+                <li>
+                    <i class="fa-brands fa-gratipay"></i>
+                    <p>스토리 하이라이트</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    <p>라이브 방송</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-book-open"></i>
+                    <p>가이드</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
-export default{
-    data(){
-        return{
-            isEmpty:false,
-            user:{
-                followerCount:1,
-                followingCount:1
+export default {
+    data() {
+        return {
+            isEmpty: false,
+            createModal: false,
+            user: {
+                followerCount: 1,
+                followingCount: 1,
             },
-        }
+        };
     },
 
-    mounted(){
+    mounted() {
         // follower/following Count vuex로 얻기?
     },
 
-    methods:{
+    methods: {
         moveTo(path) {
             this.$router.push({
                 path: path,
@@ -80,6 +110,6 @@ export default{
             if (!hasData) return;
             this.$router.push({ path: `/mypage/follow/${menu}` });
         },
-    }
-}
+    },
+};
 </script>
