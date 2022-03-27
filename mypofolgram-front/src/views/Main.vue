@@ -8,7 +8,7 @@
 <script>
 import StoryList from "@/components/StoryList.vue";
 import PostList from "@/components/PostList.vue";
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   components: {
@@ -20,18 +20,18 @@ export default {
       testValue : 'test'
     }
   },
-  created() {
-      axios.post('/axiosTest', null, {
-        params : {
-          testValue : this.testValue
-        }
-      })
-    .then((response) => {
-      console.log('response is ' + response)
-    })
-    .catch((error) => {
-      console.log('error is ' + error)
-    })
-  }
+  // created() {
+  //     axios.post('/axiosTest', null, {
+  //       params : {
+  //         testValue : this.testValue
+  //       }
+  //     })
+  //   .then((response) => {
+  //     console.log('response is ' + response)
+  //   })
+  //   .catch((error) => {
+  //     console.log('error is ' + error)
+  //   })
+  // }
 }
 </script>
