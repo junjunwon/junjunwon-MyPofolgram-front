@@ -21,7 +21,7 @@
             </div>
             <div @click="gotoFollowWhen('following', user.followingCount > 0)">
                 <p>팔로잉</p>
-                <span>{{ user.followingCount }}</span>
+                <span>{{users.follow}}</span>
             </div>
         </div>
         <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div>
@@ -84,20 +84,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
             isEmpty: false,
             createModal: false,
             user: {
-                followerCount: 1,
-                followingCount: 1,
+                userId : '',
+                userName : '',
+                website : '',
+                introduction :'',
+                email : '',
+                mobile : '',
+                countBoard : 0,
+                followerCount: 0,
+                followingCount: 0
             },
+          users : []
         };
     },
 
     mounted() {
+      console.log('1')
+      console.log(this)
         // follower/following Count vuex로 얻기?
+      this.getData()
     },
 
     methods: {
@@ -110,6 +122,26 @@ export default {
             if (!hasData) return;
             this.$router.push({ path: `/mypage/follow/${menu}` });
         },
+      getData : function() {
+        console.log('2')
+          console.log(this)
+        axios.get('/user/getProfileInfo', {
+          params: {
+            userId : 'jh.won'
+          }
+        })
+            .then((response) => {
+              console.log('3')
+              console.log(this.users)
+              this.users = response.data.result
+              console.log(this.users)
+              console.log(this)
+            })
+            .catch(() => {
+
+            })
+            .finally()
+      }
     },
 };
 </script>
