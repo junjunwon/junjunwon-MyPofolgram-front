@@ -12,12 +12,11 @@
         <ul class="modifyList">
             <li>
                 <span>이름</span>
-                <input type="text" placeholder="이름" v-model="name" @click="modifyProfile" id="name" />
-              <button @click="test"></button>
+                <input type="text" placeholder="이름" v-model="users.userId" @click="modifyProfile" id="name" />
             </li>
             <li>
                 <span>사용자 이름</span>
-                <input type="text" placeholder="사용자 이름" v-model="nickname" @click="modifyProfile" id="nickname" />
+                <input type="text" placeholder="사용자 이름" v-model="users.userName" @click="modifyProfile" id="nickname" />
             </li>
             <li>
                 <span>웹사이트</span>
@@ -37,23 +36,19 @@
 export default {
     data() {
         return {
-            name: "",
-            nickname: "",
+            userId: "",
+            userName: "",
             website: "",
-            intro: "",
-          userInfo : this.users
+            introduction: "",
+          users : {}
         };
     },
-    props: [ 'users' ],
     mounted() {
         // 저장된 정보들 가져와서 data에 넣기
+      this.users = this.$route.params
     },
 
     methods: {
-      test() {
-        console.log(this.users)
-        console.log(this.userInfo)
-      },
         modifyProfile(e) {
             let id = e.target.id;
             console.log("id : " + id);

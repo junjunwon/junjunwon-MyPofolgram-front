@@ -23,6 +23,8 @@ const routes = [
     },
     {
         path: "/mypage/modify",
+        name:"modify",
+        props:true,
         component: () => import("../views/Modify.vue"),
     },
     {

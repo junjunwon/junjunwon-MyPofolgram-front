@@ -24,7 +24,9 @@
                 <span v-text="users.follow"></span>
             </div>
         </div>
-        <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div>
+        <!-- <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div> -->
+        <div class="modify" @click="this.$router.push({name: 'modify', params: users });">프로필 편집</div>
+
         <div class="mypost" v-if="!isEmpty">
             <div class="post">
                 <img src="/images/example.jpeg" alt="고양이" />
@@ -80,26 +82,30 @@
                 </li>
             </ul>
         </div>
-      <modify v-bind:users="users"></modify>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Modify from "./Modify";
 export default {
   components : {
-    Modify
   },
   data() {
         return {
             isEmpty: false,
             createModal: false,
-          users : {}
+            users : {},
+            user: {
+                followerCount: 1,
+                followingCount: 1,
+            },
+            // props 테스트
+            test:''
         };
     },
     mounted() {
-      this.getData()
+        this.getData()
+        // follower/following Count vuex로 얻기?
     },
     methods: {
         moveTo(path) {
