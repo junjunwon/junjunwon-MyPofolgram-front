@@ -34,6 +34,8 @@
 
 <script>
 export default {
+    props:["user"],
+
     data() {
         return {
             name: "",
@@ -45,6 +47,10 @@ export default {
 
     mounted() {
         // 저장된 정보들 가져와서 data에 넣기
+
+        // props 테스트
+        console.log(typeof(this.user));
+        // console.log(JSON.stringify(this.user));
     },
 
     methods: {
