@@ -1,7 +1,7 @@
 <template>
     <div class="mypage">
         <div class="mypageHeader">
-            <h2 class="nickname">eunj_eong</h2>
+            <h2 class="nickname" v-text="users.userId"></h2>
             <dis class="right">
                 <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i>
                 <i class="fa-solid fa-bars"></i>
@@ -13,15 +13,15 @@
             </div>
             <div>
                 <p>게시물</p>
-                <span>65</span>
+                <span v-text="users.countBoard"></span>
             </div>
             <div @click="gotoFollowWhen('follower', user.followerCount > 0)">
                 <p>팔로워</p>
-                <span>{{ user.followerCount }}</span>
+                <span v-text="users.follower"></span>
             </div>
             <div @click="gotoFollowWhen('following', user.followingCount > 0)">
                 <p>팔로잉</p>
-                <span>{{users.follow}}</span>
+                <span v-text="users.follow"></span>
             </div>
         </div>
         <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div>
@@ -80,38 +80,27 @@
                 </li>
             </ul>
         </div>
+      <modify v-bind:users="users"></modify>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Modify from "./Modify";
 export default {
-    data() {
+  components : {
+    Modify
+  },
+  data() {
         return {
             isEmpty: false,
             createModal: false,
-            user: {
-                userId : '',
-                userName : '',
-                website : '',
-                introduction :'',
-                email : '',
-                mobile : '',
-                countBoard : 0,
-                followerCount: 0,
-                followingCount: 0
-            },
-          users : []
+          users : {}
         };
     },
-
     mounted() {
-      console.log('1')
-      console.log(this)
-        // follower/following Count vuex로 얻기?
       this.getData()
     },
-
     methods: {
         moveTo(path) {
             this.$router.push({
@@ -122,25 +111,9 @@ export default {
             if (!hasData) return;
             this.$router.push({ path: `/mypage/follow/${menu}` });
         },
-      getData : function() {
-        console.log('2')
-          console.log(this)
-        axios.get('/user/getProfileInfo', {
-          params: {
-            userId : 'jh.won'
-          }
-        })
-            .then((response) => {
-              console.log('3')
-              console.log(this.users)
-              this.users = response.data.result
-              console.log(this.users)
-              console.log(this)
-            })
-            .catch(() => {
-
-            })
-            .finally()
+      async getData() {
+        const response = await axios.get('/user/getProfileInfo', {params : {userId : 'jh.won'}})
+        this.users = response.data.result
       }
     },
 };

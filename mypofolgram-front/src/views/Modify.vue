@@ -13,6 +13,7 @@
             <li>
                 <span>이름</span>
                 <input type="text" placeholder="이름" v-model="name" @click="modifyProfile" id="name" />
+              <button @click="test"></button>
             </li>
             <li>
                 <span>사용자 이름</span>
@@ -40,14 +41,19 @@ export default {
             nickname: "",
             website: "",
             intro: "",
+          userInfo : this.users
         };
     },
-
+    props: [ 'users' ],
     mounted() {
         // 저장된 정보들 가져와서 data에 넣기
     },
 
     methods: {
+      test() {
+        console.log(this.users)
+        console.log(this.userInfo)
+      },
         modifyProfile(e) {
             let id = e.target.id;
             console.log("id : " + id);

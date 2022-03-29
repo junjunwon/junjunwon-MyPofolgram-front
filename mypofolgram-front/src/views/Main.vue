@@ -12,8 +12,8 @@ import PostList from "@/components/PostList.vue";
 
 export default {
   components: {
-      StoryList,
-      PostList
+    StoryList,
+    PostList
   },
   data() {
     return {
