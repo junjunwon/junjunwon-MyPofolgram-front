@@ -25,7 +25,7 @@
             </div>
             <i class="fa-solid fa-heart" @click="moveTo('/activity')"></i>
             <i class="fa-solid fa-paper-plane"></i>
-            <img src="/images/example.jpeg" alt="유저이미지" />
+            <img @click="moveTo('/mypage')" src="/images/example.jpeg" alt="유저이미지" />
         </div>
     </div>
     <div v-if="postModal">
