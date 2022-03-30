@@ -3,8 +3,9 @@
         <div class="mypageHeader">
             <h2 class="nickname" v-text="users.userId"></h2>
             <dis class="right">
-                <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i>
-                <i class="fa-solid fa-bars"></i>
+                <!-- <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i> -->
+                <i class="fa-solid fa-square-plus" id="createModal" @click="checkModal($event)"></i>
+                <i class="fa-solid fa-bars" id="settingModal" @click="checkModal($event)"></i>
             </dis>
         </div>
         <div class="top">
@@ -25,7 +26,7 @@
             </div>
         </div>
         <!-- <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div> -->
-        <div class="modify" @click="this.$router.push({name: 'modify', params: users });">프로필 편집</div>
+        <div class="modify" @click="this.$router.push({ name: 'modify', params: users })">프로필 편집</div>
 
         <div class="mypost" v-if="!isEmpty">
             <div class="post">
@@ -53,7 +54,7 @@
                 <h3>게시물 없음</h3>
             </div>
         </div>
-        <div v-if="createModal" class="bottomModal">
+        <div v-if="createModal" class="bottomModal" style="bottom:100px">
             <p class="modalTitle">만들기</p>
             <ul>
                 <li>
@@ -82,29 +83,65 @@
                 </li>
             </ul>
         </div>
+        <div v-if="settingModal" class="bottomModal" style="bottom:150px">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-gear"></i>
+                    <p>설정</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-clock"></i>
+                    <p>내 활동</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-clock"></i>
+                    <p>보관</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-qrcode"></i>
+                    <p>QR 코드</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-bookmark"></i>
+                    <p>저장됨</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-list"></i>
+                    <p>친한 친구</p>
+                </li>
+                <li>
+                    <i class="fa-solid fa-star"></i>
+                    <p>즐겨찾기</p>
+                </li>
+                <li>
+                    <i class="fa-brands fa-gratipay"></i>
+                    <p>코로나19 정보 센터</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  components : {
-  },
-  data() {
+    components: {},
+    data() {
         return {
             isEmpty: false,
             createModal: false,
-            users : {},
+            settingModal: false,
+            users: {},
             user: {
                 followerCount: 1,
                 followingCount: 1,
             },
             // props 테스트
-            test:''
+            test: "",
         };
     },
     mounted() {
-        this.getData()
+        this.getData();
         // follower/following Count vuex로 얻기?
     },
     methods: {
@@ -117,10 +154,22 @@ export default {
             if (!hasData) return;
             this.$router.push({ path: `/mypage/follow/${menu}` });
         },
-      async getData() {
-        const response = await axios.get('/user/getProfileInfo', {params : {userId : 'jh.won'}})
-        this.users = response.data.result
-      }
+        checkModal(e){
+            let target = e.currentTarget.id;
+            if(target === "createModal"){
+                this.settingModal = false;
+                this.createModal = !this.createModal;
+            }else{
+                this.createModal = false;
+                this.settingModal = !this.settingModal;
+            }
+            
+
+        },
+        async getData() {
+            const response = await axios.get("/user/getProfileInfo", { params: { userId: "jh.won" } });
+            this.users = response.data.result;
+        },
     },
 };
 </script>
