@@ -99,7 +99,8 @@ i{
     margin-left: auto;
 }
 .bottomModal{
-    position: relative;
+    /* position: relative; */
+    position: absolute;
     left: 0;
     background-color: #fff;
     width: 100%;

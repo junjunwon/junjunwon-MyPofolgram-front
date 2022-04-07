@@ -1,5 +1,6 @@
 <template>
-    <!-- <div class="post">
+    <div id="postList" @click="postListCheck($event)">
+        <!-- <div class="post">
         <div class="top">
             <img src="/images/example.jpeg" alt="프로필">
             <p>eunj_eong</p>
@@ -37,41 +38,55 @@
         </div>
     </div> -->
 
-    <div class="post" v-for="row in rows" v-bind:key="row">
-        <div class="top">
-            <img :src="row.userImgUrl" alt="프로필" />
-            <p>{{ row.nickName }}</p>
-            <i class="fa-solid fa-ellipsis"></i>
-        </div>
-        <div class="photoList">
-            <img :src="row.imgUrl" alt="" />
-        </div>
-        <div class="bottom">
-            <div class="iconList">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-comment"></i>
-                <i class="fa-solid fa-paper-plane"></i>
-                <div>이미지 더보기 개수</div>
-                <i class="fa-solid fa-bookmark flexRight"></i>
+        <div class="post" v-for="row in rows" v-bind:key="row">
+            <div class="top">
+                <img :src="row.userImgUrl" alt="프로필" />
+                <p>{{ row.nickName }}</p>
+                <i class="fa-solid fa-ellipsis" @click="showModal = true"></i>
             </div>
-            <p class="like">좋아요 123,456개</p>
-            <p>
-                <span class="nickname">eunj_eong</span>
-                <span class="content"
-                    >{{ row.content }}
-                    <p></p>
-                    <span class="hashtag" v-for="hashtag in row.hashtags" v-bind:key="hashtag">
-                        <span>#{{ hashtag }}&nbsp;</span>
+            <div class="photoList">
+                <img :src="row.imgUrl" alt="" />
+            </div>
+            <div class="bottom">
+                <div class="iconList">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-comment"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <div>이미지 더보기 개수</div>
+                    <i class="fa-solid fa-bookmark flexRight"></i>
+                </div>
+                <p class="like">좋아요 123,456개</p>
+                <p>
+                    <span class="nickname">eunj_eong</span>
+                    <span class="content"
+                        >{{ row.content }}
+                        <p></p>
+                        <span class="hashtag" v-for="hashtag in row.hashtags" v-bind:key="hashtag">
+                            <span>#{{ hashtag }}&nbsp;</span>
+                        </span>
                     </span>
-                </span>
-            </p>
-            <p class="comment">댓글 23,123개 모두 보기</p>
-            <p class="time">{{ row.createDate }}</p>
+                </p>
+                <p class="comment">댓글 23,123개 모두 보기</p>
+                <p class="time">{{ row.createDate }}</p>
+            </div>
+            <div class="commentArea">
+                <i class="fa-solid fa-face-smile-wink"></i>
+                <input type="text" placeholder="댓글 달기..." />
+                <div class="button">게시</div>
+            </div>
         </div>
-        <div class="commentArea">
-            <i class="fa-solid fa-face-smile-wink"></i>
-            <input type="text" placeholder="댓글 달기..." />
-            <div class="button">게시</div>
+        <div class="bottomModal" v-if="showModal">
+            <div>공유</div>
+            <div>링크</div>
+            <div>신고</div>
+            <div>이 게시물이 표시되는 이유</div>
+            <div>
+                <ul>
+                    <li>즐겨찾기에 추가</li>
+                    <li>숨기기</li>
+                    <li>팔로우 취소</li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -80,6 +95,7 @@
 export default {
     data() {
         return {
+            showModal: false,
             count: 0,
             rows: [],
         };
@@ -149,6 +165,19 @@ export default {
             this.count = response.count;
             this.rows = response.rows;
         },
+        postListCheck(e){
+            // e.preventDefault();
+            let target = e.target;
+            let currentTarget = e.currentTarget;
+
+            console.log("target : "+target);
+            console.log("currentTarget : "+currentTarget);
+            
+            let checkOpenModal = this.showModal;
+            if(checkOpenModal){
+                this.showModal = false;
+            }
+        }
     },
 };
 </script>
