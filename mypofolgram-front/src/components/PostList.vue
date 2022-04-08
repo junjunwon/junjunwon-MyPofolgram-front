@@ -76,8 +76,8 @@
             </div>
         </div>
     </v-container>
-    <div class="modalWrap" v-if="showModal" @click="backgroundClick()">
-        <div class="bottomModal">
+    <div class="modalWrap" v-if="showModal" v-on:click="backgroundClick">
+        <div class="bottomModal" id="modal">
             <div>공유</div>
             <div>링크</div>
             <div>신고</div>
@@ -167,9 +167,11 @@ export default {
             this.count = response.count;
             this.rows = response.rows;
         },
-        backgroundClick() {
-            let checkOpenModal = this.showModal;
-            if (checkOpenModal) {
+        backgroundClick(e) {
+            let target = e.target;
+            let checkContain = target.classList.contains('modalWrap');
+
+            if(checkContain){
                 this.showModal = false;
             }
         },
