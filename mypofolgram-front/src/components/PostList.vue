@@ -1,5 +1,5 @@
 <template>
-    <div id="postList" @click="postListCheck($event)">
+    <v-container id="postList">
         <!-- <div class="post">
         <div class="top">
             <img src="/images/example.jpeg" alt="프로필">
@@ -75,7 +75,9 @@
                 <div class="button">게시</div>
             </div>
         </div>
-        <div class="bottomModal" v-if="showModal">
+    </v-container>
+    <div class="modalWrap" v-if="showModal" @click="backgroundClick()">
+        <div class="bottomModal">
             <div>공유</div>
             <div>링크</div>
             <div>신고</div>
@@ -165,19 +167,15 @@ export default {
             this.count = response.count;
             this.rows = response.rows;
         },
-        postListCheck(e){
-            // e.preventDefault();
-            let target = e.target;
-            let currentTarget = e.currentTarget;
-
-            console.log("target : "+target);
-            console.log("currentTarget : "+currentTarget);
-            
+        backgroundClick() {
             let checkOpenModal = this.showModal;
-            if(checkOpenModal){
+            if (checkOpenModal) {
                 this.showModal = false;
             }
-        }
+        },
+        checkScroll() {
+            console.log("스크롤?");
+        },
     },
 };
 </script>
