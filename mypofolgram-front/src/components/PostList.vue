@@ -1,5 +1,5 @@
 <template>
-    <v-container id="postList">
+    <div id="postList">
         <!-- <div class="post">
         <div class="top">
             <img src="/images/example.jpeg" alt="프로필">
@@ -42,7 +42,7 @@
             <div class="top">
                 <img :src="row.userImgUrl" alt="프로필" />
                 <p>{{ row.nickName }}</p>
-                <i class="fa-solid fa-ellipsis" @click="showModal = true"></i>
+                <i class="fa-solid fa-ellipsis" @click="showModalCheckWidth"></i>
             </div>
             <div class="photoList">
                 <img :src="row.imgUrl" alt="" />
@@ -75,19 +75,31 @@
                 <div class="button">게시</div>
             </div>
         </div>
-    </v-container>
-    <div class="modalWrap" v-if="showModal" v-on:click="backgroundClick">
-        <div class="bottomModal" id="modal">
-            <div>공유</div>
-            <div>링크</div>
-            <div>신고</div>
-            <div>이 게시물이 표시되는 이유</div>
-            <div>
-                <ul>
-                    <li>즐겨찾기에 추가</li>
-                    <li>숨기기</li>
-                    <li>팔로우 취소</li>
-                </ul>
+
+        <div class="modalWrap" v-if="showModal" v-on:click="backgroundClick">
+            <div class="bottomModal" id="modal" style="width=600px">
+                <div class="flexbox">
+                    <div>
+                        <p><i class="fa-solid fa-arrow-up-from-bracket"></i></p>
+                        공유
+                    </div>
+                    <div>
+                        <p><i class="fa-solid fa-link"></i></p>
+                        링크
+                    </div>
+                    <div class="point2">
+                        <p><i class="fa-solid fa-exclamation point2"></i></p>
+                        신고
+                    </div>
+                </div>
+                <div>이 게시물이 표시되는 이유</div>
+                <div>
+                    <ul>
+                        <li>즐겨찾기에 추가</li>
+                        <li>숨기기</li>
+                        <li>팔로우 취소</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -167,11 +179,19 @@ export default {
             this.count = response.count;
             this.rows = response.rows;
         },
+        showModalCheckWidth() {
+            // 동적으로 모달 넓이 지정해주는 부분 구현 필요
+
+            // let appWidth = document.getElementById('app').offsetWidth+"";
+            // console.log("appWidth : "+appWidth);
+
+            this.showModal = true;
+        },
         backgroundClick(e) {
             let target = e.target;
-            let checkContain = target.classList.contains('modalWrap');
+            let checkContain = target.classList.contains("modalWrap");
 
-            if(checkContain){
+            if (checkContain) {
                 this.showModal = false;
             }
         },

@@ -52,6 +52,11 @@ i{
 }
 
 /* common */
+.flexbox{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
 .button {
     color: #0095f6;
     display: inline-block;
@@ -110,13 +115,14 @@ i{
 .bottomModal{
     /* position: relative; */
     position: absolute;
-    left: 0;
+    left: 50%;
     background-color: #fff;
-    width: 100%;
+    width: 600px;
     border-radius: 10px 10px 0px 0px;
     padding-top: 20px;
     bottom: 0px;
     height: 270px;
+    transform: translateX(-50%);
 }
 .bottomModal::after{
     width: 30px;
@@ -392,7 +398,31 @@ i{
 .post .commentArea .button {
     float: right;
 }
-
+#postList .bottomModal div{
+    border: 1px solid #8e8e8e;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+#postList .bottomModal{
+    padding: 20px;
+    text-align: center;
+}
+#postList .bottomModal .flexbox{
+    border: none;
+    padding: 0px;
+}
+#postList .bottomModal .flexbox div{
+    width: 26%;
+}
+#postList .bottomModal li:after{
+    width: 100%;
+    left: 0px;
+}
+#postList .bottomModal li:last-child:after{
+    content: none;
+}
+ 
 /* Search */
 .searchForm{
     padding: 10px 20px;
