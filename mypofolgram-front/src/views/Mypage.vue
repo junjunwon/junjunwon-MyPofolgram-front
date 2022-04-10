@@ -9,7 +9,7 @@
         </div>
         <div class="top">
             <div>
-                <img src="/images/example.jpeg" alt="고양이" />
+                <img :src=imgTest alt="고양이" />
             </div>
             <div>
                 <p>게시물</p>
@@ -56,9 +56,10 @@
         <div v-if="createModal" class="bottomModal">
             <p class="modalTitle">만들기</p>
             <ul>
-                <li>
+                <li id="show-modal" @click="showModal = true">
                     <i class="fa-solid fa-table-cells"></i>
                     <p>게시물</p>
+                    <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
                 </li>
                 <li>
                     <i class="fa-solid fa-clapperboard"></i>
@@ -82,13 +83,38 @@
                 </li>
             </ul>
         </div>
+        <!-- use the modal component, pass in the prop -->
+        <new-post :show="showModal" @close="showModal = false">
+            <template #header>
+                <div class="topWithButton">
+                    <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
+                    <p class="bold">새 게시물 만들기</p>
+                    <i @click="onUpload" class="point">다음</i>
+                </div>
+            </template>
+            <template #body>
+                <img src="" alt="" />
+                <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
+                <!-- <a @click="showModal = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a> -->
+                <input type="file" @change="onFileSelected" ref="fileInput" class="input" />
+                <br />
+                <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
+            </template>
+            <template #footer>
+                <div></div>
+            </template>
+        </new-post>
     </div>
 </template>
 
 <script>
+// import axios from 'axios'
+import modal from '../components/modal.vue'
 import axios from 'axios'
+
 export default {
   components : {
+      'newPost' : modal
   },
   data() {
         return {
@@ -100,11 +126,19 @@ export default {
                 followingCount: 1,
             },
             // props 테스트
-            test:''
+            test: "",
+            imgTest : "/images/example.jpeg",
+            showModal: false,
+            selectedFile: null,
+            showComplete : false
         };
     },
-    mounted() {
-        this.getData()
+    created() {
+        this.getData();
+        this.test = {
+          id : 0,
+          userName : 'jh.won'
+        }
         // follower/following Count vuex로 얻기?
     },
     methods: {
@@ -117,10 +151,51 @@ export default {
             if (!hasData) return;
             this.$router.push({ path: `/mypage/follow/${menu}` });
         },
-      async getData() {
-        const response = await axios.get('/user/getProfileInfo', {params : {userId : 'jh.won'}})
-        this.users = response.data.result
-      }
+        async getData() {
+            // const response = await axios.get('/user/getProfileInfo', {params : {userId : 'jh.won'}})
+            // this.users = response.data.result
+        },
+        onFileSelected(event) {
+            console.log(event)
+            this.selectedFile = event.target.files[0]
+        },
+        async onUpload() {
+            const fd = new FormData()
+            let isCheck = this.checkFile(fd)
+            console.log('check is :'+isCheck)
+            if(!isCheck) return
+            console.log('stil??')
+            fd.append('imageTest', this.selectedFile, this.selectedFile.name)
+
+            await axios.post('', fd, {
+                onUploadProgress : uploadEvent => {
+                    console.log('Upload Progress : '+ Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%') //hold number and byte how much we upload
+                }
+            })
+            .then(res => {
+                console.log(res)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            .finally(
+                this.showModal = false
+            )
+        },
+        checkFile(fd) {
+            if(fd !== null) return true
+            return false
+        }
     },
 };
 </script>
+<style scoped>
+.buttonBackground {
+    width:130px;
+    height:32px;
+    cursor: pointer;
+}
+.input {
+    display: none;
+}
+</style>

@@ -15,7 +15,14 @@
 
 <script>
 export default {
-    props: ["type"],
+    props: {
+      users : {
+        type : Object
+      },
+      type : {
+        type : String
+      }
+    },
     data() {
         return {
             value: "value",

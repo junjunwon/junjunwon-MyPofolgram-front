@@ -12,11 +12,11 @@
         <ul class="modifyList">
             <li>
                 <span>이름</span>
-                <input type="text" placeholder="이름" v-model="users.userId" @click="modifyProfile" id="name" />
+                <input type="text" placeholder="이름" v-model="users.userId" id="name" @click="viewPage = 'userId'" />
             </li>
             <li>
                 <span>사용자 이름</span>
-                <input type="text" placeholder="사용자 이름" v-model="users.userName" @click="modifyProfile" id="nickname" />
+                <input type="text" placeholder="사용자 이름" v-model="users.userName" id="nickname" @click="viewPage = 'userName'"/>
             </li>
             <li>
                 <span>웹사이트</span>
@@ -29,25 +29,38 @@
         </ul>
         <p class="point">프로페셔널 계정으로 전환</p>
         <p class="point">개인정보 설정</p>
+      <ModifyProfile
+          v-if="viewPage === 'modifyUserId'"
+          :users="users"
+          :type="viewPage"
+      ></ModifyProfile>
     </div>
 </template>
 
 <script>
+import ModifyProfile from "./ModifyProfile"
+
 export default {
+    components : {
+      ModifyProfile
+    },
     data() {
         return {
             userId: "",
             userName: "",
             website: "",
             introduction: "",
+            viewPage : "",
           users : {}
         };
     },
-    mounted() {
+    created() {
         // 저장된 정보들 가져와서 data에 넣기
       this.users = this.$route.params
+      console.log(this.users)
+      console.log(this.users.id)
+      console.log(this.users.userName)
     },
-
     methods: {
         modifyProfile(e) {
             let id = e.target.id;

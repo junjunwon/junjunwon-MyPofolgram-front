@@ -16,22 +16,30 @@ const routes = [
     {
         path:'/mypage',
         component: () => import("../views/Mypage.vue"),
+        meta: {
+        }
     },
     {
         path: "/mypage/follow/:page",
         component: () => import("../views/Follow.vue"),
+        meta: {
+        }
     },
     {
         path: "/mypage/modify",
         name:"modify",
         props:true,
         component: () => import("../views/Modify.vue"),
+        meta: {
+        }
     },
     {
         path: "/mypage/modifyProfile",
         name:"modifyProfile",
         props:true,
         component: () => import("../views/ModifyProfile.vue"),
+        meta: {
+        }
     },
 ]
 
