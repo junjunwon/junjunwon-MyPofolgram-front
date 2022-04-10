@@ -57,54 +57,33 @@
         <div v-if="createModal" class="bottomModal" style="bottom:100px">
             <p class="modalTitle">만들기</p>
             <ul>
-                <li id="show-modal" @click="showModal = true">
+                <li id="show-modal" @click="showRegister = true">
                     <i class="fa-solid fa-table-cells"></i>
                     <p>게시물</p>
-                    <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
+                    <!-- <button id="show-modal" @click="showRegister = true">Show Modal</button> -->
                 </li>
-                <li>
+                <li id="show-modal" @click="showDeveloping = true">
                     <i class="fa-solid fa-clapperboard"></i>
                     <p>릴스</p>
                 </li>
-                <li>
+                <li id="show-modal" @click="showDeveloping = true">
                     <i class="fa-solid fa-circle-plus"></i>
                     <p>스토리</p>
                 </li>
-                <li>
+                <li id="show-modal" @click="showDeveloping = true">
                     <i class="fa-brands fa-gratipay"></i>
                     <p>스토리 하이라이트</p>
                 </li>
-                <li>
+                <li id="show-modal" @click="showDeveloping = true">
                     <i class="fa-solid fa-satellite-dish"></i>
                     <p>라이브 방송</p>
                 </li>
-                <li>
+                <li id="show-modal" @click="showDeveloping = true">
                     <i class="fa-solid fa-book-open"></i>
                     <p>가이드</p>
                 </li>
             </ul>
         </div>
-        <!-- use the modal component, pass in the prop -->
-        <new-post :show="showModal" @close="showModal = false">
-            <template #header>
-                <div class="topWithButton">
-                    <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
-                    <p class="bold">새 게시물 만들기</p>
-                    <i @click="onUpload" class="point">다음</i>
-                </div>
-            </template>
-            <template #body>
-                <img src="" alt="" />
-                <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
-                <!-- <a @click="showModal = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a> -->
-                <input type="file" @change="onFileSelected" ref="fileInput" class="input" />
-                <br />
-                <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
-            </template>
-            <template #footer>
-                <div></div>
-            </template>
-        </new-post>
         <div v-if="settingModal" class="bottomModal" style="bottom:150px">
             <ul>
                 <li>
@@ -141,6 +120,44 @@
                 </li>
             </ul>
         </div>
+        <!-- use the modal component, pass in the prop -->
+        <new-post :show="showRegister" @close="showRegister = false">
+            <template #header>
+                <div class="topWithButton">
+                    <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
+                    <p class="bold">새 게시물 만들기</p>
+                    <i @click="onUpload" class="point">다음</i>
+                </div>
+            </template>
+            <template #body>
+                <img src="" alt="" />
+                <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
+                <!-- <a @click="showRegister = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a> -->
+                 <input type="file" @change="onFileSelected" ref="fileInput" class="input" />
+                <br />
+                <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
+            </template>
+            <template #footer>
+                <div></div>
+            </template>
+        </new-post>
+        <confirm-modal :show="showDeveloping" @close="showDeveloping = false">
+            <template #header>
+                <div class="topWithButton">
+                    <p class="bold">확인창</p>
+                </div>
+            </template>
+            <template #body>
+                <div>
+                    <div>개발중입니다. </div>
+                </div>
+            </template>
+            <template #footer>
+                <div>
+                    
+                </div>
+            </template>
+        </confirm-modal>
     </div>
 </template>
 
@@ -148,11 +165,13 @@
 
 // import axios from 'axios'
 import modal from '../components/modal.vue'
+import confirmModal from '../components/confirmModal.vue'
 import axios from 'axios'
 
 export default {
     components : {
-        'newPost' : modal
+        'newPost' : modal,
+        'confirmModal' : confirmModal
     },        
     data() {
 
@@ -169,7 +188,8 @@ export default {
             test: "",
 
             imgTest : "/images/example.jpeg",
-            showModal: false,
+            showRegister: false,
+            showDeveloping : false,
             selectedFile: null,
             showComplete : false
         };
@@ -224,7 +244,7 @@ export default {
                 console.log(error)
             })
             .finally(
-                this.showModal = false
+                this.showRegister = false
             )
         },
         checkFile(fd) {
