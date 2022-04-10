@@ -1,5 +1,6 @@
 <template>
-    <div class="post">
+    <div id="postList">
+        <!-- <div class="post">
         <div class="top">
             <img src="/images/example.jpeg" alt="프로필">
             <p>eunj_eong</p>
@@ -35,5 +36,168 @@
                 게시
             </div>
         </div>
+    </div> -->
+
+        <div class="post" v-for="row in rows" v-bind:key="row">
+            <div class="top">
+                <img :src="row.userImgUrl" alt="프로필" />
+                <p>{{ row.nickName }}</p>
+                <i class="fa-solid fa-ellipsis" @click="showModalCheckWidth"></i>
+            </div>
+            <div class="photoList">
+                <img :src="row.imgUrl" alt="" />
+            </div>
+            <div class="bottom">
+                <div class="iconList">
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-comment"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <div>이미지 더보기 개수</div>
+                    <i class="fa-solid fa-bookmark flexRight"></i>
+                </div>
+                <p class="like">좋아요 123,456개</p>
+                <p>
+                    <span class="nickname">eunj_eong</span>
+                    <span class="content"
+                        >{{ row.content }}
+                        <p></p>
+                        <span class="hashtag" v-for="hashtag in row.hashtags" v-bind:key="hashtag">
+                            <span>#{{ hashtag }}&nbsp;</span>
+                        </span>
+                    </span>
+                </p>
+                <p class="comment">댓글 23,123개 모두 보기</p>
+                <p class="time">{{ row.createDate }}</p>
+            </div>
+            <div class="commentArea">
+                <i class="fa-solid fa-face-smile-wink"></i>
+                <input type="text" placeholder="댓글 달기..." />
+                <div class="button">게시</div>
+            </div>
+        </div>
+
+        <div class="modalWrap" v-if="showModal" v-on:click="backgroundClick">
+            <div class="bottomModal" id="modal" style="width=600px">
+                <div class="flexbox">
+                    <div>
+                        <p><i class="fa-solid fa-arrow-up-from-bracket"></i></p>
+                        공유
+                    </div>
+                    <div>
+                        <p><i class="fa-solid fa-link"></i></p>
+                        링크
+                    </div>
+                    <div class="point2">
+                        <p><i class="fa-solid fa-exclamation point2"></i></p>
+                        신고
+                    </div>
+                </div>
+                <div>이 게시물이 표시되는 이유</div>
+                <div>
+                    <ul>
+                        <li>즐겨찾기에 추가</li>
+                        <li>숨기기</li>
+                        <li>팔로우 취소</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            showModal: false,
+            count: 0,
+            rows: [],
+        };
+    },
+    mounted() {
+        this.getPostInfo();
+    },
+    methods: {
+        getPostInfo() {
+            // 포스트정보 가져오는 api호출, 기본 오름차순(최신순)
+            let response = {
+                count: 5,
+                rows: [
+                    // 포스트 관련된 정보 + 포스트 작성자 정보
+                    {
+                        id: 5, //포스트 아이디
+                        nickName: "eunjeong", //Users 테이블
+                        userImgUrl: "/images/example.jpeg",
+                        imgUrl: "/images/example.jpeg",
+                        content: "압구정 김치찌개",
+                        createDate: "2022/04/01", //포스트 생성일
+                        hashtags: [
+                            //HashTag 테이블
+                            "압구정 맛집",
+                            "압구정",
+                            "김치찌개 맛집",
+                        ],
+                    },
+                    {
+                        id: 4,
+                        nickName: "eunjeong444",
+                        userImgUrl: "/images/example.jpeg",
+                        imgUrl: "/images/example.jpeg",
+                        content: "압구정 김치찌개444",
+                        createDate: "2022/04/01",
+                        hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
+                    },
+                    {
+                        id: 3,
+                        nickName: "eunjeong333",
+                        userImgUrl: "/images/example.jpeg",
+                        imgUrl: "/images/example.jpeg",
+                        content: "압구정 김치찌개333",
+                        createDate: "2022/04/01",
+                        hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
+                    },
+                    {
+                        id: 2,
+                        nickName: "eunjeong222",
+                        userImgUrl: "/images/example.jpeg",
+                        imgUrl: "/images/example.jpeg",
+                        content: "압구정 김치찌개222",
+                        createDate: "2022/04/01",
+                        hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
+                    },
+                    {
+                        id: 1,
+                        nickName: "eunjeong111",
+                        userImgUrl: "/images/example.jpeg",
+                        imgUrl: "/images/example.jpeg",
+                        content: "압구정 김치찌개111",
+                        createDate: "2022/04/01",
+                        hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
+                    },
+                ],
+            };
+            this.count = response.count;
+            this.rows = response.rows;
+        },
+        showModalCheckWidth() {
+            // 동적으로 모달 넓이 지정해주는 부분 구현 필요
+
+            // let appWidth = document.getElementById('app').offsetWidth+"";
+            // console.log("appWidth : "+appWidth);
+
+            this.showModal = true;
+        },
+        backgroundClick(e) {
+            let target = e.target;
+            let checkContain = target.classList.contains("modalWrap");
+
+            if (checkContain) {
+                this.showModal = false;
+            }
+        },
+        checkScroll() {
+            console.log("스크롤?");
+        },
+    },
+};
+</script>
