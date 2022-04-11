@@ -12,7 +12,7 @@ export default {
     },
     mounted() {
         this.postId = this.$route.params.id;
-        console.log("this.postId : "+this.postId);
+        // console.log("this.postId : "+this.postId);
         this.getComments();
     },
     methods: {
