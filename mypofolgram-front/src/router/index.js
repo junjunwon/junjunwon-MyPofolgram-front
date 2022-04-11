@@ -14,6 +14,10 @@ const routes = [
         component: () => import("../views/Search.vue"),
     },
     {
+        path:'/comment:id',
+        component:() => import("../views/Comment.vue"),
+    },
+    {
         path:'/mypage',
         component: () => import("../views/Mypage.vue"),
     },
