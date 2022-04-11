@@ -185,12 +185,9 @@ export default {
             this.rows = response.rows;
         },
         showModalCheckWidth() {
-            // 동적으로 모달 넓이 지정해주는 부분 구현 필요
-
-            // let appWidth = document.getElementById('app').offsetWidth+"";
-            // console.log("appWidth : "+appWidth);
-
             this.showModal = true;
+
+            // 게시글 위로 모달 보이도록 수정 필요
         },
         backgroundClick(e) {
             let target = e.target;
