@@ -49,7 +49,10 @@
             </div>
             <div class="bottom">
                 <div class="iconList">
-                    <i :class="{ 'fa-solid fa-heart':true, point2: row.liked===true }" @click="changeLike(row.liked, index)"></i>
+                    <i
+                        :class="{ 'fa-solid fa-heart': true, point2: row.liked === true }"
+                        @click="changeLike(row.liked, index)"
+                    ></i>
                     <i class="fa-solid fa-comment"></i>
                     <i class="fa-solid fa-paper-plane"></i>
                     <div>이미지 더보기 개수</div>
@@ -66,7 +69,7 @@
                         </span>
                     </span>
                 </p>
-                <p class="comment">댓글 23,123개 모두 보기</p>
+                <p class="comment" @click="moveToComment(row.id)">댓글 23,123개 모두 보기</p>
                 <p class="time">{{ row.createDate }}</p>
             </div>
             <div class="commentArea">
@@ -118,6 +121,9 @@ export default {
         this.getPostInfo();
     },
     methods: {
+        moveToComment(id) {
+            this.$router.push({ path: `/comment/${id}` });
+        },
         getPostInfo() {
             // 포스트정보 가져오는 api호출, 기본 오름차순(최신순)
             let response = {
@@ -131,7 +137,7 @@ export default {
                         imgUrl: "/images/example.jpeg",
                         content: "압구정 김치찌개",
                         createDate: "2022/04/01", //포스트 생성일
-                        liked:true,
+                        liked: true,
                         hashtags: [
                             //HashTag 테이블
                             "압구정 맛집",
@@ -146,7 +152,7 @@ export default {
                         imgUrl: "/images/example.jpeg",
                         content: "압구정 김치찌개444",
                         createDate: "2022/04/01",
-                        liked:true,
+                        liked: true,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
                     {
@@ -156,7 +162,7 @@ export default {
                         imgUrl: "/images/example.jpeg",
                         content: "압구정 김치찌개333",
                         createDate: "2022/04/01",
-                        liked:false,
+                        liked: false,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
                     {
@@ -166,7 +172,7 @@ export default {
                         imgUrl: "/images/example.jpeg",
                         content: "압구정 김치찌개222",
                         createDate: "2022/04/01",
-                        liked:false,
+                        liked: false,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
                     {
@@ -176,7 +182,7 @@ export default {
                         imgUrl: "/images/example.jpeg",
                         content: "압구정 김치찌개111",
                         createDate: "2022/04/01",
-                        liked:true,
+                        liked: true,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
                 ],
@@ -185,12 +191,9 @@ export default {
             this.rows = response.rows;
         },
         showModalCheckWidth() {
-            // 동적으로 모달 넓이 지정해주는 부분 구현 필요
-
-            // let appWidth = document.getElementById('app').offsetWidth+"";
-            // console.log("appWidth : "+appWidth);
-
             this.showModal = true;
+
+            // 게시글 위로 모달 보이도록 수정 필요
         },
         backgroundClick(e) {
             let target = e.target;
@@ -203,13 +206,13 @@ export default {
         checkScroll() {
             console.log("스크롤?");
         },
-        changeLike(liked, index){
-            if(liked){
+        changeLike(liked, index) {
+            if (liked) {
                 this.rows[index].liked = false;
-            }else{
+            } else {
                 this.rows[index].liked = true;
             }
-        }
+        },
     },
 };
 </script>
