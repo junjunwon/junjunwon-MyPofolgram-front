@@ -189,6 +189,12 @@ i{
     left: 20px;
     top: 15px;
 }
+.topBack i.right{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    left: inherit;
+}
 .topWithButton {
     display: flex;
     justify-content: space-between;

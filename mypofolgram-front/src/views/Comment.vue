@@ -1,4 +1,9 @@
 <template>
+    <div class="topBack">
+        <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
+        <p>댓글</p>
+        <i class="fa-solid fa-paper-plane right"></i>
+    </div>
     <div id="commentList">
         <div class="content">
             <img :src="this.userImgUrl" alt="프로필" />
