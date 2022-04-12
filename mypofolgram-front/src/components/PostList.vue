@@ -42,7 +42,7 @@
             <div class="top">
                 <img :src="row.userImgUrl" alt="프로필" />
                 <p>{{ row.nickName }}</p>
-                <i class="fa-solid fa-ellipsis" @click="showModalCheckWidth"></i>
+                <i class="fa-solid fa-ellipsis" @click="this.showModal = true;"></i>
             </div>
             <div class="photoList">
                 <vueper-slides class="imagesArea no-shadow">
@@ -145,6 +145,7 @@ export default {
     },
     mounted() {
         this.getPostInfo();
+        document.addEventListener('scroll', this.scrollEvents);
     },
     methods: {
         moveToComment(id) {
@@ -234,21 +235,21 @@ export default {
             this.count = response.count;
             this.rows = response.rows;
         },
-        showModalCheckWidth() {
-            this.showModal = true;
-
-            // 게시글 위로 모달 보이도록 수정 필요
-        },
         backgroundClick(e) {
             let target = e.target;
             let checkContain = target.classList.contains("modalWrap");
 
             if (checkContain) {
+                const html = document.querySelector('html');
+                html.style.overflow = 'auto';
                 this.showModal = false;
             }
         },
-        checkScroll() {
-            console.log("스크롤?");
+        scrollEvents() {
+            if(this.showModal){
+                const html = document.querySelector('html');
+                html.style.overflow = 'hidden';
+            }
         },
         changeLike(liked, index) {
             if (liked) {
