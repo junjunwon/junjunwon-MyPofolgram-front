@@ -9,7 +9,12 @@
             <img :src="this.userImgUrl" alt="프로필" />
             <div class="area">
                 <b>{{ this.nickName }}</b>
-                <span>{{ this.content }}</span>
+                <span>{{ this.content }}</span
+                >
+                <p></p>
+                <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
+                    <span>#{{ hashtag }}&nbsp;</span>
+                </span>
                 <p class="time">{{ this.createDate }}</p>
             </div>
         </div>
@@ -34,6 +39,7 @@ export default {
             userImgUrl: "",
             nickName: "",
             createDate: "",
+            hashtags: [],
             rows: [],
         };
     },
@@ -50,6 +56,7 @@ export default {
                 nickName: "게시물 작성자",
                 userImgUrl: "/images/example.jpeg",
                 createDate: "2022/04/05",
+                hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                 rows: [
                     {
                         id: 1, //댓글 아이디
@@ -74,11 +81,12 @@ export default {
                     },
                 ],
             };
-            this.rows = response.rows;
             this.content = response.content;
             this.nickName = response.nickName;
             this.userImgUrl = response.userImgUrl;
             this.createDate = response.createDate;
+            this.hashtags = response.hashtags;
+            this.rows = response.rows;
         },
     },
 };

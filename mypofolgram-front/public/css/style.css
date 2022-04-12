@@ -201,6 +201,10 @@ i{
     padding: 10px 20px;
     border-bottom: 1px solid #dbdbdb;
 }
+.hashtag {
+    font-size: 14px;
+    color: #00376b;
+}
 
 /* Header */
 .header {
@@ -387,9 +391,6 @@ i{
     font-size: 16px;
     font-weight: bold;
     margin-right: 5px;
-}
-.post .hashtag {
-    color: #00376b;
 }
 .post .comment {
     color: #8e8e8e;
