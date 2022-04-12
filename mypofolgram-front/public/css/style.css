@@ -189,11 +189,21 @@ i{
     left: 20px;
     top: 15px;
 }
+.topBack i.right{
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    left: inherit;
+}
 .topWithButton {
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
     border-bottom: 1px solid #dbdbdb;
+}
+.hashtag {
+    font-size: 14px;
+    color: #00376b;
 }
 
 /* Header */
@@ -303,6 +313,7 @@ i{
     display: flex;
     justify-content: space-between;
     background-color: #fff;
+    z-index: 10;
 }
 .footer i {
     font-size: 22px;
@@ -355,9 +366,17 @@ i{
 .post .top i {
     float: right;
 }
-.post .photoList img {
+.post .photoList .imagesArea {
     /* 수정필요 - pc화면 생각할 것 */
-    max-width: 200px;
+    /* max-width: 200px; */
+    margin-bottom: 10px;
+    box-shadow: none;
+}
+.post .photoList .imageArea{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 .post .bottom {
     padding: 0px 10px;
@@ -372,11 +391,6 @@ i{
     font-size: 16px;
     font-weight: bold;
     margin-right: 5px;
-}
-.post .content {
-}
-.post .hashtag {
-    color: #00376b;
 }
 .post .comment {
     color: #8e8e8e;
@@ -421,6 +435,30 @@ i{
 }
 #postList .bottomModal li:last-child:after{
     content: none;
+}
+
+/* Comment */
+#commentList .content, #commentList .comment{
+    display: flex;
+    margin-bottom: 10px;
+}
+#commentList .content{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dbdbdb;
+}
+#commentList img{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+#commentList .time {
+    color: #8e8e8e;
+    font-size: 12px;
+}
+#commentList .area b{
+    font-weight: bold;
+    margin-right: 5px;
 }
  
 /* Search */

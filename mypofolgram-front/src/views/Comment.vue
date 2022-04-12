@@ -1,5 +1,33 @@
 <template>
-    <div>댓글창</div>
+    <div class="topBack">
+        <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
+        <p>댓글</p>
+        <i class="fa-solid fa-paper-plane right"></i>
+    </div>
+    <div id="commentList">
+        <div class="content">
+            <img :src="this.userImgUrl" alt="프로필" />
+            <div class="area">
+                <b>{{ this.nickName }}</b>
+                <span>{{ this.content }}</span
+                >
+                <p></p>
+                <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
+                    <span>#{{ hashtag }}&nbsp;</span>
+                </span>
+                <p class="time">{{ this.createDate }}</p>
+            </div>
+        </div>
+
+        <div class="comment" v-for="row in rows" v-bind:key="row">
+            <img :src="row.userImgUrl" alt="프로필" />
+            <div class="area">
+                <b>{{ row.nickName }}</b>
+                <span>{{ row.comment }}</span>
+                <p class="time">{{ row.createDate }}</p>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -7,6 +35,11 @@ export default {
     data() {
         return {
             postId: "",
+            content: "",
+            userImgUrl: "",
+            nickName: "",
+            createDate: "",
+            hashtags: [],
             rows: [],
         };
     },
@@ -20,6 +53,10 @@ export default {
         getComments() {
             let response = {
                 content: "여기완전 맛집",
+                nickName: "게시물 작성자",
+                userImgUrl: "/images/example.jpeg",
+                createDate: "2022/04/05",
+                hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                 rows: [
                     {
                         id: 1, //댓글 아이디
@@ -44,6 +81,11 @@ export default {
                     },
                 ],
             };
+            this.content = response.content;
+            this.nickName = response.nickName;
+            this.userImgUrl = response.userImgUrl;
+            this.createDate = response.createDate;
+            this.hashtags = response.hashtags;
             this.rows = response.rows;
         },
     },

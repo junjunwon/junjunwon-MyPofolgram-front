@@ -45,7 +45,15 @@
                 <i class="fa-solid fa-ellipsis" @click="showModalCheckWidth"></i>
             </div>
             <div class="photoList">
-                <img :src="row.imgUrl" alt="" />
+                <vueper-slides class="imagesArea no-shadow">
+                    <vueper-slide class="imageArea"
+                        v-for="(img, i) in row.imgUrl"
+                        :key="i"
+                        :image="img"
+                        >
+                        <p>{{img}}</p>
+                    </vueper-slide>
+                </vueper-slides>
             </div>
             <div class="bottom">
                 <div class="iconList">
@@ -109,12 +117,30 @@
 </template>
 
 <script>
+import { VueperSlides, VueperSlide } from "vueperslides";
+import "vueperslides/dist/vueperslides.css";
+
 export default {
+    components: { VueperSlides, VueperSlide },
     data() {
         return {
             showModal: false,
             count: 0,
             rows: [],
+            slides: [
+                {
+                title: 'Slide #1',
+                content: 'Slide content.'
+                },
+                {
+                title: 'Slide #2',
+                content: 'Slide content2'
+                },
+                {
+                title: 'Slide #3',
+                content: 'Slide content3'
+                },
+            ]
         };
     },
     mounted() {
@@ -134,7 +160,14 @@ export default {
                         id: 5, //포스트 아이디
                         nickName: "eunjeong", //Users 테이블
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: "/images/example.jpeg",
+                        // imgUrl: "/images/example.jpeg",
+                        imgUrl: [
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                        ],
                         content: "압구정 김치찌개",
                         createDate: "2022/04/01", //포스트 생성일
                         liked: true,
@@ -149,7 +182,9 @@ export default {
                         id: 4,
                         nickName: "eunjeong444",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: "/images/example.jpeg",
+                        imgUrl: [
+                            "/images/example.jpeg",
+                        ],
                         content: "압구정 김치찌개444",
                         createDate: "2022/04/01",
                         liked: true,
@@ -159,7 +194,10 @@ export default {
                         id: 3,
                         nickName: "eunjeong333",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: "/images/example.jpeg",
+                        imgUrl: [
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                        ],
                         content: "압구정 김치찌개333",
                         createDate: "2022/04/01",
                         liked: false,
@@ -169,7 +207,11 @@ export default {
                         id: 2,
                         nickName: "eunjeong222",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: "/images/example.jpeg",
+                        imgUrl: [
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                            "/images/example.jpeg",
+                        ],
                         content: "압구정 김치찌개222",
                         createDate: "2022/04/01",
                         liked: false,
@@ -179,7 +221,9 @@ export default {
                         id: 1,
                         nickName: "eunjeong111",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: "/images/example.jpeg",
+                        imgUrl: [
+                            "/images/example.jpeg",
+                        ],
                         content: "압구정 김치찌개111",
                         createDate: "2022/04/01",
                         liked: true,
