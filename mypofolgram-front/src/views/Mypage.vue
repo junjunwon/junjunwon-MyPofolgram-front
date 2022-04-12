@@ -3,7 +3,6 @@
         <div class="mypageHeader">
             <h2 class="nickname" v-text="users.userId"></h2>
             <dis class="right">
-                <!-- <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i> -->
                 <i class="fa-solid fa-square-plus" id="createModal" @click="checkModal($event)"></i>
                 <i class="fa-solid fa-bars" id="settingModal" @click="checkModal($event)"></i>
             </dis>
