@@ -8516,6 +8516,11 @@
     "@vue/server-renderer" "3.2.31"
     "@vue/shared" "3.2.31"
 
+"vueperslides@3.3.2":
+  "integrity" "sha512-t9YMaOcavVqVXq7XPw2x6cdLLY/NAqMnDZNIQGQn86K4qrFLVtUxGY4zWwDVbBNsa4Pu4wGV3GXZPbRUGvtN3A=="
+  "resolved" "https://registry.npmjs.org/vueperslides/-/vueperslides-3.3.2.tgz"
+  "version" "3.3.2"
+
 "watchpack-chokidar2@^2.0.1":
   "integrity" "sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww=="
   "resolved" "https://registry.npmjs.org/watchpack-chokidar2/-/watchpack-chokidar2-2.0.1.tgz"

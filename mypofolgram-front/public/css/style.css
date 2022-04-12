@@ -309,6 +309,7 @@ i{
     display: flex;
     justify-content: space-between;
     background-color: #fff;
+    z-index: 10;
 }
 .footer i {
     font-size: 22px;
@@ -361,9 +362,17 @@ i{
 .post .top i {
     float: right;
 }
-.post .photoList img {
+.post .photoList .imagesArea {
     /* 수정필요 - pc화면 생각할 것 */
-    max-width: 200px;
+    /* max-width: 200px; */
+    margin-bottom: 10px;
+    box-shadow: none;
+}
+.post .photoList .imageArea{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
 .post .bottom {
     padding: 0px 10px;
