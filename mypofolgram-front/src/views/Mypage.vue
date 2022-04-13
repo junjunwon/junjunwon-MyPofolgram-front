@@ -1,7 +1,7 @@
 <template>
     <div class="mypage">
         <div class="mypageHeader">
-            <h2 class="nickname" v-text="users.userId"></h2>
+            <h2 class="nickname" v-text="user.userId"></h2>
             <dis class="right">
                 <!-- <i class="fa-solid fa-square-plus" @click="createModal = !createModal"></i> -->
                 <i class="fa-solid fa-square-plus" id="createModal" @click="checkModal($event)"></i>
@@ -14,19 +14,19 @@
             </div>
             <div>
                 <p>게시물</p>
-                <span v-text="users.countBoard"></span>
+                <span v-text="user.countBoard"></span>
             </div>
             <div @click="gotoFollowWhen('follower', user.followerCount > 0)">
                 <p>팔로워</p>
-                <span v-text="users.follower"></span>
+                <span v-text="user.follower"></span>
             </div>
             <div @click="gotoFollowWhen('following', user.followingCount > 0)">
                 <p>팔로잉</p>
-                <span v-text="users.follow"></span>
+                <span v-text="user.follow"></span>
             </div>
         </div>
         <!-- <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div> -->
-        <div class="modify" @click="this.$router.push({ name: 'modify', params: users })">프로필 편집</div>
+        <div class="modify" @click="this.$router.push({ name: 'modify'})">프로필 편집</div>
 
         <div class="mypost" v-if="!isEmpty">
             <div class="post">
@@ -163,10 +163,10 @@
 
 <script>
 
-// import axios from 'axios'
 import modal from '../components/modal.vue'
 import confirmModal from '../components/confirmModal.vue'
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
     components : {
@@ -179,11 +179,11 @@ export default {
             isEmpty: false,
             createModal: false,
             settingModal: false,
-            users: {},
-            user: {
-                followerCount: 1,
-                followingCount: 1,
-            },
+            user: {},
+            // user: {
+            //     followerCount: 1,
+            //     followingCount: 1,
+            // },
             // props 테스트
             test: "",
 
@@ -195,15 +195,12 @@ export default {
         };
     },
     created() {
-        this.getData();
-        this.test = {
-          id : 0,
-          userName : 'jh.won'
-        };
+        this.user = this.getterUserInfo  
+    },
+    computed : {
+        ...mapGetters('userInfo', ['getterUserInfo']),
     },
     mounted() {
-        this.getData();
-
         // follower/following Count vuex로 얻기?
     },
     methods: {
@@ -215,10 +212,6 @@ export default {
         gotoFollowWhen(menu, hasData) {
             if (!hasData) return;
             this.$router.push({ path: `/mypage/follow/${menu}` });
-        },
-        async getData() {
-            // const response = await axios.get('/user/getProfileInfo', {params : {userId : 'jh.won'}})
-            // this.users = response.data.result
         },
         onFileSelected(event) {
             console.log(event)

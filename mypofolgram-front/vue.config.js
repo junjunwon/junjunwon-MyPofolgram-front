@@ -11,15 +11,18 @@ module.exports = {
       },
     },
   },
-  // devServer: {
-  //   proxy: {
-  //     '/': {
-  //       target: 'http://localhost:8080',
-  //       ws: true,
-  //       changeOrigin: true
-  //     }
-  //   },
-  //   disableHostCheck: true,
-  //   port: 8079
-  // }
+  configureWebpack: {
+    devtool: 'source-map'
+  },
+  devServer: {
+    proxy: {
+      '/': {
+        target: 'http://localhost:8080',
+        ws: true,
+        changeOrigin: true
+      }
+    },
+    disableHostCheck: true,
+    port: 8079
+  }
 }
