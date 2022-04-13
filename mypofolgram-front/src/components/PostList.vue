@@ -77,8 +77,8 @@
                         </span>
                     </span>
                 </p>
-                <p class="comment" @click="moveToComment(row.id)">댓글 23,123개 모두 보기</p>
-                <p class="time">{{ row.createDate }}</p>
+                <p class="comment" @click="moveToComment(row.id)">댓글 {{row.commentCount}}개 모두 보기</p>
+                <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
             <div class="commentArea">
                 <i class="fa-solid fa-face-smile-wink"></i>
@@ -119,6 +119,7 @@
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
+import common from "@/utils/common";
 
 export default {
     components: { VueperSlides, VueperSlide },
@@ -146,6 +147,9 @@ export default {
     mounted() {
         this.getPostInfo();
         document.addEventListener('scroll', this.scrollEvents);
+
+        let test = common.getDate('2022-04-13');
+        console.log("test : "+test);
     },
     methods: {
         moveToComment(id) {
@@ -170,7 +174,8 @@ export default {
                             "/images/example.jpeg",
                         ],
                         content: "압구정 김치찌개",
-                        createDate: "2022/04/01", //포스트 생성일
+                        createDate: "2022-04-01", //포스트 생성일
+                        commentCount: 30,
                         liked: true,
                         hashtags: [
                             //HashTag 테이블
@@ -187,7 +192,8 @@ export default {
                             "/images/example.jpeg",
                         ],
                         content: "압구정 김치찌개444",
-                        createDate: "2022/04/01",
+                        createDate: "2022-04-01",
+                        commentCount: 10,
                         liked: true,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
@@ -200,7 +206,8 @@ export default {
                             "/images/example.jpeg",
                         ],
                         content: "압구정 김치찌개333",
-                        createDate: "2022/04/01",
+                        createDate: "2022-04-01",
+                        commentCount: 10,
                         liked: false,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
@@ -214,7 +221,8 @@ export default {
                             "/images/example.jpeg",
                         ],
                         content: "압구정 김치찌개222",
-                        createDate: "2022/04/01",
+                        createDate: "2022-04-01",
+                        commentCount: 3,
                         liked: false,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
@@ -226,7 +234,8 @@ export default {
                             "/images/example.jpeg",
                         ],
                         content: "압구정 김치찌개111",
-                        createDate: "2022/04/01",
+                        createDate: "2022-04-01",
+                        commentCount: 8,
                         liked: true,
                         hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
                     },
@@ -257,6 +266,9 @@ export default {
             } else {
                 this.rows[index].liked = true;
             }
+        },
+        calculateDate(date) {
+            return common.getDate(date);
         },
     },
 };

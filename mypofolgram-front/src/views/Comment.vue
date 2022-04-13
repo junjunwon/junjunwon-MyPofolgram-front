@@ -9,13 +9,13 @@
             <img :src="this.userImgUrl" alt="프로필" />
             <div class="area">
                 <b>{{ this.nickName }}</b>
-                <span>{{ this.content }}</span
+                <span>{{ this.body }}</span
                 >
                 <p></p>
                 <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
                     <span>#{{ hashtag }}&nbsp;</span>
                 </span>
-                <p class="time">{{ this.createDate }}</p>
+                <p class="time">{{ this.calculateDate(createDate) }}</p>
             </div>
         </div>
 
@@ -24,18 +24,20 @@
             <div class="area">
                 <b>{{ row.nickName }}</b>
                 <span>{{ row.comment }}</span>
-                <p class="time">{{ row.createDate }}</p>
+                <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import common from "@/utils/common";
+
 export default {
     data() {
         return {
             postId: "",
-            content: "",
+            body: "",
             userImgUrl: "",
             nickName: "",
             createDate: "",
@@ -52,7 +54,7 @@ export default {
         // api 호출시 파라미터로 게시글 아이디 전달
         getComments() {
             let response = {
-                content: "여기완전 맛집",
+                body: "여기완전 맛집",
                 nickName: "게시물 작성자",
                 userImgUrl: "/images/example.jpeg",
                 createDate: "2022/04/05",
@@ -81,12 +83,15 @@ export default {
                     },
                 ],
             };
-            this.content = response.content;
+            this.body = response.body;
             this.nickName = response.nickName;
             this.userImgUrl = response.userImgUrl;
             this.createDate = response.createDate;
             this.hashtags = response.hashtags;
             this.rows = response.rows;
+        },
+        calculateDate(date) {
+            return common.getDate(date);
         },
     },
 };
