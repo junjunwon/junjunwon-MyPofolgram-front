@@ -9,7 +9,7 @@
             <img :src="this.userImgUrl" alt="프로필" />
             <div class="area">
                 <b>{{ this.nickName }}</b>
-                <span>{{ this.content }}</span
+                <span>{{ this.body }}</span
                 >
                 <p></p>
                 <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
@@ -37,7 +37,7 @@ export default {
     data() {
         return {
             postId: "",
-            content: "",
+            body: "",
             userImgUrl: "",
             nickName: "",
             createDate: "",
@@ -54,7 +54,7 @@ export default {
         // api 호출시 파라미터로 게시글 아이디 전달
         getComments() {
             let response = {
-                content: "여기완전 맛집",
+                body: "여기완전 맛집",
                 nickName: "게시물 작성자",
                 userImgUrl: "/images/example.jpeg",
                 createDate: "2022/04/05",
@@ -83,7 +83,7 @@ export default {
                     },
                 ],
             };
-            this.content = response.content;
+            this.body = response.body;
             this.nickName = response.nickName;
             this.userImgUrl = response.userImgUrl;
             this.createDate = response.createDate;
