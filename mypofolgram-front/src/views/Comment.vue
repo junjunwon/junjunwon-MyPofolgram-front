@@ -15,7 +15,7 @@
                 <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
                     <span>#{{ hashtag }}&nbsp;</span>
                 </span>
-                <p class="time">{{ this.createDate }}</p>
+                <p class="time">{{ this.calculateDate(createDate) }}</p>
             </div>
         </div>
 
@@ -24,13 +24,15 @@
             <div class="area">
                 <b>{{ row.nickName }}</b>
                 <span>{{ row.comment }}</span>
-                <p class="time">{{ row.createDate }}</p>
+                <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import common from "@/utils/common";
+
 export default {
     data() {
         return {
@@ -87,6 +89,9 @@ export default {
             this.createDate = response.createDate;
             this.hashtags = response.hashtags;
             this.rows = response.rows;
+        },
+        calculateDate(date) {
+            return common.getDate(date);
         },
     },
 };
