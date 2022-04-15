@@ -334,7 +334,7 @@ i{
     display: inline-block;
     padding: 5px;
 }
-.storyList .story.circle{
+.storyList .story img.circle{
     border: 2px solid orange;
 }
 .storyList .story img {

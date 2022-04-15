@@ -1,7 +1,7 @@
 <template>
     <div class="storyList">
-        <div :class="{ 'story': true, circle: row.view === false }" v-for="row in rows" v-bind:key="row">
-            <img :src="row.userImgUrl" alt="사용자프로필" />
+        <div class="story" v-for="row in rows" v-bind:key="row">
+            <img :src="row.userImgUrl" alt="사용자프로필" :class="{ circle: row.view === false}"/>
             <p>{{ row.nickName }}</p>
         </div>
         <!-- <div class="story">
