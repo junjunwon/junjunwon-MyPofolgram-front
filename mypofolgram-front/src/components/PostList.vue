@@ -145,11 +145,9 @@ export default {
         };
     },
     mounted() {
+        // ex) '2022-04-13'
         this.getPostInfo();
         document.addEventListener('scroll', this.scrollEvents);
-
-        let test = common.getDate('2022-04-13');
-        console.log("test : "+test);
     },
     methods: {
         moveToComment(id) {

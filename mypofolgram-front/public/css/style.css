@@ -345,19 +345,15 @@ i{
     background-clip: content-box, border-box;
 
 }
-/* .storyList .story img.circle::after{
-    content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50px;
-  padding: 10px;
-  background: linear-gradient(45deg, red, blue);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-} */
+
+/* circle 가상선택자 애니메이션 추가 필요 */
+@keyframes spin {
+    100% {
+        transform: rotate(1turn);
+    }
+    /* animation: spin 10s infinite reverse linear; */
+}
+
 .storyList .story img {
     width: 66px;
     height: 66px;
