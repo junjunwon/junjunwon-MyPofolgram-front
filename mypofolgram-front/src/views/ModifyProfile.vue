@@ -35,7 +35,7 @@ export default {
         ...mapState('userInfo', ['userInfo']),
     },
     methods: {
-        ...mapActions('userInfo', ['setProfile']),
+        ...mapActions('userInfo', ['setProfile', 'getUserInfo']),
         pageSetting(type) {
             console.log("this.users")
             // console.log(this.user.id)
@@ -62,6 +62,7 @@ export default {
         },
         async set() {
             await this.setProfile({'type' : this.type, 'value' : this.value, 'systemId' : this.userInfo.id})
+            await this.getUserInfo()
             this.$router.go(-1)
             // this.$router.push({ name: 'modify'})
         }
