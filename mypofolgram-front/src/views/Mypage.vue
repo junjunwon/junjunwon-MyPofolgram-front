@@ -15,11 +15,11 @@
                 <p>게시물</p>
                 <span v-text="user.countBoard"></span>
             </div>
-            <div @click="gotoFollowWhen('follower', user.followerCount > 0)">
+            <div @click="gotoFollowWhen('follower', user.follower > 0)">
                 <p>팔로워</p>
                 <span v-text="user.follower"></span>
             </div>
-            <div @click="gotoFollowWhen('following', user.followingCount > 0)">
+            <div @click="gotoFollowWhen('following', user.follow > 0)">
                 <p>팔로잉</p>
                 <span v-text="user.follow"></span>
             </div>
@@ -53,7 +53,7 @@
                 <h3>게시물 없음</h3>
             </div>
         </div>
-        <div v-if="createModal" class="bottomModal" style="bottom:100px">
+        <div v-if="createModal" class="bottomModal">
             <p class="modalTitle">만들기</p>
             <ul>
                 <li id="show-modal" @click="showRegister = true">
@@ -83,7 +83,7 @@
                 </li>
             </ul>
         </div>
-        <div v-if="settingModal" class="bottomModal" style="bottom:150px">
+        <div v-if="settingModal" class="bottomModal">
             <ul>
                 <li>
                     <i class="fa-solid fa-gear"></i>
@@ -194,6 +194,7 @@ export default {
         };
     },
     created() {
+
         this.user = this.getterUserInfo  
     },
     computed : {

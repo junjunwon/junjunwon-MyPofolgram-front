@@ -62,7 +62,7 @@ export default {
         },
         async set() {
             await this.setProfile({'type' : this.type, 'value' : this.value, 'systemId' : this.userInfo.id})
-            // this.$router.go(-1)
+            this.$router.go(-1)
             // this.$router.push({ name: 'modify'})
         }
     },

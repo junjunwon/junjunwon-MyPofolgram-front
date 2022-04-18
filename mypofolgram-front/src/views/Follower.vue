@@ -7,19 +7,20 @@
         </div>
     </div>
     <div v-else>
-        <div class="people">
+        <div v-for="(follower) in followerList" class="people" v-bind:key="follower">
             <img src="/images/example.jpeg" alt="고양이" />
-            <span>eunj_eong</span>
-            <div class="button right">삭제</div>
+            <span>{{follower.followingId}}</span>
+            <div class="button right" @click="test">삭제</div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props : ['followerList'],
     data() {
         return {
-            followerCount: 1,
+            followerCount: 1
         };
     },
 
@@ -27,5 +28,10 @@ export default {
         // followerCount
         // followerList
     },
+    methods : {
+        test() {
+            console.log(this.followerList)
+        }
+    }
 };
 </script>
