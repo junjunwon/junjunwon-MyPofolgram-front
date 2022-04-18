@@ -7,19 +7,9 @@
         </div>
     </div>
     <div v-else>
-        <div class="people">
+        <div v-for="(followee) in followeeList" v-bind:key="followee" class="people">
             <img src="/images/example.jpeg" alt="고양이" />
-            <span>eunj_eong</span>
-            <div class="button right">팔로잉</div>
-        </div>
-        <div class="people">
-            <img src="/images/example.jpeg" alt="고양이" />
-            <span>eunj_eong</span>
-            <div class="button right">팔로잉</div>
-        </div>
-        <div class="people">
-            <img src="/images/example.jpeg" alt="고양이" />
-            <span>eunj_eong</span>
+            <span>{{followee.follower}}</span>
             <div class="button right">팔로잉</div>
         </div>
     </div>
@@ -27,6 +17,7 @@
 
 <script>
 export default {
+    props : ['followeeList'],
     data() {
         return {
             followingCount: 3,
