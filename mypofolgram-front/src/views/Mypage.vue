@@ -31,21 +31,7 @@
             <div class="post">
                 <img src="/images/example.jpeg" alt="고양이" />
             </div>
-            <div class="post">
-                <img src="/images/example.jpeg" alt="고양이" />
-            </div>
-            <div class="post">
-                <img src="/images/example.jpeg" alt="고양이" />
-            </div>
-            <div class="post">
-                <img src="/images/example.jpeg" alt="고양이" />
-            </div>
-            <div class="post">
-                <img src="/images/example.jpeg" alt="고양이" />
-            </div>
-            <div class="post">
-                <img src="/images/example.jpeg" alt="고양이" />
-            </div>
+            
         </div>
         <div v-else class="empty">
             <div>
@@ -165,7 +151,7 @@
 import modal from '../components/modal.vue'
 import confirmModal from '../components/confirmModal.vue'
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     components : {
@@ -190,20 +176,41 @@ export default {
             showRegister: false,
             showDeveloping : false,
             selectedFile: null,
-            showComplete : false
+            showComplete : false,
+            follow : {
+                followCnt : [],
+                followeeList : [],
+                followerList : []
+            }
         };
     },
     created() {
-
-        this.user = this.getterUserInfo  
+        this.user = this.getterUserInfo
+        this.getFollowList()
     },
     computed : {
         ...mapGetters('userInfo', ['getterUserInfo']),
     },
+    watch: {
+    }, 
     mounted() {
         // follower/following Count vuex로 얻기?
     },
     methods: {
+        ...mapActions('userInfo', ['getUserInfo']),
+        async getFollowList() {
+            console.log('befroe follow list axios is ')
+            console.log(this.user.userId)
+            await axios.get('/user/getFollowList', {params : {userId : this.user.userId}})
+                .then((response) => {
+                    this.follow = response.data.result
+                    console.log('this follow after gettingfollowList is ')
+                    console.log(this.follow)
+                })
+        },
+        getPostList() {
+            axios.get("/")
+        },
         moveTo(path) {
             this.$router.push({
                 path: path,
@@ -211,7 +218,15 @@ export default {
         },
         gotoFollowWhen(menu, hasData) {
             if (!hasData) return;
-            this.$router.push({ path: `/mypage/follow/${menu}` });
+            // this.$router.push({ path: `/mypage/follow/${menu}` });
+            console.log('go to follow')
+            console.log(this.follow)
+            this.$router.push({ 
+                path: `/mypage/follow/${menu}`,
+                params: { 
+                    follow : this.follow
+                } 
+            });
         },
         onFileSelected(event) {
             console.log(event)
@@ -237,7 +252,7 @@ export default {
                 console.log(error)
             })
             .finally(
-                this.showRegister = false
+                // this.showRegister = false
             )
         },
         checkFile(fd) {

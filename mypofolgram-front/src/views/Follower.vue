@@ -9,13 +9,14 @@
     <div v-else>
         <div v-for="(follower) in followerList" class="people" v-bind:key="follower">
             <img src="/images/example.jpeg" alt="고양이" />
-            <span>{{follower.followingId}}</span>
+            <span @click="moveToUserPage(follower.followingId)">{{follower.followingId}}</span>
             <div class="button right" @click="test">삭제</div>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions, mapMutations } from 'vuex';
 export default {
     props : ['followerList'],
     data() {
@@ -29,8 +30,16 @@ export default {
         // followerList
     },
     methods : {
+        ...mapMutations('userInfo', ['setUserId']),
+        ...mapActions('userInfo', ['getUserInfo']),
         test() {
             console.log(this.followerList)
+        },
+        async moveToUserPage(val) {
+            // follower.followingId
+            this.setUserId(val)
+            await this.getUserInfo()
+            this.$router.push({ path: '/mypage/' });
         }
     }
 };
