@@ -13,15 +13,15 @@
             </div>
             <div>
                 <p>게시물</p>
-                <span v-text="user.countBoard"></span>
+                <span v-text="user.postCnt"></span>
             </div>
             <div @click="gotoFollowWhen('follower', user.follower > 0)">
                 <p>팔로워</p>
-                <span v-text="user.follower"></span>
+                <span v-text="user.followerCnt"></span>
             </div>
             <div @click="gotoFollowWhen('following', user.follow > 0)">
                 <p>팔로잉</p>
-                <span v-text="user.follow"></span>
+                <span v-text="user.followeeCnt"></span>
             </div>
         </div>
         <!-- <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div> -->
@@ -181,12 +181,14 @@ export default {
                 followCnt : [],
                 followeeList : [],
                 followerList : []
-            }
+            },
+            localPosts : []
         };
     },
     created() {
         this.user = this.getterUserInfo
         this.getFollowList()
+        this.getPostList()
     },
     computed : {
         ...mapGetters('userInfo', ['getterUserInfo']),
@@ -208,8 +210,12 @@ export default {
                     console.log(this.follow)
                 })
         },
-        getPostList() {
-            axios.get("/")
+        async getPostList() {
+            await axios.get("/post/getPostList", {params : {userId : this.user.userId}})
+            .then((response) => {
+                this.localPosts = response.data.result
+                debugger  
+            })
         },
         moveTo(path) {
             this.$router.push({
@@ -218,15 +224,12 @@ export default {
         },
         gotoFollowWhen(menu, hasData) {
             if (!hasData) return;
-            // this.$router.push({ path: `/mypage/follow/${menu}` });
-            console.log('go to follow')
-            console.log(this.follow)
-            this.$router.push({ 
-                path: `/mypage/follow/${menu}`,
-                params: { 
-                    follow : this.follow
-                } 
-            });
+            this.$router.push({
+                name : 'follow',
+                params : {
+                    page : menu
+                }
+            })
         },
         onFileSelected(event) {
             console.log(event)

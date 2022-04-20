@@ -24,15 +24,11 @@ export default{
         Follower,
         Following
     },
-    props : {
-        follow : {
-            type: Object
-        },
-    },
+    props: ["followQuery"],
     data(){
         return{
             viewPage:"",
-            localFollow : {
+            follow : {
                 followCnt : [],
                 followeeList : [],
                 followerList : []
@@ -43,17 +39,15 @@ export default{
         }
     },
     created() {
-        this.localFollow = this.$route.params.follow
-        console.log('this follow after creating follow components is ')
-        console.log(this.localFollow    )
-        // axios.get('/user/getFollowList', {params : {userId : this.userId}})
-        // .then((response) => {
-        //     this.follow = response.data.result
-        //     console.log('this.follow')
-        //     console.log(this.follow)
-        //     this.followerCnt = this.follow.followCnt[0]
-        //     this.followeeCnt = this.follow.followCnt[1]
-        // })
+        
+        axios.get('/user/getFollowList', {params : {userId : this.userId}})
+        .then((response) => {
+            this.follow = response.data.result
+            console.log('this.follow')
+            console.log(this.follow)
+            this.followerCnt = this.follow.followCnt[0]
+            this.followeeCnt = this.follow.followCnt[1]
+        })
         // follower/following Count vuex로 얻기? 
     },
     computed : {
