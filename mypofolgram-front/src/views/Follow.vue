@@ -24,7 +24,6 @@ export default{
         Follower,
         Following
     },
-    props: ["followQuery"],
     data(){
         return{
             viewPage:"",
@@ -45,8 +44,8 @@ export default{
             this.follow = response.data.result
             console.log('this.follow')
             console.log(this.follow)
-            this.followerCnt = this.follow.followCnt[0]
-            this.followeeCnt = this.follow.followCnt[1]
+            this.followeeCnt = this.follow.followCnt[0]
+            this.followerCnt = this.follow.followCnt[1]
         })
         // follower/following Count vuex로 얻기? 
     },

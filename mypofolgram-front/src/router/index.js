@@ -20,11 +20,13 @@ const routes = [
     {
         path:'/mypage',
         component: () => import("../views/Mypage.vue"),
+        props : true,
         meta: {
         }
     },
     {
         path: "/mypage/follow/:page",
+        props : true,
         component: () => import("../views/Follow.vue"),
         meta: {
         }

@@ -15,11 +15,11 @@
                 <p>게시물</p>
                 <span v-text="user.postCnt"></span>
             </div>
-            <div @click="gotoFollowWhen('follower', user.follower > 0)">
+            <div @click="gotoFollowWhen('follower', user.followerCnt > 0)">
                 <p>팔로워</p>
                 <span v-text="user.followerCnt"></span>
             </div>
-            <div @click="gotoFollowWhen('following', user.follow > 0)">
+            <div @click="gotoFollowWhen('following', user.followeeCnt > 0)">
                 <p>팔로잉</p>
                 <span v-text="user.followeeCnt"></span>
             </div>
@@ -187,8 +187,8 @@ export default {
     },
     created() {
         this.user = this.getterUserInfo
-        this.getFollowList()
-        this.getPostList()
+        // this.getFollowList()
+        // this.getPostList()
     },
     computed : {
         ...mapGetters('userInfo', ['getterUserInfo']),
@@ -200,21 +200,20 @@ export default {
     },
     methods: {
         ...mapActions('userInfo', ['getUserInfo']),
-        async getFollowList() {
-            console.log('befroe follow list axios is ')
-            console.log(this.user.userId)
-            await axios.get('/user/getFollowList', {params : {userId : this.user.userId}})
-                .then((response) => {
-                    this.follow = response.data.result
-                    console.log('this follow after gettingfollowList is ')
-                    console.log(this.follow)
-                })
-        },
+        // async getFollowList() {
+        //     console.log('befroe follow list axios is ')
+        //     console.log(this.user.userId)
+        //     await axios.get('/user/getFollowList', {params : {userId : this.user.userId}})
+        //         .then((response) => {
+        //             this.follow = response.data.result
+        //             console.log('this follow after gettingfollowList is ')
+        //             console.log(this.follow)
+        //         })
+        // },
         async getPostList() {
             await axios.get("/post/getPostList", {params : {userId : this.user.userId}})
             .then((response) => {
                 this.localPosts = response.data.result
-                debugger  
             })
         },
         moveTo(path) {
@@ -224,12 +223,7 @@ export default {
         },
         gotoFollowWhen(menu, hasData) {
             if (!hasData) return;
-            this.$router.push({
-                name : 'follow',
-                params : {
-                    page : menu
-                }
-            })
+            this.$router.push({ path: `/mypage/follow/${menu}` });
         },
         onFileSelected(event) {
             console.log(event)
