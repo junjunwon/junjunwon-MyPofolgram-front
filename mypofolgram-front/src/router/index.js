@@ -47,6 +47,13 @@ const routes = [
         meta: {
         }
     },
+    {
+        path: "/story/:id",
+        props : true,
+        component: () => import("../views/StoryView.vue"),
+        meta: {
+        }
+    },
 ]
 
 let router = createRouter({
