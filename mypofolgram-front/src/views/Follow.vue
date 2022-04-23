@@ -33,8 +33,8 @@ export default{
                 followerList : []
             },
             userId : 'woq2611',
-            followeeCnt : 0,
-            followerCnt : 0
+            followeeCnt : 1,
+            followerCnt : 1
         }
     },
     created() {

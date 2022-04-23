@@ -701,6 +701,31 @@ i{
     }
 }
 
+/* login */
+.login{
+    position: relative;
+    text-align: center;
+    height: 100vh;
+}
+.login .logo {
+    display: inline-block;
+    align-items: baseline;
+    padding: 10px 20px;
+    justify-content: space-between;
+    
+}
+.login .logo img {
+    width: 250px;
+    display: flex;
+    align-items: center;
+}
+.login .formInput {
+    background-color: #f2f2f2;
+    border: solid;
+    border-color: #dbdbdb;
+    margin-bottom: 1vh;
+}
+
 /* modal jh.won */
 .modal-mask {
     position: fixed;
