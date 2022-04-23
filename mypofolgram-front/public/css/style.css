@@ -723,9 +723,17 @@ i{
     background-color: #f2f2f2;
     border: solid;
     border-color: #dbdbdb;
-    margin-bottom: 1vh;
+    margin-bottom: 2vh;
+    width: 40vh;
+    height: 4vh;
 }
-
+.login div {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /* modal jh.won */
 .modal-mask {
     position: fixed;
