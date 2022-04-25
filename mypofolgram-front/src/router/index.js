@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
     {
-        path:'/main',
+        path:'/',
         component: () => import("../views/Main.vue"),
     },
-    {
-        path:'/',
-        component: () => import("../views/Login.vue"),
-    },
+    // {
+    //     path:'/',
+    //     component: () => import("../views/Login.vue"),
+    // },
     {
         path:'/activity',
         component: () => import("../views/Activity.vue"),
