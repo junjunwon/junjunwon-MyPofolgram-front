@@ -1,7 +1,9 @@
 <template>
-    <div class="storyView">
+    <div class="storyView" v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')' }">
         <!-- <div>인스타 스토리 클릭시 출력 : {{ id }}</div> -->
-        <img :src="imgUrl" alt="" />
+        <!-- <img :src="imgUrl" alt="" /> -->
+
+        
     </div>
 </template>
 
