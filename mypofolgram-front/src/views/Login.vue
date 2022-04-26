@@ -57,15 +57,41 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
     data() {
         return {
             errors: [],
-            name: null,
-            email: null
+            userId: '',
+            password: ''
         }
     },
+    created() {
+
+    },
+    computed : {
+
+    },
+    methods: {
+        ...mapActions('auth', ['login']),
+        async checkLogin() {
+            this.login({
+                userId : this.userId,
+                password : this.password
+            })
+            .then(response => {
+                if (response.status ==200) {
+                    this.$router.push({
+                        name: "myPage"
+                    })
+                }
+            })
+            .catch(({ message }) => alert(message))
+
+            return true
+        }
+    }
 }
 </script>
 

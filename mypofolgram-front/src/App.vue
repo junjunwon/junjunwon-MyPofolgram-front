@@ -18,8 +18,8 @@ export default {
         Footer,
     },
     created() {
-        this.setUserId('woq2611')
-        this.getUserInfo()
+        // this.setUserId('woq2611')
+        // this.getUserInfo()
     },
     computed:{
         showHeader(){

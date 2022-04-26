@@ -1,4 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
+// import { createStore } from "vuex";
+
+// const beforeAuth = isAuth => (from, to, next) => {
+//     const isAuthenticated = createStore.getters["isAuthenticated"]
+//     if((isAuthenticated && isAuth) || (!isAuthenticated && !isAuth)) {
+//         return next()
+//     } else {
+//         next("/main")
+//     }
+// }
 
 const routes = [
     {
@@ -8,6 +18,7 @@ const routes = [
     {
         path:'/',
         component: () => import("../views/Login.vue"),
+        // beforeEnter : beforeAuth(false)
     },
     {
         path:'/activity',
@@ -64,5 +75,6 @@ let router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 });
+
 
 export default router;
