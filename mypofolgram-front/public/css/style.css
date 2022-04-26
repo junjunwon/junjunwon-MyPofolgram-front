@@ -369,6 +369,13 @@ i{
     white-space: nowrap;
 }
 
+/* StoryView */
+.storyView{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
 /* PostList */
 .post .top {
     padding: 15px;
