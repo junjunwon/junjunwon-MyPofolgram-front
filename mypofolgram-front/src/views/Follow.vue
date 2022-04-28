@@ -39,7 +39,7 @@ export default{
     },
     created() {
         
-        axios.get('/user/getFollowList', {params : {userId : this.userId}})
+        axios.get('/api/user/getFollowList', {params : {userId : this.userId}})
         .then((response) => {
             this.follow = response.data.result
             console.log('this.follow')

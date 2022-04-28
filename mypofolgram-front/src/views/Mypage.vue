@@ -71,6 +71,10 @@
         </div>
         <div v-if="settingModal" class="bottomModal">
             <ul>
+                <li @click="checkLogout">
+                    <i class="fa-solid fa-gear"></i>
+                    <p>로그아웃</p>
+                </li>
                 <li>
                     <i class="fa-solid fa-gear"></i>
                     <p>설정</p>
@@ -200,6 +204,7 @@ export default {
     },
     methods: {
         ...mapActions('userInfo', ['getUserInfo']),
+        ...mapActions('auth', ['logout']),
         // async getFollowList() {
         //     console.log('befroe follow list axios is ')
         //     console.log(this.user.userId)
@@ -211,7 +216,7 @@ export default {
         //         })
         // },
         async getPostList() {
-            await axios.get("/post/getPostList", {params : {userId : this.user.userId}})
+            await axios.get("/api/post/getPostList", {params : {userId : this.user.userId}})
             .then((response) => {
                 this.localPosts = response.data.result
             })
@@ -265,8 +270,9 @@ export default {
                 this.createModal = false;
                 this.settingModal = !this.settingModal;
             }
-            
-
+        },
+        checkLogout() {
+            this.logout()
         }
     },
 };

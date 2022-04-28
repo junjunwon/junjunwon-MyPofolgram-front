@@ -21,7 +21,7 @@ export default {
     }
   },
   // created() {
-  //     axios.post('/axiosTest', null, {
+  //     axios.post('/api/axiosTest', null, {
   //       params : {
   //         testValue : this.testValue
   //       }
