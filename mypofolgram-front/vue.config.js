@@ -1,6 +1,7 @@
 module.exports = {
-  outputDir: "./public/resources/static/",
-  indexPath: "../static/index.html",
+  publicPath : 'https://github.com/junjunwon/MyPofolgram.git',
+  outputDir: "docs",
+  // indexPath: "../static/index.html",
   lintOnSave: false,
   css: {
     loaderOptions: {
