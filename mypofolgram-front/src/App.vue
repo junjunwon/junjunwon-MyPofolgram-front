@@ -21,12 +21,12 @@ export default {
     },
     computed:{
         showHeader(){
-            let hidePaths = ["/mypage", "/activity", "/comment"];
+            let hidePaths = ["/mypage", "/activity", "/comment", "/login"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         },
         showFooter(){
-            let hidePaths = ["/mypage/modify", "/comment"];
+            let hidePaths = ["/mypage/modify", "/comment", "/login"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         }
