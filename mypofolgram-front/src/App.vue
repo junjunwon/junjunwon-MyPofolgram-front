@@ -9,7 +9,7 @@
 <script>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import { mapMutations, mapActions } from 'vuex'
+// import { mapMutations, mapActions } from 'vuex'
 
 export default {
     name: "App",
@@ -18,8 +18,6 @@ export default {
         Footer,
     },
     created() {
-        // this.setUserId('woq2611')
-        // this.getUserInfo()
     },
     computed:{
         showHeader(){
@@ -34,8 +32,6 @@ export default {
         }
     },
     methods : {
-        ...mapMutations('userInfo', ['setUserId']),
-        ...mapActions('userInfo', ['getUserInfo'])
     }
 };
 </script>

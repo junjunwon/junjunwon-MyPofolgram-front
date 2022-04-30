@@ -16,7 +16,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
-    props: ['userId', 'userName', 'introduction', 'type'],
+    props: ['userId', 'userName', 'introduction', 'type', 'systemId'],
     data() {
         return {
             value: "",
@@ -37,8 +37,6 @@ export default {
     methods: {
         ...mapActions('userInfo', ['setProfile', 'getUserInfo']),
         pageSetting(type) {
-            console.log("this.users")
-            // console.log(this.user.id)
             switch (type) {
                 case "name":
                     (this.title = "이름"),
@@ -61,8 +59,8 @@ export default {
             this.value=""
         },
         async set() {
-            await this.setProfile({'type' : this.type, 'value' : this.value, 'systemId' : this.userInfo.id})
-            await this.getUserInfo()
+            await this.setProfile({'type' : this.type, 'value' : this.value, 'systemId' : this.systemId})
+            // await this.getUserInfo()
             this.$router.go(-1)
             // this.$router.push({ name: 'modify'})
         }

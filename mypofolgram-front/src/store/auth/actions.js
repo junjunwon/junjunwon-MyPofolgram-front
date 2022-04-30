@@ -12,9 +12,11 @@ export default {
             http
                 .post("/api/authenticate", params)
                 .then(response => {
+                    debugger
                     const { data } = response
+                    sessionStorage.setItem('userId', data.result.userId);
                     context.commit("login", {
-                        accessToken : data.accessToken,
+                        accessToken : data.result.httpHeaders.Authorization
                     })
                     resolve(response)
                 })
@@ -24,9 +26,10 @@ export default {
         })
     },
     logout: function(context, payload) {
-        debugger
         return new Promise(resolve => {
             setTimeout(function () {
+                sessionStorage.removeItem('clear');
+                sessionStorage.clear();
                 context.commit("logout", payload)
                 resolve({})
             }, 1000)

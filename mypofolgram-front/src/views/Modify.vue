@@ -26,7 +26,7 @@
             </li>
             <li>
                 <span>소개</span>
-                <input type="text" placeholder="소개" v-model="user.introduction" id="intro" @click="modifyProfile"/>
+                <input type="text" placeholder="소개" v-model="user.intro" id="intro" @click="modifyProfile"/>
             </li>
         </ul>
         <p class="point">프로페셔널 계정으로 전환</p>
@@ -40,7 +40,7 @@
 
 <script>
 import ModifyProfile from "./ModifyProfile"
-import { mapGetters } from 'vuex'
+import http from "../utils/http"
 
 export default {
     components : {
@@ -48,32 +48,39 @@ export default {
     },
     data() {
         return {
-            userId: "",
-            userName: "",
-            website: "",
-            introduction: "",
-            viewPage : "",
+            // userId: "",
+            // userName: "",
+            // website: "",
+            // introduction: "",
+            // viewPage : "",
             user : {},
+            userId : '',
             show : false
         };
     },
     created() {
         // 저장된 정보들 가져와서 data에 넣기
-      this.user = this.getterUserInfo
+        //axios request about user profile
+        //we need to consider refresh situation cuz user sometimes refresh when website is loaded to find sth but it's slow
+        this.userId = sessionStorage.getItem('userId');
+        this.user = this.getProfile();
     },
     computed : {
-        ...mapGetters('userInfo', ['getterUserInfo']),
     },
     methods: {
+        async getProfile() {
+            const response = await http.get('/api/user/getProfileInfo', {params : {userId : this.userId}})
+            this.user = response.data.result
+        },
         modifyProfile(e) {
             let id = e.target.id;
-            console.log("id : " + id);
             this.$router.push({ 
                 name: "modifyProfile", 
                 params: { 
                     userId : this.user.userId,
                     userName : this.user.userName,
                     introduction : this.user.introduction, 
+                    systemId : this.user.id,
                     type: id
                 } 
             });

@@ -15,7 +15,9 @@
 </template>
 
 <script>
-import axios from "axios"
+// import axios from "axios"
+import http from '../utils/http'
+
 import Follower from "@/views/Follower.vue";
 import Following from "@/views/Following.vue";
 import { mapGetters } from 'vuex'
@@ -32,18 +34,16 @@ export default{
                 followeeList : [],
                 followerList : []
             },
-            userId : 'woq2611',
+            userId : 'admin',
             followeeCnt : 1,
             followerCnt : 1
         }
     },
     created() {
         
-        axios.get('/api/user/getFollowList', {params : {userId : this.userId}})
+        http.get('/api/user/getFollowList', {params : {userId : this.userId}})
         .then((response) => {
             this.follow = response.data.result
-            console.log('this.follow')
-            console.log(this.follow)
             this.followeeCnt = this.follow.followCnt[0]
             this.followerCnt = this.follow.followCnt[1]
         })

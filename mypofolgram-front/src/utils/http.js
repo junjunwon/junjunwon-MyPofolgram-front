@@ -8,10 +8,10 @@ const http = axios.create({
 
 http.interceptors.request.use(
     config => {
-        const isAuthenticated = store.getters["isAuthenticated"]
+        const isAuthenticated = store.getters["auth/isAuthenticated"]
         if(isAuthenticated) {
-            config.headers.common["Authorization"] = store.getters["getAccessToken"]
-        }
+            config.headers.common["Authorization"] = store.getters["auth/getAccessToken"]
+        }        
         return config
     },
     error => {

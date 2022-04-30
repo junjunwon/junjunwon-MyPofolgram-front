@@ -12,12 +12,6 @@ const beforeAuth = isAuth => (from, to, next) => {
   }
 
 const routes = [
-    // {
-    //     path: "/:catchAll(.*)",
-    //     redirect: '/error-404',
-    //     name: 'error-404',
-    //     component: () => import('../views/error/Error404.vue'),
-    // },
     {
         path:'/',
         name : 'main',
@@ -92,24 +86,5 @@ let router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 });
-// router.beforeEach((from, to, next) => {
-//     const isAuthenticated = createStore.getters["auth/isAuthenticated"]
-//     console.log('isAuthenticated is ', isAuthenticated)
-//     console.log('from is, ', from)
-//     console.log('to is, ', to)
-//     console.log('next is, ', next)
-//     if (to.path !== '/login') {
-//         return next({path : '/login'});
-//     } else {
-//         return next();
-//     }
-//     // if(isAuthenticated) 
-//     // // || (!isAuthenticated && !isAuth)) 
-//     // {
-//     //     return next() //해당하는  url로 return
-//     // } else {
-//     //     return next('/login')
-//     // }
-// })
 
 export default router;
