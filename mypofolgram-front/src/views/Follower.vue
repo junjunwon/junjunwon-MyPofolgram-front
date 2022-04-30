@@ -33,7 +33,6 @@ export default {
         ...mapMutations('userInfo', ['setUserId']),
         ...mapActions('userInfo', ['getUserInfo']),
         test() {
-            console.log(this.followerList)
         },
         async moveToUserPage(val) {
             // follower.followingId

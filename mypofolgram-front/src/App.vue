@@ -9,7 +9,7 @@
 <script>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import { mapMutations, mapActions } from 'vuex'
+// import { mapMutations, mapActions } from 'vuex'
 
 export default {
     name: "App",
@@ -18,24 +18,20 @@ export default {
         Footer,
     },
     created() {
-        this.setUserId('woq2611')
-        this.getUserInfo()
     },
     computed:{
         showHeader(){
-            let hidePaths = ["/mypage", "/activity", "/comment", "/"];
+            let hidePaths = ["/mypage", "/activity", "/comment"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         },
         showFooter(){
-            let hidePaths = ["/mypage/modify", "/comment", "/"];
+            let hidePaths = ["/mypage/modify", "/comment"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         }
     },
     methods : {
-        ...mapMutations('userInfo', ['setUserId']),
-        ...mapActions('userInfo', ['getUserInfo'])
     }
 };
 </script>

@@ -8,6 +8,7 @@
 <script>
 import StoryList from "@/components/StoryList.vue";
 import PostList from "@/components/PostList.vue";
+import { mapMutations, mapActions } from 'vuex'
 // import axios from 'axios'
 
 export default {
@@ -20,18 +21,16 @@ export default {
       testValue : 'test'
     }
   },
-  // created() {
-  //     axios.post('/axiosTest', null, {
-  //       params : {
-  //         testValue : this.testValue
-  //       }
-  //     })
-  //   .then((response) => {
-  //     console.log('response is ' + response)
-  //   })
-  //   .catch((error) => {
-  //     console.log('error is ' + error)
-  //   })
-  // }
+  created() {
+      let userId = sessionStorage.getItem('userId');
+      this.setUserId(userId)
+      this.getUserInfo()
+  },
+  computed : {
+  },
+  methods : {
+    ...mapMutations('userInfo', ['setUserId']),
+    ...mapActions('userInfo', ['getUserInfo'])
+  }
 }
 </script>
