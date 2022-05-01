@@ -50,6 +50,9 @@ i{
     color: #333;
     cursor: pointer;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 
 /* common */
 .flexbox{
