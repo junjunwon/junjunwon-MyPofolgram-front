@@ -12,7 +12,6 @@ export default {
             http
                 .post("/api/authenticate", params)
                 .then(response => {
-                    debugger
                     const { data } = response
                     sessionStorage.setItem('userId', data.result.userId);
                     context.commit("login", {

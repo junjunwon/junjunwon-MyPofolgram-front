@@ -1,7 +1,7 @@
 module.exports = {
-  publicPath : 'https://github.com/junjunwon/MyPofolgram.git',
-  outputDir: "docs",
-  // indexPath: "../static/index.html",
+  // publicPath : 'https://github.com/junjunwon/MyPofolgram.git',
+  // outputDir: "docs",
+  indexPath: "../static/index.html",
   lintOnSave: false,
   css: {
     loaderOptions: {
@@ -18,8 +18,8 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        // target: 'http://localhost:8080',
-        target : 'https://myportfoliogram.herokuapp.com/',
+        target: 'http://localhost:8080',
+        // target : 'https://myportfoliogram.herokuapp.com/',
         ws: true,
         changeOrigin: true
       }

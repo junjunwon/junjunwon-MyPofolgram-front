@@ -9,7 +9,7 @@
         </div>
         <div class="top">
             <div>
-                <img :src=imgTest alt="고양이" />
+                <img :src=getterUserInfo.userImgUrl alt="고양이" />
             </div>
             <div>
                 <p>게시물</p>
@@ -156,7 +156,7 @@ import modal from '../components/modal.vue'
 import confirmModal from '../components/confirmModal.vue'
 // import axios from 'axios'
 import http from '../utils/http'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
     components : {
@@ -178,8 +178,6 @@ export default {
                 followerList : []
             },
             // props 테스트
-            test: "",
-            imgTest : "/images/example.jpeg",
             showRegister: false,
             showDeveloping : false,
             selectedFile: null,
@@ -188,8 +186,9 @@ export default {
         };
     },
     created() {
-        this.user = this.getterUserInfo
         this.userId = sessionStorage.getItem('userId');
+        this.setUserId(this.userId)
+        this.getUserInfo()
         this.getFollowList()
         this.getPostList()
     },
@@ -202,6 +201,7 @@ export default {
         // follower/following Count vuex로 얻기?
     },
     methods: {
+        ...mapMutations('userInfo', ['setUserId']),
         ...mapActions('userInfo', ['getUserInfo']),
         ...mapActions('auth', ['logout']),
         async getFollowList() {
