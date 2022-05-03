@@ -9,7 +9,7 @@
                 <div class="createModal" v-if="isCreate">
                     <ul>
                         <li @click="show('showRegister')">
-                        <!-- <li @click="showRegister = true"> -->
+                            <!-- <li @click="showRegister = true"> -->
                             <span>게시물</span>
                             <i class="fa-solid fa-table-cells"></i>
                         </li>
@@ -39,10 +39,24 @@
             </div>
         </template>
         <template #body>
-            <img src="" alt="" />
             <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
             <!-- <a @click="showRegister = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a> -->
-            <input type="file" @change="onFileSelected" ref="fileInput" class="input" />
+            <!-- <input type="file" @change="onFileSelected" ref="fileInput" class="input" /> -->
+            <input
+                ref="fileInput"
+                id="input"
+                type="file"
+                name="image"
+                accept="image/*"
+                multiple="multiple"
+                class="input"
+                @change="uploadImage()"
+            />
+
+            <div v-if="this.images.length" class="imagesWrap">
+                <img :src="this.images" />
+            </div>
+
             <br />
             <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
         </template>
@@ -53,19 +67,21 @@
 </template>
 
 <script>
-import modal from './modal.vue'
+import modal from "./modal.vue";
+// import axios from 'axios'
 
 export default {
-    components : {
-        'newPost' : modal,
+    components: {
+        newPost: modal,
     },
     data() {
         return {
             isCreate: false,
-            imgTest : "/images/example.jpeg",
+            imgTest: "/images/example.jpeg",
             showRegister: false,
             selectedFile: null,
-            showComplete : false,
+            showComplete: false,
+            images: "",
         };
     },
     methods: {
@@ -77,21 +93,57 @@ export default {
                 path: path,
             });
         },
-        show(type){
+        show(type) {
             this[type] = true;
             this.isCreate = false;
-        }
+        },
+        uploadImage() {
+            let form = new FormData();
+            // let image = document.getElementById("input").files[0];
+            let image = this.$refs["fileInput"].files[0];
+
+            // image를 찾지못하는(null) 원인을 먼저 찾아야함.
+            // console.log(image);
+
+            form.append("fileInput", image);
+
+            // 업로드 api를 실행한 후 이미지 경로를 받아야함
+            this.images = "/images/example.jpeg";
+
+            // 업로드 API
+            // axios
+            //     .post("/upload", form, {
+            //         header: { "Content-Type": "multipart/form-data" },
+            //     })
+            //     .then(({ data }) => {
+            //         this.images = data;
+            //     })
+            //     .catch((err) => console.log(err));
+        },
     },
 };
 </script>
 
 <style scoped>
 .buttonBackground {
-    width:130px;
-    height:32px;
+    width: 130px;
+    height: 32px;
     cursor: pointer;
 }
 .input {
     display: none;
+}
+.imagesWrap {
+    width: 550px;
+    height: 556px;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.imagesWrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 0px 20px 20px;
 }
 </style>
