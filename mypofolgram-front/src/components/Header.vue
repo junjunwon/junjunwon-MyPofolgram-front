@@ -103,11 +103,11 @@ export default {
             let image = this.$refs["fileInput"].files[0];
 
             // image를 찾지못하는(null) 원인을 먼저 찾아야함.
-            console.log(image);
+            // console.log(image);
 
             form.append("fileInput", image);
 
-            console.log("업로드 api를 실행한 후 이미지 경로를 받아야함");
+            // 업로드 api를 실행한 후 이미지 경로를 받아야함
             this.images = "/images/example.jpeg";
 
             // 업로드 API
