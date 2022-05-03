@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <h1 class="logo">
-            <img src="/images/logo.png" alt="" />
+            <img src="/images/logo.png" alt="" @click="moveTo('/')"/>
         </h1>
         <div class="iconList">
             <div class="plusWrap">

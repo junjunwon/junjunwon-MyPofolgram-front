@@ -41,7 +41,7 @@
         <div class="post" v-for="(row, index) in rows" v-bind:key="row">
             <div class="top">
                 <img :src="row.userImgUrl" alt="프로필" />
-                <p>{{ row.nickName }}</p>
+                <p style="cursor: pointer;">{{ row.nickName }}</p>
                 <i class="fa-solid fa-ellipsis" @click="this.showModal = true;"></i>
             </div>
             <div class="photoList">

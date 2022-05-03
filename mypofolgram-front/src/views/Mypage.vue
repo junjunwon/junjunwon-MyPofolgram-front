@@ -1,7 +1,7 @@
 <template>
     <div class="mypage">
         <div class="mypageHeader">
-            <h2 class="nickname" v-text="user.userId"></h2>
+            <h2 class="nickname" v-text="getterUserInfo.userId"></h2>
             <dis class="right">
                 <i class="fa-solid fa-square-plus" id="createModal" @click="checkModal($event)"></i>
                 <i class="fa-solid fa-bars" id="settingModal" @click="checkModal($event)"></i>
@@ -9,11 +9,11 @@
         </div>
         <div class="top">
             <div>
-                <img :src=getterUserInfo.userImgUrl alt="고양이" />
+                <img :src=getterUserInfo.userImgUrl alt="" />
             </div>
             <div>
                 <p>게시물</p>
-                <span v-text="user.postCnt"></span>
+                <span v-text="getterUserInfo.postCnt"></span>
             </div>
             <div @click="gotoFollowWhen('follower', follow.followerCount > 0)">
                 <p>팔로워</p>
@@ -28,8 +28,9 @@
         <div class="modify" @click="this.$router.push({ name: 'modify'})">프로필 편집</div>
 
         <div class="mypost" v-if="!isEmpty">
-            <div class="post">
-                <img src="/images/example.jpeg" alt="고양이" />
+            <div v-for="(post) in localPosts" class="post" v-bind:key="post">
+            <!-- <div class="post"> -->
+                <img :src=post.imgUrl alt="" @click="test"/>
             </div>
             
         </div>
@@ -271,6 +272,9 @@ export default {
             this.$router.push({
                 path : '/login'
             })
+        },
+        test() {
+            alert("Test")
         }
     },
 };
