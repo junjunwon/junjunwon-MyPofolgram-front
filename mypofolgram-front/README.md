@@ -9,23 +9,29 @@ mypofolgram-front는 **mypofolgram 프로젝트에서 프론트엔드** 코드�
 │   └── images
 │   └── index.html
 ├── src
-│   ├── App.vue
-│   ├── api
+│   ├── assets
 │   ├── router
-│   ├── store  
+│   ├── store
+│   ├── utils
 │   ├── components 
-│   │    ├── Footer.vue
-│   │    └── Header.vue
+│   │    └── ...
 │   └── views
+│   │    ├── error
+│   │    └── ...
+│   ├── App.vue    
 └── └── main.js
 ``` 
-- api : api 통신과 관련된 모듈 작성 -> 컴포넌트에서 호출하여 사용
-- components
-- views
+#### /src 하위 폴더
+- assets
+- router : vue-router사용을 위해 경로를 등록하는 폴더
+- store : Vuex 관련 폴더
+- utils : 컴포넌트에서 공통적으로 호출하는 함수 모음 
+- components : 공통적으로 사용되는 컴포넌트
+- views : 특정 경로에서 출력되는 컴포넌트
 
-## 협업방식
-1. 각자 브랜치를 생성해서 작업한다.
-  - 브랜치의 명명규칙은 구글 스프레드시트 **task_num**을 바탕으로 한다. ex) git branch home-01
-  - 기능별로 브랜치를 생성하고 master브랜치에 머지하는 것을 원칙으로 한다.
-  - 구글 스프레드시트 : https://docs.google.com/spreadsheets/d/1vWYjHa5_AjRVxFyq2mYDwGsFjornKdXbDgFMYu5Njug/edit#gid=0
-2. 개발 과정에서 필요한 모듈 설치는 각자 판단하며, 필요한 경우 회의를 통해 결정한다.
+## 메뉴구성
+#### 홈
+#### 검색
+#### 릴스
+#### 마이페이지
+
