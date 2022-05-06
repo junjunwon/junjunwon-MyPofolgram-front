@@ -30,7 +30,7 @@
         </div>
     </div>
     <!-- use the modal component, pass in the prop -->
-    <new-post :show="showRegister" @close="showRegister = false">
+    <new-post :show="showRegister" @close="close('showRegister')">
         <template #header>
             <div class="topWithButton">
                 <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
@@ -102,6 +102,18 @@ export default {
             this[type] = true;
             this.isCreate = false;
         },
+        close(type) {
+            switch (type) {
+                case "showRegister":
+                    this[type] = false;
+                    this.files = [];
+                    this.filesPreview = [];
+                    this.uploadImageIndex = 0;
+                    break;
+                default:
+                    console.log("close 함수 실행");
+            }
+        },
         uploadImage() {
             let num = -1;
             for (let i = 0; i < this.$refs.fileInput.files.length; i++) {
@@ -117,14 +129,9 @@ export default {
                 ];
                 num = i;
                 //이미지 업로드용 프리뷰
-                this.filesPreview = [
-                    ...this.filesPreview,
-                    { file: URL.createObjectURL(this.$refs.fileInput.files[i])},
-                ];
+                this.filesPreview = [...this.filesPreview, { file: URL.createObjectURL(this.$refs.fileInput.files[i]) }];
             }
             this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
-            console.log("여기확인!");
-            console.log(this.filesPreview);
 
             // 업로드 API - FormData에 담아서,,?
         },
