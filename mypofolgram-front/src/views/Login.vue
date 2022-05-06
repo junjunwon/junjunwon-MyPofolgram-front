@@ -12,12 +12,12 @@
             </p>
             <p>
                 <input
-                class="formInput"
-                id="userId"
-                v-model="userId"
-                type="text"
-                name="userId"
-                placeholder="로그인 아이디"
+                    class="formInput"
+                    id="userId"
+                    v-model="userId"
+                    type="text"
+                    name="userId"
+                    placeholder="로그인 아이디"
                 >
             </p>
             <p>
@@ -33,14 +33,14 @@
             <p>
                 <input
                 class="button"
-                style="margin-bottom : 2vh; font-size:small; font-weight: bolder;"
+                style="margin-bottom : 2vh; font-size:small; font-weight: bolder; cursor:pointer;"
                 value="비밀번호를 잊으셨나요?"
                 >
             </p>
             <p>
                 <input
                 class="buttonBackground"
-                style="width: 41vh; height : 4.5vh;"
+                style="width: 41vh; height : 4.5vh; cursor:pointer;"
                 @click="checkLogin"
                 value="로그인"
                 >
