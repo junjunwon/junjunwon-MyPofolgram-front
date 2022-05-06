@@ -37,8 +37,8 @@
                 <i></i>
                 <p class="bold center">새 게시물 만들기</p>
                 <i class="point" v-if="files.length === 0"></i>
-                <i @click="addContent()" class="point" v-if="files.length !== 0 && this.content.length === 0">다음</i>
-                <i @click="upload()" v-else-if="content.length !== 0" class="point">공유하기</i>
+                <i @click="addContent()" class="point" v-if="files.length !== 0 && this.showUploadModal2">다음</i>
+                <i @click="upload()" v-else-if="files.length !== 0 && !this.showUploadModal2" class="point">공유하기</i>
             </div>
         </template>
         <template #body>
@@ -58,7 +58,7 @@
                 <br />
                 <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
             </div>
-            <div v-else-if="files.length !== 0 && this.content.length === 0" class="imagesWrap uploadBody2">
+            <div v-else-if="files.length !== 0 && this.showUploadModal2" class="imagesWrap uploadBody2">
                 <div v-for="(file, index) in files" :key="index">
                     <img :src="file.preview" />
                 </div>
@@ -72,11 +72,11 @@
                 <div class="rightArea">
                     <!-- vuex사용해서 로그인 정보 가져오기 -->
                     <!-- <div> -->
-                        <img :src=getterUserInfo.userImgUrl alt="" />
+                    <img :src="getterUserInfo.userImgUrl" alt="" />
                     <!-- </div> -->
                     <h2 class="nickname" v-text="getterUserInfo.userId"></h2>
 
-                    <textarea aria-label="문구 입력..." placeholder="문구 입력..." rows="5"></textarea >
+                    <textarea aria-label="문구 입력..." placeholder="문구 입력..." rows="5" v-model="content"></textarea>
                 </div>
             </div>
         </template>
@@ -89,14 +89,14 @@
 <script>
 import modal from "./modal.vue";
 // import axios from 'axios'
-import { mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
     components: {
         newPost: modal,
     },
-    computed : {
-        ...mapGetters('userInfo', ['getterUserInfo']),
+    computed: {
+        ...mapGetters("userInfo", ["getterUserInfo"]),
     },
     data() {
         return {
@@ -106,11 +106,12 @@ export default {
             selectedFile: null,
             showComplete: false,
             images: "",
-            // 업로드용 파일들
+            // 업로드
             files: [],
             filesPreview: [],
             uploadImageIndex: 0, // 이미지 업로드를 위한 변수
             content: "",
+            showUploadModal2: false,
         };
     },
     methods: {
@@ -156,19 +157,15 @@ export default {
                 this.filesPreview = [...this.filesPreview, { file: URL.createObjectURL(this.$refs.fileInput.files[i]) }];
             }
             this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
-
-            console.log("gg : " + this.files.length);
-            //
-        },
-        addContent() {
-            this.content = " ";
-            console.log(this.content.length);
-            if (this.files.length !== 0) {
-                console.log("파일은 추가된 상태");
+            if (this.filesPreview.length !== 0) {
+                this.showUploadModal2 = true;
             }
         },
+        addContent() {
+            this.showUploadModal2 = false;
+        },
         upload() {
-            this.close('showRegister');
+            this.close("showRegister");
             // API 호출
             // 이미지 - this.files
             // 내용 - this.content
@@ -204,25 +201,35 @@ export default {
     transform: translate(-50%, -50%);
     object-fit: cover;
 }
-.leftArea{
-    width:55%;
+.leftArea {
+    width: 60%;
     float: left;
     border-right: 2px solid #dbdbdb;
     position: relative;
 }
-.leftArea::after{
-    width: 2px;
-    height: 100%;
-    background: #dbdbdb;
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.rightArea{
+.rightArea {
     padding: 10px;
-    width:39%;
+    width: 39%;
     float: right;
-    border-bottom: 2px solid #dbdbdb;
+    position: relative;
+    /* border-bottom: 2px solid #dbdbdb; */
+}
+.rightArea::after {
+    content: "";
+    width: 100%;
+    background: #dbdbdb;
+    position: absolute;
+    height: 2px;
+    left: 0px;
+    top: 50%;
+}
+.leftArea img {
+    width: 100%;
+}
+.rightArea img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 </style>
