@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <h1 class="logo">
-            <img src="/images/logo.png" alt="" @click="moveTo('/')"/>
+            <img src="/images/logo.png" alt="" @click="moveTo('/')" />
         </h1>
         <div class="iconList">
             <div class="plusWrap">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <!-- use the modal component, pass in the prop -->
-    <new-post :show="showRegister" @close="showRegister = false">
+    <new-post :show="showRegister" @close="close('showRegister')">
         <template #header>
             <div class="topWithButton">
                 <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
@@ -39,26 +39,27 @@
             </div>
         </template>
         <template #body>
-            <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
-            <!-- <a @click="showRegister = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a> -->
-            <!-- <input type="file" @change="onFileSelected" ref="fileInput" class="input" /> -->
-            <input
-                ref="fileInput"
-                id="input"
-                type="file"
-                name="image"
-                accept="image/*"
-                multiple="multiple"
-                class="input"
-                @change="uploadImage()"
-            />
+            <div v-if="!files.length">
+                <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
+                <input
+                    ref="fileInput"
+                    id="input"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    multiple="multiple"
+                    class="input"
+                    @change="uploadImage()"
+                />
 
-            <div v-if="this.images.length" class="imagesWrap">
-                <img :src="this.images" />
+                <br />
+                <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
             </div>
-
-            <br />
-            <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
+            <div v-else class="imagesWrap">
+                <div v-for="(file, index) in files" :key="index">
+                    <img :src="file.preview" />
+                </div>
+            </div>
         </template>
         <template #footer>
             <div></div>
@@ -82,6 +83,10 @@ export default {
             selectedFile: null,
             showComplete: false,
             images: "",
+            // 업로드용 파일들
+            files: [],
+            filesPreview: [],
+            uploadImageIndex: 0, // 이미지 업로드를 위한 변수
         };
     },
     methods: {
@@ -97,28 +102,38 @@ export default {
             this[type] = true;
             this.isCreate = false;
         },
+        close(type) {
+            switch (type) {
+                case "showRegister":
+                    this[type] = false;
+                    this.files = [];
+                    this.filesPreview = [];
+                    this.uploadImageIndex = 0;
+                    break;
+                default:
+                    console.log("close 함수 실행");
+            }
+        },
         uploadImage() {
-            let form = new FormData();
-            // let image = document.getElementById("input").files[0];
-            let image = this.$refs["fileInput"].files[0];
+            let num = -1;
+            for (let i = 0; i < this.$refs.fileInput.files.length; i++) {
+                this.files = [
+                    ...this.files,
+                    //이미지 업로드
+                    {
+                        //실제 파일
+                        file: this.$refs.fileInput.files[i],
+                        //이미지 프리뷰
+                        preview: URL.createObjectURL(this.$refs.fileInput.files[i]),
+                    },
+                ];
+                num = i;
+                //이미지 업로드용 프리뷰
+                this.filesPreview = [...this.filesPreview, { file: URL.createObjectURL(this.$refs.fileInput.files[i]) }];
+            }
+            this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
 
-            // image를 찾지못하는(null) 원인을 먼저 찾아야함.
-            // console.log(image);
-
-            form.append("fileInput", image);
-
-            // 업로드 api를 실행한 후 이미지 경로를 받아야함
-            this.images = "/images/example.jpeg";
-
-            // 업로드 API
-            // axios
-            //     .post("/upload", form, {
-            //         header: { "Content-Type": "multipart/form-data" },
-            //     })
-            //     .then(({ data }) => {
-            //         this.images = data;
-            //     })
-            //     .catch((err) => console.log(err));
+            // 업로드 API - FormData에 담아서,,?
         },
     },
 };
@@ -143,7 +158,12 @@ export default {
 }
 .imagesWrap img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     border-radius: 0px 0px 20px 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
 }
 </style>
