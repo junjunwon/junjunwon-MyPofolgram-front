@@ -38,7 +38,7 @@
         </div>
     </div> -->
 
-        <div class="post" v-for="(row, index) in rows" v-bind:key="row">
+        <div class="post" v-for="(row, index) in localPostDetails" v-bind:key="row">
             <div class="top">
                 <img :src="row.userImgUrl" alt="프로필" />
                 <p style="cursor: pointer;">{{ row.nickName }}</p>
@@ -47,7 +47,7 @@
             <div class="photoList">
                 <vueper-slides class="imagesArea no-shadow">
                     <vueper-slide class="imageArea"
-                        v-for="(img, i) in row.imgUrl"
+                        v-for="(img, i) in row.photoImgUrl"
                         :key="i"
                         :image="img"
                         >
@@ -58,7 +58,7 @@
             <div class="bottom">
                 <div class="iconList">
                     <i
-                        :class="{ 'fa-solid fa-heart': true, point2: row.liked === true }"
+                        :class="{ 'fa-solid fa-heart': true, point2: row.isLiked === true }"
                         @click="changeLike(row.liked, index)"
                     ></i>
                     <i class="fa-solid fa-comment"></i>
@@ -66,9 +66,9 @@
                     <div>이미지 더보기 개수</div>
                     <i class="fa-solid fa-bookmark flexRight"></i>
                 </div>
-                <p class="like">좋아요 123,456개</p>
+                <p class="like">{{row.likeCount}}</p>
                 <p>
-                    <span class="nickname">eunj_eong</span>
+                    <span class="nickname">{{ row.nickName }}</span>
                     <span class="content"
                         >{{ row.content }}
                         <p></p>
@@ -120,11 +120,13 @@
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import common from "@/utils/common";
+import http from '../utils/http'
 
 export default {
     components: { VueperSlides, VueperSlide },
     data() {
         return {
+            localPostDetails : [],
             showModal: false,
             count: 0,
             rows: [],
@@ -153,7 +155,7 @@ export default {
         moveToComment(id) {
             this.$router.push({ path: `/comment/${id}` });
         },
-        getPostInfo() {
+        async getPostInfo() {
             // 포스트정보 가져오는 api호출, 기본 오름차순(최신순)
             let response = {
                 count: 5,
@@ -239,6 +241,10 @@ export default {
                     },
                 ],
             };
+            await http.get("/api/post/getPostListDetail", {params : {userId : "admin"}})
+            .then((response) => {
+                this.localPostDetails = response.data.result
+            }),
             this.count = response.count;
             this.rows = response.rows;
         },
