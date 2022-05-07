@@ -33,13 +33,16 @@
     <new-post :show="showRegister" @close="close('showRegister')">
         <template #header>
             <div class="topWithButton">
-                <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
-                <p class="bold">새 게시물 만들기</p>
-                <i @click="onUpload" class="point">다음</i>
+                <!-- <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i> -->
+                <i></i>
+                <p class="bold center">새 게시물 만들기</p>
+                <i class="point" v-if="files.length === 0"></i>
+                <i @click="addContent()" class="point" v-if="files.length !== 0 && this.showUploadModal2">다음</i>
+                <i @click="upload()" v-else-if="files.length !== 0 && !this.showUploadModal2" class="point">공유하기</i>
             </div>
         </template>
         <template #body>
-            <div v-if="!files.length">
+            <div v-if="!files.length" class="uploadBody1">
                 <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
                 <input
                     ref="fileInput"
@@ -55,9 +58,23 @@
                 <br />
                 <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
             </div>
-            <div v-else class="imagesWrap">
+            <div v-else-if="files.length !== 0 && this.showUploadModal2" class="imagesWrap uploadBody2">
                 <div v-for="(file, index) in files" :key="index">
                     <img :src="file.preview" />
+                </div>
+            </div>
+            <div v-else class="uploadBody3">
+                <div class="leftArea">
+                    <div v-for="(file, index) in files" :key="index">
+                        <img :src="file.preview" />
+                    </div>
+                </div>
+                <div class="rightArea">
+                    <div>
+                        <img :src="getterUserInfo.userImgUrl" alt="" />
+                        <span class="nickname" v-text="getterUserInfo.userId"></span>
+                    </div>
+                    <textarea aria-label="문구 입력..." placeholder="문구 입력..." rows="12" v-model="content"></textarea>
                 </div>
             </div>
         </template>
@@ -70,10 +87,14 @@
 <script>
 import modal from "./modal.vue";
 // import axios from 'axios'
+import { mapGetters } from "vuex";
 
 export default {
     components: {
         newPost: modal,
+    },
+    computed: {
+        ...mapGetters("userInfo", ["getterUserInfo"]),
     },
     data() {
         return {
@@ -83,10 +104,12 @@ export default {
             selectedFile: null,
             showComplete: false,
             images: "",
-            // 업로드용 파일들
+            // 업로드
             files: [],
             filesPreview: [],
             uploadImageIndex: 0, // 이미지 업로드를 위한 변수
+            content: "",
+            showUploadModal2: false,
         };
     },
     methods: {
@@ -132,8 +155,20 @@ export default {
                 this.filesPreview = [...this.filesPreview, { file: URL.createObjectURL(this.$refs.fileInput.files[i]) }];
             }
             this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
+            if (this.filesPreview.length !== 0) {
+                this.showUploadModal2 = true;
+            }
+        },
+        addContent() {
+            this.showUploadModal2 = false;
+        },
+        upload() {
+            // API 호출
+            // !!준호님 모달을 닫으면 파일/내용 정보가 사라져서, api 통신 완료된 후에 close함수 호출해주심 될듯해용
+            // 이미지 - this.files
+            // 내용 - this.content
 
-            // 업로드 API - FormData에 담아서,,?
+            this.close("showRegister");
         },
     },
 };
@@ -165,5 +200,41 @@ export default {
     top: 50%;
     transform: translate(-50%, -50%);
     object-fit: cover;
+}
+.leftArea {
+    width: 60%;
+    float: left;
+    border-right: 2px solid #dbdbdb;
+    position: relative;
+}
+.rightArea {
+    padding: 10px;
+    width: 39%;
+    float: right;
+    position: relative;
+    /* border-bottom: 2px solid #dbdbdb; */
+}
+.rightArea::after {
+    content: "";
+    width: 100%;
+    background: #dbdbdb;
+    position: absolute;
+    height: 2px;
+    left: 0px;
+    top: 50%;
+}
+.rightArea > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.leftArea img {
+    width: 100%;
+}
+.rightArea img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 </style>

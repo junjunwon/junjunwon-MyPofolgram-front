@@ -2,7 +2,7 @@
     font-family: "NotoSans";
     src: url("../font/NotoSansKR-Regular.otf");
 }
-html{
+html {
     max-width: 600px;
     margin: 0 auto;
     width: 100%;
@@ -40,13 +40,18 @@ input {
 input:focus {
     outline: none;
 }
+textarea{
+    resize: none;
+    border: none;
+    box-sizing: border-box;
+}
 ul {
     margin: 0;
     padding: 0;
-    list-style:none;
-    padding-left:0px;
+    list-style: none;
+    padding-left: 0px;
 }
-i{
+i {
     color: #333;
     cursor: pointer;
 }
@@ -55,7 +60,7 @@ i{
 }
 
 /* common */
-.flexbox{
+.flexbox {
     display: flex;
     justify-content: space-between;
     justify-items: center;
@@ -86,27 +91,27 @@ i{
 .point {
     color: #0095f6;
 }
-.point2{
+.point2 {
     color: #ed4956;
 }
-.line{
+.line {
     border-bottom: 1px solid #dbdbdb;
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.bold{
+.bold {
     font-weight: bold;
 }
-.small{
+.small {
     font-size: 10px;
 }
-.medium{
+.medium {
     font-size: 14px;
 }
-.flexRight{
+.flexRight {
     margin-left: auto;
 }
-.modalWrap{
+.modalWrap {
     background-color: rgba(0, 0, 0, 0.5);
     left: 0;
     bottom: 40px;
@@ -116,7 +121,7 @@ i{
     height: 100%;
     position: fixed;
 }
-.bottomModal{
+.bottomModal {
     position: fixed;
     left: 50%;
     background-color: #fff;
@@ -127,35 +132,35 @@ i{
     height: 270px;
     transform: translateX(-50%);
 }
-.bottomModal::after{
+.bottomModal::after {
     width: 30px;
     height: 3px;
     background-color: #8e8e8e;
-    content: '';
+    content: "";
     position: absolute;
     left: 50%;
     top: 10px;
     transform: translateX(-50%);
 }
-.bottomModal .modalTitle{
+.bottomModal .modalTitle {
     text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
 }
-.bottomModal li{
+.bottomModal li {
     padding: 10px 20px;
     position: relative;
 }
-.bottomModal li::after{
+.bottomModal li::after {
     width: 80%;
-    content: '';
+    content: "";
     height: 1px;
     background-color: #dbdbdb;
     position: absolute;
     left: 45px;
     top: 90%;
 }
-.bottomModal li p{
+.bottomModal li p {
     display: inline-block;
     margin-left: 10px;
 }
@@ -192,7 +197,7 @@ i{
     left: 20px;
     top: 15px;
 }
-.topBack i.right{
+.topBack i.right {
     position: absolute;
     right: 20px;
     top: 15px;
@@ -240,19 +245,19 @@ i{
     margin-left: 15px;
     cursor: pointer;
 }
-.iconList .plusWrap{
+.iconList .plusWrap {
     position: relative;
 }
-.createModal{
+.createModal {
     width: 100px;
-    border:1px solid #dbdbdb;
+    border: 1px solid #dbdbdb;
     border-radius: 5px;
     background-color: #fff;
     position: absolute;
     right: 0;
     top: 30px;
 }
-.createModal li{
+.createModal li {
     padding: 5px;
     border-bottom: 1px solid #dbdbdb;
     display: flex;
@@ -261,45 +266,45 @@ i{
 }
 
 /* Activity */
-.activity{
+.activity {
     padding: 20px 0px;
 }
-.activity i.fa-chevron-left{
+.activity i.fa-chevron-left {
     font-size: 24px;
     margin-right: 5px;
     margin-left: 5px;
 }
-.activity .title{
+.activity .title {
     font-size: 24px;
     margin-bottom: 10px;
     display: inline-block;
 }
-.activity .followActivity{
+.activity .followActivity {
     padding: 10px 20px;
 }
-.activity .time{
+.activity .time {
     padding: 10px 20px;
     font-weight: bold;
 }
-.activity .item{
+.activity .item {
     padding: 10px 20px;
     display: flex;
     align-items: center;
 }
-.activity .item img{
+.activity .item img {
     width: 44px;
     height: 44px;
     border-radius: 50%;
     margin-right: 10px;
 }
-.activity .item .text{
+.activity .item .text {
     font-size: 16px;
     max-width: 70%;
 }
-.activity .item .text b{
+.activity .item .text b {
     font-weight: bold;
 }
-.activity .item .date{
+.activity .item .date {
     font-size: 14px;
     margin-left: 5px;
     color: #8e8e8e;
@@ -328,9 +333,9 @@ i{
 .storyList {
     padding: 5px 20px;
     border-bottom: 1px solid #dbdbdb;
-    width:100%;
-    height:100px;
-    overflow-x:scroll;
+    width: 100%;
+    height: 100px;
+    overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     box-sizing: border-box;
@@ -339,15 +344,13 @@ i{
     display: inline-block;
     margin: 0px 3px;
 }
-.storyList .story img.circle{
+.storyList .story img.circle {
     position: relative;
     border: 3px solid transparent;
     border-radius: 50%;
-    background-image: linear-gradient(#fff, #fff), 
-    linear-gradient(to right, red 0%,  orange 100%);
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to right, red 0%, orange 100%);
     background-origin: border-box;
     background-clip: content-box, border-box;
-
 }
 
 /* circle 가상선택자 애니메이션 추가 필요 */
@@ -376,7 +379,7 @@ i{
 }
 
 /* StoryView */
-.storyView{
+.storyView {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -408,7 +411,7 @@ i{
     margin-bottom: 10px;
     box-shadow: none;
 }
-.post .photoList .imageArea{
+.post .photoList .imageArea {
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -449,44 +452,45 @@ i{
 .post .commentArea .button {
     float: right;
 }
-#postList{
+#postList {
     margin-bottom: 60px;
 }
-#postList .bottomModal div{
+#postList .bottomModal div {
     border: 1px solid #8e8e8e;
     border-radius: 10px;
     padding: 5px 10px;
     margin-bottom: 10px;
 }
-#postList .bottomModal{
+#postList .bottomModal {
     padding: 20px;
     text-align: center;
 }
-#postList .bottomModal .flexbox{
+#postList .bottomModal .flexbox {
     border: none;
     padding: 0px;
 }
-#postList .bottomModal .flexbox div{
+#postList .bottomModal .flexbox div {
     width: 26%;
 }
-#postList .bottomModal li:after{
+#postList .bottomModal li:after {
     width: 100%;
     left: 0px;
 }
-#postList .bottomModal li:last-child:after{
+#postList .bottomModal li:last-child:after {
     content: none;
 }
 
 /* Comment */
-#commentList .content, #commentList .comment{
+#commentList .content,
+#commentList .comment {
     display: flex;
     margin-bottom: 10px;
 }
-#commentList .content{
+#commentList .content {
     padding-bottom: 10px;
     border-bottom: 1px solid #dbdbdb;
 }
-#commentList img{
+#commentList img {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -496,53 +500,53 @@ i{
     color: #8e8e8e;
     font-size: 12px;
 }
-#commentList .area b{
+#commentList .area b {
     font-weight: bold;
     margin-right: 5px;
 }
- 
+
 /* Search */
-.searchForm{
+.searchForm {
     padding: 10px 20px;
     position: relative;
 }
-.searchForm input{
+.searchForm input {
     width: 100%;
     box-sizing: border-box;
     background-color: #ddd;
     border-radius: 5px;
     padding: 5px 5px 5px 40px;
 }
-.searchForm i{
+.searchForm i {
     position: absolute;
     left: 30px;
     top: 50%;
     transform: translateY(-50%);
 }
-.container{
+.container {
     display: grid;
     row-gap: 10px;
     column-gap: 10px;
-    grid:'. . .';
+    grid: ". . .";
     margin-bottom: 10px;
 }
-.container .item{
+.container .item {
     border: 1px solid #000;
     min-height: 200px;
 }
-.search .container:nth-child(even) .item:nth-child(3){
+.search .container:nth-child(even) .item:nth-child(3) {
     grid-row-start: 1;
     grid-row-end: 3;
     grid-column: 3;
 }
-.search .container:nth-child(odd) .item:nth-child(1){
+.search .container:nth-child(odd) .item:nth-child(1) {
     grid-row-start: 1;
     grid-row-end: 3;
     grid-column: 1;
 }
 
 /* Mypage */
-.mypage{
+.mypage {
     position: relative;
 }
 .mypage .mypageHeader {
@@ -659,31 +663,32 @@ i{
     width: 77px;
     height: 77px;
 }
-.modifyList+p, .modifyList+p+p {
+.modifyList + p,
+.modifyList + p + p {
     border-top: 1px solid #dbdbdb;
     padding: 5px 20px;
 }
-.modifyList{
+.modifyList {
     border-top: 1px solid #dbdbdb;
 }
-.modifyList li{
+.modifyList li {
     padding: 5px 20px;
 }
-.modifyList li span{
+.modifyList li span {
     width: 100px;
     display: inline-block;
 }
-.modifyList li input{
+.modifyList li input {
     width: calc(100% - 120px);
     border-bottom: 1px solid #dbdbdb;
     padding-bottom: 5px;
 }
-.modifyList li:nth-child(4) input{
+.modifyList li:nth-child(4) input {
     border-bottom: none;
 }
 
 /* ModifyProfile */
-.modifyProfile{
+.modifyProfile {
     padding: 10px 20px;
 }
 
@@ -720,7 +725,7 @@ i{
 }
 
 /* login */
-.login{
+.login {
     position: relative;
     text-align: center;
     height: 100vh;
@@ -730,7 +735,6 @@ i{
     align-items: baseline;
     padding: 10px 20px;
     justify-content: space-between;
-    
 }
 .login .logo img {
     width: 250px;
@@ -763,58 +767,73 @@ i{
     background-color: rgba(0, 0, 0, 0.5);
     display: table;
     transition: opacity 0.3s ease;
-  }
-  
-  .modal-wrapper {
+}
+
+.modal-wrapper {
     display: table-cell;
     vertical-align: middle;
-  }
-  
-  .modal-container {
+}
+
+.modal-container {
     width: 550px;
-    height:600px;
+    height: 600px;
     margin: 0px auto;
     /* padding: 20px 30px; */
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-  }
-  .confirm-modal-container {
+}
+.confirm-modal-container {
     width: 400px;
-    height:200px;
+    height: 200px;
     margin: 0px auto;
     /* padding: 20px 30px; */
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-  }
-  .confirm-modal-body {
+}
+.confirm-modal-body {
     text-align: center;
     margin: 20px 0;
     margin-top: 60px;
-  }
-  .modal-header h3 {
-      font-size:medium;
-      font-weight: bolder;
+}
+.modal-header h3 {
+    font-size: medium;
+    font-weight: bolder;
     color: #000;
     text-align: center;
-  }
-  .modal-body {
+}
+.modal-body {
+    /* text-align: center; */
+    position: relative;
+    height: 550px;
+    /* padding-top: 200px; */
+}
+/* 위 내용 주석처리 후, upload과정에 따라서 다른 css적용 - Header.vue 참고 */
+.uploadBody1 {
     text-align: center;
     position: relative;
     padding-top: 200px;
-  }
-  .modal-footer {
+}
+.uploadBody2 {
+    position: relative;
+}
+.uploadBody3{
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+.modal-footer {
     text-align: center;
-  }
-  .modal-default-button {
+}
+.modal-default-button {
     float: right;
-  }
+}
 
-  /* button */
-  a.button {
+/* button */
+a.button {
     /* display: block; */
     position: relative;
     float: none;
@@ -826,31 +845,31 @@ i{
     line-height: 30px;
     color: #000;
     border-radius: 5px;
-    transition: all 0.2s ;
-  }
-  .btnLightBlue {
-    background: #5DC8CD;
-  }
-  .btnPush:hover {
+    transition: all 0.2s;
+}
+.btnLightBlue {
+    background: #5dc8cd;
+}
+.btnPush:hover {
     margin-top: 15px;
     margin-bottom: 5px;
-  }
-  .btnLightBlue.btnPush {
-    box-shadow: 0px 5px 0px 0px #1E8185;
-  }
-  .btnLightBlue.btnPush:hover {
-    box-shadow: 0px 0px 0px 0px #1E8185;
-  }
-  .btnLightBlue.btnBorder {
-    box-shadow: 0px 0px 0px 0px #01939A;
-  }
-  
-  .btnLightBlue.btnBorder:hover {
-    box-shadow: 0px 0px 0px 5px #01939A;
-  }
-  .btnLightBlue.btnFloat:before {
-    background: #5DC8CD;
-  }
-  .topWithButton.bold {
-      text-align: center;
-  }
+}
+.btnLightBlue.btnPush {
+    box-shadow: 0px 5px 0px 0px #1e8185;
+}
+.btnLightBlue.btnPush:hover {
+    box-shadow: 0px 0px 0px 0px #1e8185;
+}
+.btnLightBlue.btnBorder {
+    box-shadow: 0px 0px 0px 0px #01939a;
+}
+
+.btnLightBlue.btnBorder:hover {
+    box-shadow: 0px 0px 0px 5px #01939a;
+}
+.btnLightBlue.btnFloat:before {
+    background: #5dc8cd;
+}
+.topWithButton.bold {
+    text-align: center;
+}
