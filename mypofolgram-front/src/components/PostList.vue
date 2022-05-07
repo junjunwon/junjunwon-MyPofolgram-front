@@ -41,17 +41,13 @@
         <div class="post" v-for="(row, index) in localPostDetails" v-bind:key="row">
             <div class="top">
                 <img :src="row.userImgUrl" alt="프로필" />
-                <p style="cursor: pointer;">{{ row.nickName }}</p>
-                <i class="fa-solid fa-ellipsis" @click="this.showModal = true;"></i>
+                <p style="cursor: pointer">{{ row.nickName }}</p>
+                <i class="fa-solid fa-ellipsis" @click="this.showModal = true"></i>
             </div>
             <div class="photoList">
-                <vueper-slides class="imagesArea no-shadow">
-                    <vueper-slide class="imageArea"
-                        v-for="(img, i) in row.photoImgUrl"
-                        :key="i"
-                        :image="img"
-                        >
-                        <p>{{img}}</p>
+                <vueper-slides class="imagesArea no-shadow" :arrows="true" :dragging-distance="40">
+                    <vueper-slide class="imageArea" v-for="(img, i) in row.photoImgUrl" :key="i" :image="img">
+                        <p>{{ img }}</p>
                     </vueper-slide>
                 </vueper-slides>
             </div>
@@ -66,7 +62,7 @@
                     <div>이미지 더보기 개수</div>
                     <i class="fa-solid fa-bookmark flexRight"></i>
                 </div>
-                <p class="like">{{row.likeCount}}</p>
+                <p class="like">{{ row.likeCount }}</p>
                 <p>
                     <span class="nickname">{{ row.nickName }}</span>
                     <span class="content"
@@ -77,13 +73,13 @@
                         </span>
                     </span>
                 </p>
-                <p class="comment" @click="moveToComment(row.id)">댓글 {{row.commentCount}}개 모두 보기</p>
+                <p class="comment" @click="moveToComment(row.id)">댓글 {{ row.commentCount }}개 모두 보기</p>
                 <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
             <div class="commentArea">
                 <i class="fa-solid fa-face-smile-wink"></i>
-                <input type="text" placeholder="댓글 달기..." id="comment"/>
-                <div class="button" @click="createComment(row.id,$event)">게시</div>
+                <input type="text" placeholder="댓글 달기..." id="comment" />
+                <div class="button" @click="createComment(row.id, $event)">게시</div>
             </div>
         </div>
 
@@ -120,36 +116,36 @@
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import common from "@/utils/common";
-import http from '../utils/http'
+import http from "../utils/http";
 
 export default {
     components: { VueperSlides, VueperSlide },
     data() {
         return {
-            localPostDetails : [],
+            localPostDetails: [],
             showModal: false,
             count: 0,
             rows: [],
             slides: [
                 {
-                title: 'Slide #1',
-                content: 'Slide content.'
+                    title: "Slide #1",
+                    content: "Slide content.",
                 },
                 {
-                title: 'Slide #2',
-                content: 'Slide content2'
+                    title: "Slide #2",
+                    content: "Slide content2",
                 },
                 {
-                title: 'Slide #3',
-                content: 'Slide content3'
+                    title: "Slide #3",
+                    content: "Slide content3",
                 },
-            ]
+            ],
         };
     },
     mounted() {
         // ex) '2022-04-13'
         this.getPostInfo();
-        document.addEventListener('scroll', this.scrollEvents);
+        document.addEventListener("scroll", this.scrollEvents);
     },
     methods: {
         moveToComment(id) {
@@ -188,9 +184,7 @@ export default {
                         id: 4,
                         nickName: "eunjeong444",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: [
-                            "/images/example.jpeg",
-                        ],
+                        imgUrl: ["/images/example.jpeg"],
                         content: "압구정 김치찌개444",
                         createDate: "2022-04-01",
                         commentCount: 10,
@@ -201,10 +195,7 @@ export default {
                         id: 3,
                         nickName: "eunjeong333",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: [
-                            "/images/example.jpeg",
-                            "/images/example.jpeg",
-                        ],
+                        imgUrl: ["/images/example.jpeg", "/images/example.jpeg"],
                         content: "압구정 김치찌개333",
                         createDate: "2022-04-01",
                         commentCount: 10,
@@ -215,11 +206,7 @@ export default {
                         id: 2,
                         nickName: "eunjeong222",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: [
-                            "/images/example.jpeg",
-                            "/images/example.jpeg",
-                            "/images/example.jpeg",
-                        ],
+                        imgUrl: ["/images/example.jpeg", "/images/example.jpeg", "/images/example.jpeg"],
                         content: "압구정 김치찌개222",
                         createDate: "2022-04-01",
                         commentCount: 3,
@@ -230,9 +217,7 @@ export default {
                         id: 1,
                         nickName: "eunjeong111",
                         userImgUrl: "/images/example.jpeg",
-                        imgUrl: [
-                            "/images/example.jpeg",
-                        ],
+                        imgUrl: ["/images/example.jpeg"],
                         content: "압구정 김치찌개111",
                         createDate: "2022-04-01",
                         commentCount: 8,
@@ -241,11 +226,11 @@ export default {
                     },
                 ],
             };
-            await http.get("/api/post/getPostListDetail", {params : {userId : "admin"}})
-            .then((response) => {
-                this.localPostDetails = response.data.result
+            await http.get("/api/post/getPostListDetail", { params: { userId: "admin" } }).then((response) => {
+                console.log(response);
+                this.localPostDetails = response.data.result;
             }),
-            this.count = response.count;
+                (this.count = response.count);
             this.rows = response.rows;
         },
         backgroundClick(e) {
@@ -253,15 +238,15 @@ export default {
             let checkContain = target.classList.contains("modalWrap");
 
             if (checkContain) {
-                const html = document.querySelector('html');
-                html.style.overflow = 'auto';
+                const html = document.querySelector("html");
+                html.style.overflow = "auto";
                 this.showModal = false;
             }
         },
         scrollEvents() {
-            if(this.showModal){
-                const html = document.querySelector('html');
-                html.style.overflow = 'hidden';
+            if (this.showModal) {
+                const html = document.querySelector("html");
+                html.style.overflow = "hidden";
             }
         },
         changeLike(liked, index) {
@@ -272,9 +257,12 @@ export default {
             }
         },
         calculateDate(date) {
+            if (date === null) {
+                return "!date가 null로 들어옴 확인 필요!";
+            }
             return common.getDate(date);
         },
-        createComment(id,e){
+        createComment(id, e) {
             // API필요 - 파라미터(게시글 ID, 댓글)
             // 댓글내용
             let target = e.currentTarget;
@@ -284,7 +272,7 @@ export default {
 
             // api완료 시 입력창 지우는 기능 필요
             commentInput.value = "";
-        }
+        },
     },
 };
 </script>
