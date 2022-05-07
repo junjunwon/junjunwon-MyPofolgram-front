@@ -70,13 +70,11 @@
                     </div>
                 </div>
                 <div class="rightArea">
-                    <!-- vuex사용해서 로그인 정보 가져오기 -->
-                    <!-- <div> -->
-                    <img :src="getterUserInfo.userImgUrl" alt="" />
-                    <!-- </div> -->
-                    <h2 class="nickname" v-text="getterUserInfo.userId"></h2>
-
-                    <textarea aria-label="문구 입력..." placeholder="문구 입력..." rows="5" v-model="content"></textarea>
+                    <div>
+                        <img :src="getterUserInfo.userImgUrl" alt="" />
+                        <span class="nickname" v-text="getterUserInfo.userId"></span>
+                    </div>
+                    <textarea aria-label="문구 입력..." placeholder="문구 입력..." rows="12" v-model="content"></textarea>
                 </div>
             </div>
         </template>
@@ -165,10 +163,12 @@ export default {
             this.showUploadModal2 = false;
         },
         upload() {
-            this.close("showRegister");
             // API 호출
+            // !!준호님 모달을 닫으면 파일/내용 정보가 사라져서, api 통신 완료된 후에 close함수 호출해주심 될듯해용
             // 이미지 - this.files
             // 내용 - this.content
+
+            this.close("showRegister");
         },
     },
 };
@@ -222,6 +222,11 @@ export default {
     height: 2px;
     left: 0px;
     top: 50%;
+}
+.rightArea > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
 }
 .leftArea img {
     width: 100%;
