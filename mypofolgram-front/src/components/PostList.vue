@@ -1,5 +1,5 @@
 <template>
-    <div id="postList">
+    <div v-if="changeComment === false" id="postList">
         <!-- <div class="post">
         <div class="top">
             <img src="/images/example.jpeg" alt="프로필">
@@ -66,7 +66,7 @@
                     <div>이미지 더보기 개수</div>
                     <i class="fa-solid fa-bookmark flexRight"></i>
                 </div>
-                <p class="like">{{row.likeCount}}</p>
+                <p class="like">좋아요 {{row.likeCount}}개</p>
                 <p>
                     <span class="nickname">{{ row.nickName }}</span>
                     <span class="content"
@@ -77,7 +77,8 @@
                         </span>
                     </span>
                 </p>
-                <p class="comment" @click="moveToComment(row.id)">댓글 {{row.commentCount}}개 모두 보기</p>
+                <!-- <p class="comment" @click="moveToComment(row.id, row.cotent, row.createDate,row.hashtags)">댓글 {{row.commentCount}}개 모두 보기</p> -->
+                <p class="comment" @click="setPostAndgoComment(row)">댓글 {{row.commentCount}}개 모두 보기</p>
                 <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
             <div class="commentArea">
@@ -114,6 +115,7 @@
             </div>
         </div>
     </div>
+    <comment v-if="changeComment === true" v-bind:postForComment="postForComment"></comment>
 </template>
 
 <script>
@@ -121,12 +123,14 @@ import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import common from "@/utils/common";
 import http from '../utils/http'
+import Comment from "../views/Comment"
 
 export default {
-    components: { VueperSlides, VueperSlide },
+    components: { VueperSlides, VueperSlide, Comment },
     data() {
         return {
             localPostDetails : [],
+            changeComment : false,
             showModal: false,
             count: 0,
             rows: [],
@@ -143,7 +147,15 @@ export default {
                 title: 'Slide #3',
                 content: 'Slide content3'
                 },
-            ]
+            ],
+            postForComment : {
+                id : '',
+                content : '',
+                createDate : '',
+                hashtags : [],
+                nickName : '',
+                userImgUrl : ''
+            }
         };
     },
     mounted() {
@@ -152,8 +164,24 @@ export default {
         document.addEventListener('scroll', this.scrollEvents);
     },
     methods: {
-        moveToComment(id) {
-            this.$router.push({ path: `/comment/${id}` });
+        setPostAndgoComment(row) {
+            this.changeComment = true
+            this.postForComment.id = row.id
+            this.postForComment.content = row.content
+            this.postForComment.createDate = row.createDate,
+            this.postForComment.hashtags = row.hashtags
+            this.postForComment.nickName = row.nickName
+            this.postForComment.userImgUrl = row.userImgUrl
+        },
+        moveToComment(id, content, createDate, hashtags) {
+            this.$router.push({ 
+                path: `/comment/${id}`,
+                params : {
+                    content : content,
+                    createDate : createDate,
+                    hashtags : hashtags
+                }
+            });
         },
         async getPostInfo() {
             // 포스트정보 가져오는 api호출, 기본 오름차순(최신순)

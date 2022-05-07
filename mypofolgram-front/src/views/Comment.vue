@@ -1,25 +1,25 @@
 <template>
-    <div class="topBack">
+    <div v-if="changeComment === true" class="topBack">
         <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
         <p>댓글</p>
         <i class="fa-solid fa-paper-plane right"></i>
     </div>
     <div id="commentList">
         <div class="content">
-            <img :src="this.userImgUrl" alt="프로필" />
+            <img :src="postForComment.userImgUrl" alt="프로필" />
             <div class="area">
-                <b>{{ this.nickName }}</b>
-                <span>{{ this.body }}</span
+                <b>{{ postForComment.nickName }}</b>
+                <span>{{ postForComment.content }}</span
                 >
                 <p></p>
-                <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
+                <span class="hashtag" v-for="hashtag in postForComment.hashtags" v-bind:key="hashtag">
                     <span>#{{ hashtag }}&nbsp;</span>
                 </span>
-                <p class="time">{{ this.calculateDate(createDate) }}</p>
+                <p class="time">{{ this.calculateDate(postForComment.createDate) }}</p>
             </div>
         </div>
 
-        <div class="comment" v-for="row in rows" v-bind:key="row">
+        <div class="comment" v-for="row in localCommentList" v-bind:key="row">
             <img :src="row.userImgUrl" alt="프로필" />
             <div class="area">
                 <b>{{ row.nickName }}</b>
@@ -32,10 +32,14 @@
 
 <script>
 import common from "@/utils/common";
+import http from "../utils/http";
 
 export default {
+    props: ['postForComment'],
     data() {
         return {
+            localCommentList : [],
+            changeComment : true,
             postId: "",
             body: "",
             userImgUrl: "",
@@ -82,6 +86,10 @@ export default {
                     },
                 ],
             };
+            http.get("/api/post/getCommentList", {params : {postId : "1"}})
+            .then((response) => {
+                this.localCommentList = response.data.result
+            })
             this.body = response.body;
             this.nickName = response.nickName;
             this.userImgUrl = response.userImgUrl;
