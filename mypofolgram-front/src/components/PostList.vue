@@ -59,7 +59,7 @@
                     ></i>
                     <i class="fa-solid fa-comment"></i>
                     <i class="fa-solid fa-paper-plane"></i>
-                    <div>이미지 더보기 개수</div>
+                    <!-- <div>이미지 더보기 개수</div> -->
                     <i class="fa-solid fa-bookmark flexRight"></i>
                 </div>
                 <p class="like">좋아요 {{row.likeCount}}개</p>
