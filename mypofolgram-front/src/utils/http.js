@@ -2,8 +2,8 @@ import axios from "axios"
 import store from "../store"
 
 const http = axios.create({
-    baseURL : "http://localhost:8080",
-    // baseURL : "https://myportfoliogram.herokuapp.com",
+    // baseURL : "http://localhost:8080",
+    baseURL : "https://myportfoliogram.herokuapp.com",
     headers : {"content-type" : "application/json"}
 })
 
