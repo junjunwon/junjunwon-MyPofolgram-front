@@ -59,15 +59,15 @@
                 <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
             </div>
             <div v-else-if="files.length !== 0 && this.showUploadModal2" class="imagesWrap uploadBody2">
-                <div v-for="(file, index) in files" :key="index">
-                    <img :src="file.preview" />
-                </div>
+                <img :src="files[0].preview"/>
             </div>
             <div v-else class="uploadBody3">
                 <div class="leftArea">
-                    <div v-for="(file, index) in files" :key="index">
+                    <!-- <div v-for="(file, index) in files" :key="index">
                         <img :src="file.preview" />
-                    </div>
+                    </div> -->
+                    <!-- 첫번째 이미지만 출력되도록 -->
+                    <img :src="files[0].preview"/>
                 </div>
                 <div class="rightArea">
                     <div>
@@ -167,7 +167,6 @@ export default {
             // !!준호님 모달을 닫으면 파일/내용 정보가 사라져서, api 통신 완료된 후에 close함수 호출해주심 될듯해용
             // 이미지 - this.files
             // 내용 - this.content
-
             this.close("showRegister");
         },
     },
