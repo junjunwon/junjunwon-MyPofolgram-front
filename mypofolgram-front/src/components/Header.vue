@@ -33,7 +33,6 @@
     <new-post :show="showRegister" @close="close('showRegister')">
         <template #header>
             <div class="topWithButton">
-                <!-- <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i> -->
                 <i></i>
                 <p class="bold center">새 게시물 만들기</p>
                 <i class="point" v-if="files.length === 0"></i>
@@ -59,7 +58,8 @@
                 <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
             </div>
             <div v-else-if="files.length !== 0 && this.showUploadModal2" class="imagesWrap uploadBody2">
-                <img :src="files[0].preview"/>
+                <div v-bind:style='{ backgroundImage: `url("${files[0].preview}")` }'></div>
+                
             </div>
             <div v-else class="uploadBody3">
                 <div class="leftArea">
@@ -67,7 +67,7 @@
                         <img :src="file.preview" />
                     </div> -->
                     <!-- 첫번째 이미지만 출력되도록 -->
-                    <img :src="files[0].preview"/>
+                    <div v-bind:style='{ backgroundImage: `url("${files[0].preview}")` }'></div>
                 </div>
                 <div class="rightArea">
                     <div>
@@ -183,22 +183,20 @@ export default {
     display: none;
 }
 .imagesWrap {
-    width: 550px;
-    height: 556px;
-    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 0px 10px 10px;
     position: absolute;
     top: 0;
     left: 0;
+    overflow: hidden;
 }
-.imagesWrap img {
+.uploadBody2 > div{
     width: 100%;
-    /* height: 100%; */
-    border-radius: 0px 0px 20px 20px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .leftArea {
     width: 60%;
@@ -227,8 +225,12 @@ export default {
     align-items: center;
     margin-bottom: 15px;
 }
-.leftArea img {
+.leftArea > div {
     width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .rightArea img {
     width: 42px;
