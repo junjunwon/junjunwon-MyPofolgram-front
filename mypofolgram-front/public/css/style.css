@@ -293,6 +293,12 @@ i {
     display: flex;
     align-items: center;
 }
+.activity .item *{
+    min-width: 30px;
+}
+.activity .item .buttonBackground{
+    min-width: 50px;
+}
 .activity .item img {
     width: 44px;
     height: 44px;
@@ -820,6 +826,8 @@ i {
     text-align: center;
     position: relative;
     padding-top: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .uploadBody2 {
     position: relative;
@@ -916,4 +924,12 @@ a.button {
         border-radius: 50%;
     }
     
+}
+@media screen and (max-width: 350px) {
+    .buttonBackground{
+        font-size: 14px;
+    }
+    .activity .item .text{
+        font-size: 14px;
+    }
 }
