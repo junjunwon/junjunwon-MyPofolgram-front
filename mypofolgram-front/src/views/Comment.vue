@@ -6,20 +6,20 @@
     </div>
     <div id="commentList">
         <div class="content">
-            <img :src="postForComment.userImgUrl" alt="프로필" />
+            <img :src="this.userImgUrl" alt="프로필" />
             <div class="area">
-                <b>{{ postForComment.nickName }}</b>
-                <span>{{ postForComment.content }}</span
+                <b>{{ this.nickName }}</b>
+                <span>{{ this.content }}</span
                 >
                 <p></p>
-                <span class="hashtag" v-for="hashtag in postForComment.hashtags" v-bind:key="hashtag">
+                <span class="hashtag" v-for="hashtag in this.hashtags" v-bind:key="hashtag">
                     <span>#{{ hashtag }}&nbsp;</span>
                 </span>
-                <p class="time">{{ this.calculateDate(postForComment.createDate) }}</p>
+                <p class="time">{{ this.calculateDate(this.createDate) }}</p>
             </div>
         </div>
 
-        <div class="comment" v-for="row in localCommentList" v-bind:key="row">
+        <div class="comment" v-for="row in rows" v-bind:key="row">
             <img :src="row.userImgUrl" alt="프로필" />
             <div class="area">
                 <b>{{ row.nickName }}</b>
@@ -32,10 +32,10 @@
 
 <script>
 import common from "@/utils/common";
-import http from "../utils/http";
+// import http from "../utils/http";
 
 export default {
-    props: ['postForComment'],
+    // props: ['postForComment'],
     data() {
         return {
             localCommentList : [],
@@ -50,7 +50,7 @@ export default {
         };
     },
     mounted() {
-        this.postId = this.$route.params.id;
+        // this.postId = this.$route.params.id;
         this.getComments();
     },
     methods: {
@@ -86,10 +86,11 @@ export default {
                     },
                 ],
             };
-            http.get("/api/post/getCommentList", {params : {postId : "1"}})
-            .then((response) => {
-                this.localCommentList = response.data.result
-            })
+            // http.get("/api/post/getCommentList", {params : {postId : "1"}})
+            // .then((response) => {
+            //     this.localCommentList = response.data.result
+            // })
+            this.content = response.content;
             this.body = response.body;
             this.nickName = response.nickName;
             this.userImgUrl = response.userImgUrl;

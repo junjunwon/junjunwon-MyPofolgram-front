@@ -73,8 +73,8 @@
                         </span>
                     </span>
                 </p>
-                <!-- <p class="comment" @click="moveToComment(row.id, row.cotent, row.createDate,row.hashtags)">댓글 {{row.commentCount}}개 모두 보기</p> -->
-                <p class="comment" @click="setPostAndgoComment(row)">댓글 {{row.commentCount}}개 모두 보기</p>
+                <p class="comment" @click="moveToComment(row.id, row.cotent, row.createDate,row.hashtags)">댓글 {{row.commentCount}}개 모두 보기</p>
+                <!-- <p class="comment" @click="setPostAndgoComment(row)">댓글 {{row.commentCount}}개 모두 보기</p> -->
                 <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
             <div class="commentArea">
@@ -111,7 +111,7 @@
             </div>
         </div>
     </div>
-    <comment v-if="changeComment === true" v-bind:postForComment="postForComment"></comment>
+    <!-- <comment v-if="changeComment === true" v-bind:postForComment="postForComment"></comment> -->
 </template>
 
 <script>
@@ -119,11 +119,15 @@ import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import common from "@/utils/common";
 import http from '../utils/http'
-import Comment from "../views/Comment"
+// import Comment from "../views/Comment"
 import { mapGetters } from "vuex";
 
 export default {
-    components: { VueperSlides, VueperSlide, Comment },
+    components: { 
+        VueperSlides, 
+        VueperSlide, 
+        // Comment
+    },
     data() {
         return {
             localPostDetails : [],

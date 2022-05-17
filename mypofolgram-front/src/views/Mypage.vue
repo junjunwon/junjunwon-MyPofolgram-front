@@ -131,6 +131,17 @@
                 <div></div>
             </template>
         </new-post>
+        <!-- <post-modal show='false'>
+            <template #header>
+                <div>header TEST</div>
+            </template>
+            <template #body>
+                <div>Test</div>
+            </template>
+            <template #footer>
+                <div></div>
+            </template>
+        </post-modal> -->
         <confirm-modal :show="showDeveloping" @close="showDeveloping = false">
             <template #header>
                 <div class="topWithButton">
@@ -161,7 +172,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
     components : {
-        'newPost' : modal,
+        'postModal' : modal,
         'confirmModal' : confirmModal
     },        
     data() {
