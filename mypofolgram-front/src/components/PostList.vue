@@ -1,5 +1,5 @@
 <template>
-    <div v-if="changeComment === false" id="postList">
+    <div id="postList">
         <!-- <div class="post">
         <div class="top">
             <img src="/images/example.jpeg" alt="프로필">
@@ -73,7 +73,7 @@
                         </span>
                     </span>
                 </p>
-                <p class="comment" @click="moveToComment(row.id, row.cotent, row.createDate,row.hashtags)">댓글 {{row.commentCount}}개 모두 보기</p>
+                <p class="comment" @click="moveToComment(row)">댓글 {{row.commentCount}}개 모두 보기</p>
                 <!-- <p class="comment" @click="setPostAndgoComment(row)">댓글 {{row.commentCount}}개 모두 보기</p> -->
                 <p class="time">{{ this.calculateDate(row.createDate) }}</p>
             </div>
@@ -120,7 +120,7 @@ import "vueperslides/dist/vueperslides.css";
 import common from "@/utils/common";
 import http from '../utils/http'
 // import Comment from "../views/Comment"
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
     components: { 
@@ -131,7 +131,7 @@ export default {
     data() {
         return {
             localPostDetails : [],
-            changeComment : false,
+            // changeComment : false,
             showModal: false,
             count: 0,
             rows: [],
@@ -168,23 +168,25 @@ export default {
         document.addEventListener("scroll", this.scrollEvents);
     },
     methods: {
-        setPostAndgoComment(row) {
-            this.changeComment = true
-            this.postForComment.id = row.id
-            this.postForComment.content = row.content
-            this.postForComment.createDate = row.createDate,
-            this.postForComment.hashtags = row.hashtags
-            this.postForComment.nickName = row.nickName
-            this.postForComment.userImgUrl = row.userImgUrl
-        },
-        moveToComment(id, content, createDate, hashtags) {
+        ...mapMutations("comment",["setPostForComment"]),
+        // setPostAndgoComment(row) {
+        //     this.changeComment = true
+        //     this.postForComment.id = row.id
+        //     this.postForComment.content = row.content
+        //     this.postForComment.createDate = row.createDate,
+        //     this.postForComment.hashtags = row.hashtags
+        //     this.postForComment.nickName = row.nickName
+        //     this.postForComment.userImgUrl = row.userImgUrl
+        // },
+        moveToComment(row) {
+            this.setPostForComment(row)
             this.$router.push({
-                path: `/comment/${id}`,
-                params : {
-                    content : content,
-                    createDate : createDate,
-                    hashtags : hashtags
-                }
+                path: `/comment/${row.id}`,
+                // params : {
+                //     content : content,
+                //     createDate : createDate,
+                //     hashtags : hashtags
+                // }
             });
         },
         async getPostInfo() {

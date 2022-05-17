@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="comment" v-for="row in rows" v-bind:key="row">
+        <div class="comment" v-for="row in localCommentList" v-bind:key="row">
             <img :src="row.userImgUrl" alt="프로필" />
             <div class="area">
                 <b>{{ row.nickName }}</b>
@@ -32,7 +32,8 @@
 
 <script>
 import common from "@/utils/common";
-// import http from "../utils/http";
+import http from "../utils/http";
+import { mapGetters } from "vuex";
 
 export default {
     // props: ['postForComment'],
@@ -52,6 +53,9 @@ export default {
     mounted() {
         // this.postId = this.$route.params.id;
         this.getComments();
+    },
+    computed : {
+        ...mapGetters("comment", ["getterPostForComment"]),
     },
     methods: {
         // api 호출시 파라미터로 게시글 아이디 전달
@@ -86,17 +90,17 @@ export default {
                     },
                 ],
             };
-            // http.get("/api/post/getCommentList", {params : {postId : "1"}})
-            // .then((response) => {
-            //     this.localCommentList = response.data.result
-            // })
-            this.content = response.content;
-            this.body = response.body;
-            this.nickName = response.nickName;
-            this.userImgUrl = response.userImgUrl;
-            this.createDate = response.createDate;
-            this.hashtags = response.hashtags;
-            this.rows = response.rows;
+            http.get("/api/post/getCommentList", {params : {postId : "1"}})
+            .then((response) => {
+                this.localCommentList = response.data.result
+            })
+            this.content = this.getterPostForComment.content;
+            this.body = this.getterPostForComment.body;
+            this.nickName = this.getterPostForComment.nickName;
+            this.userImgUrl = this.getterPostForComment.userImgUrl;
+            this.createDate = this.getterPostForComment.createDate;
+            this.hashtags = this.getterPostForComment.hashtags;
+            // this.rows = response.rows;
         },
         calculateDate(date) {
             return common.getDate(date);
