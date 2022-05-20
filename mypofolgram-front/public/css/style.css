@@ -799,13 +799,13 @@ i {
     height: 100%;
     margin: 0px auto;
     background-color: #fff;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
 }
 .confirm-modal-body {
     margin: 20px 0;
-    margin-top: 60px;
+    /* margin-top: 60px; */
 }
 .modal-header h3 {
     font-size: medium;

@@ -133,14 +133,8 @@
             </template>
         </new-post> -->
         <post-modal :show="showPost" @close="showPost = false">
-            <template #header>
-                <div>header TEST</div>
-            </template>
             <template #body>
                 <div><post-list></post-list></div>
-            </template>
-            <template #footer>
-                <div></div>
             </template>
         </post-modal>
         <confirm-modal :show="showDeveloping" @close="showDeveloping = false">
