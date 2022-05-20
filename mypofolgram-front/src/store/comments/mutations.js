@@ -6,5 +6,8 @@ export default {
         state.postForComment.hashtags = payload.hashtags
         state.postForComment.nickName = payload.nickName
         state.postForComment.userImgUrl = payload.userImgUrl
-    }
+    },
+    // setCommentSize : (state, payload) => {
+    //     state.commentCount = payload
+    // }
 }

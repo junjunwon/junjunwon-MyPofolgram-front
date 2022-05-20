@@ -30,7 +30,7 @@
         <div class="mypost" v-if="!isEmpty">
             <div v-for="(post) in localPosts" class="post" v-bind:key="post">
             <!-- <div class="post"> -->
-                <img :src=post.imgUrl alt="" @click="test"/>
+                <img :src=post.imgUrl alt="" @click="showPost=true"/>
             </div>
             
         </div>
@@ -111,7 +111,7 @@
             </ul>
         </div>
         <!-- use the modal component, pass in the prop -->
-        <new-post :show="showRegister" @close="showRegister = false">
+        <!-- <new-post :show="showRegister" @close="showRegister = false">
             <template #header>
                 <div class="topWithButton">
                     <i class="fa-solid fa-chevron-left" @click="$router.go(-1)"></i>
@@ -122,7 +122,7 @@
             <template #body>
                 <img src="" alt="" />
                 <div>사진과 동영상을 여기에 끌어다 놓으세요.</div>
-                <!-- <a @click="showRegister = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a> -->
+                <a @click="showRegister = false" title="Button push lightblue" class="button btnPush btnLightBlue">컴퓨터에서 선택</a>
                  <input type="file" @change="onFileSelected" ref="fileInput" class="input" />
                 <br />
                 <div @click="$refs.fileInput.click()" class="buttonBackground">컴퓨터에서 선택</div>
@@ -130,18 +130,18 @@
             <template #footer>
                 <div></div>
             </template>
-        </new-post>
-        <!-- <post-modal show='false'>
+        </new-post> -->
+        <post-modal :show="showPost" @close="showPost = false">
             <template #header>
                 <div>header TEST</div>
             </template>
             <template #body>
-                <div>Test</div>
+                <div><post-list></post-list></div>
             </template>
             <template #footer>
                 <div></div>
             </template>
-        </post-modal> -->
+        </post-modal>
         <confirm-modal :show="showDeveloping" @close="showDeveloping = false">
             <template #header>
                 <div class="topWithButton">
@@ -166,13 +166,15 @@
 
 import modal from '../components/modal.vue'
 import confirmModal from '../components/confirmModal.vue'
+import postList from '../components/PostList.vue'
 // import axios from 'axios'
 import http from '../utils/http'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
     components : {
-        'postModal' : modal,
+        postList,
+        'postModal' : confirmModal,
         'confirmModal' : confirmModal
     },        
     data() {
@@ -192,6 +194,7 @@ export default {
             // props 테스트
             showRegister: false,
             showDeveloping : false,
+            showPost : false,
             selectedFile: null,
             showComplete : false,
             localPosts : []

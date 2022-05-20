@@ -87,6 +87,7 @@
 <script>
 import modal from "./modal.vue";
 // import axios from 'axios'
+import http from '../utils/http'
 import { mapGetters } from "vuex";
 
 export default {
@@ -167,7 +168,22 @@ export default {
             // !!준호님 모달을 닫으면 파일/내용 정보가 사라져서, api 통신 완료된 후에 close함수 호출해주심 될듯해용
             // 이미지 - this.files
             // 내용 - this.content
-            this.close("showRegister");
+            http.post('/api/post/savePost', {
+                userInfo : this.getterUserInfo,
+                photoImgUrl : this.files,
+                content : this.content
+            }, {
+                headers: {'Content-Type': 'multipart/form-data'}
+            })
+            .then((response) => {
+                if(response.data.result === true) {
+                    console.log(true)
+                } else {
+                    console.log(false)
+                }
+            })
+            .finally(this.close("showRegister"))
+            
         },
     },
 };

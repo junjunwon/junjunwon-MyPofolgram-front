@@ -6,5 +6,6 @@ export default {
         hashtags : '',
         nickName : '',
         userImgUrl : '' 
-    }
+    },
+    // commentCount : 0
 }
