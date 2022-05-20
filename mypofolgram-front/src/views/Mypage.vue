@@ -7,7 +7,7 @@
                 <i class="fa-solid fa-bars" id="settingModal" @click="checkModal($event)"></i>
             </dis>
         </div>
-        <div class="top">
+        <div class="myTop">
             <div>
                 <img :src=getterUserInfo.userImgUrl alt="" />
             </div>
@@ -27,8 +27,9 @@
         <!-- <div class="modify" @click="moveTo('/mypage/modify')">프로필 편집</div> -->
         <div class="modify" @click="this.$router.push({ name: 'modify'})">프로필 편집</div>
 
-        <div class="mypost" v-if="!isEmpty">
-            <div v-for="(post) in localPosts" class="post" v-bind:key="post">
+        <!-- <div class="mypost" v-if="!isEmpty"> -->
+        <div v-if="!isEmpty">
+            <div v-for="(post) in localPosts" class="myPost" v-bind:key="post">
             <!-- <div class="post"> -->
                 <img :src=post.imgUrl alt="" @click="showPost=true"/>
             </div>
@@ -164,7 +165,7 @@
 
 <script>
 
-import modal from '../components/modal.vue'
+// import modal from '../components/modal.vue'
 import confirmModal from '../components/confirmModal.vue'
 import postList from '../components/PostList.vue'
 // import axios from 'axios'
