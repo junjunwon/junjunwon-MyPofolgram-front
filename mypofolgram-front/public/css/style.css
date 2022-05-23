@@ -95,6 +95,9 @@ i {
 .point2 {
     color: #ed4956;
 }
+.point3 {
+    color: #8e8e8e;
+}
 .line {
     border-bottom: 1px solid #dbdbdb;
     margin-top: 5px;
@@ -196,13 +199,17 @@ i {
 .topBack i {
     position: absolute;
     left: 20px;
-    top: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .topBack i.right {
     position: absolute;
     right: 20px;
     top: 15px;
     left: inherit;
+}
+.topBack div p:first-child {
+    margin : -5px;
 }
 .topWithButton {
     display: flex;
@@ -797,15 +804,10 @@ i {
     max-width: 600px;
     margin: 0 auto;
     height: 100%;
-    margin: 0px auto;
     background-color: #fff;
     /* border-radius: 20px; */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-}
-.confirm-modal-body {
-    margin: 20px 0;
-    /* margin-top: 60px; */
 }
 .modal-header h3 {
     font-size: medium;

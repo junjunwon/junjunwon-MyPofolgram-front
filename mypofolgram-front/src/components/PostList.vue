@@ -1,43 +1,5 @@
 <template>
     <div id="postList">
-        <!-- <div class="post">
-        <div class="top">
-            <img src="/images/example.jpeg" alt="프로필">
-            <p>eunj_eong</p>
-            <i class="fa-solid fa-ellipsis"></i>
-        </div>
-        <div class="photoList">
-            <img src="/images/example.jpeg" alt="">
-        </div>
-        <div class="bottom">
-            <div class="iconList">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-comment"></i>
-                <i class="fa-solid fa-paper-plane"></i>
-                <div>
-                    이미지 더보기 개수
-                </div>
-                <i class="fa-solid fa-bookmark flexRight"></i>
-            </div>
-            <p class="like">좋아요 123,456개</p>
-            <p>
-                <span class="nickname">eunj_eong</span>
-                <span class="content">내용이 들어갑니다.
-                    <span class="hashtag">#해시태그</span>
-                </span>
-            </p>
-            <p class="comment">댓글 23,123개 모두 보기</p>
-            <p class="time">15시간 전</p>
-        </div>
-        <div class="commentArea">
-            <i class="fa-solid fa-face-smile-wink"></i>
-            <input type="text" placeholder="댓글 달기...">
-            <div class="button">
-                게시
-            </div>
-        </div>
-    </div> -->
-
         <div class="post" v-for="(row, index) in localPostDetails" v-bind:key="row">
             <div class="top">
                 <img :src="row.userImgUrl" alt="프로필" />
@@ -119,19 +81,18 @@ import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
 import common from "@/utils/common";
 import http from '../utils/http'
-// import Comment from "../views/Comment"
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
     components: { 
         VueperSlides, 
-        VueperSlide, 
-        // Comment
+        VueperSlide
     },
+    props : ['mypostUserId'],
     data() {
         return {
+            userId : '',
             localPostDetails : [],
-            // changeComment : false,
             showModal: false,
             count: 0,
             rows: [],
@@ -181,89 +142,14 @@ export default {
         moveToComment(row) {
             this.setPostForComment(row)
             this.$router.push({
-                path: `/comment/${row.id}`,
-                // params : {
-                //     content : content,
-                //     createDate : createDate,
-                //     hashtags : hashtags
-                // }
+                path: `/comment/${row.id}`
             });
         },
         async getPostInfo() {
-            // 포스트정보 가져오는 api호출, 기본 오름차순(최신순)
-            // let response = {
-            //     count: 5,
-            //     rows: [
-            //         // 포스트 관련된 정보 + 포스트 작성자 정보
-            //         {
-            //             id: 5, //포스트 아이디
-            //             nickName: "eunjeong", //Users 테이블
-            //             userImgUrl: "/images/example.jpeg",
-            //             // imgUrl: "/images/example.jpeg",
-            //             imgUrl: [
-            //                 "/images/example.jpeg",
-            //                 "/images/example.jpeg",
-            //                 "/images/example.jpeg",
-            //                 "/images/example.jpeg",
-            //                 "/images/example.jpeg",
-            //             ],
-            //             content: "압구정 김치찌개",
-            //             createDate: "2022-04-01", //포스트 생성일
-            //             commentCount: 30,
-            //             liked: true,
-            //             hashtags: [
-            //                 //HashTag 테이블
-            //                 "압구정 맛집",
-            //                 "압구정",
-            //                 "김치찌개 맛집",
-            //             ],
-            //         },
-            //         {
-            //             id: 4,
-            //             nickName: "eunjeong444",
-            //             userImgUrl: "/images/example.jpeg",
-            //             imgUrl: ["/images/example.jpeg"],
-            //             content: "압구정 김치찌개444",
-            //             createDate: "2022-04-01",
-            //             commentCount: 10,
-            //             liked: true,
-            //             hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
-            //         },
-            //         {
-            //             id: 3,
-            //             nickName: "eunjeong333",
-            //             userImgUrl: "/images/example.jpeg",
-            //             imgUrl: ["/images/example.jpeg", "/images/example.jpeg"],
-            //             content: "압구정 김치찌개333",
-            //             createDate: "2022-04-01",
-            //             commentCount: 10,
-            //             liked: false,
-            //             hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
-            //         },
-            //         {
-            //             id: 2,
-            //             nickName: "eunjeong222",
-            //             userImgUrl: "/images/example.jpeg",
-            //             imgUrl: ["/images/example.jpeg", "/images/example.jpeg", "/images/example.jpeg"],
-            //             content: "압구정 김치찌개222",
-            //             createDate: "2022-04-01",
-            //             commentCount: 3,
-            //             liked: false,
-            //             hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
-            //         },
-            //         {
-            //             id: 1,
-            //             nickName: "eunjeong111",
-            //             userImgUrl: "/images/example.jpeg",
-            //             imgUrl: ["/images/example.jpeg"],
-            //             content: "압구정 김치찌개111",
-            //             createDate: "2022-04-01",
-            //             commentCount: 8,
-            //             liked: true,
-            //             hashtags: ["압구정 맛집", "압구정", "김치찌개 맛집"],
-            //         },
-            //     ],
-            // };
+            this.userId = this.mypostUserId
+            console.log("this.userId", this.userId)
+            console.log("this.mypostUserId", this.mypostUserId)
+            
             await http.get("/api/post/getPostListDetail", { params: { userId: "admin" } }).then((response) => {
                 console.log(response);
                 this.localPostDetails = response.data.result;
@@ -287,13 +173,6 @@ export default {
             }
         },
         changeLike(liked, index) {
-            //socket통신을 해야하지 않나??? 
-            //!!!!!!중요!!!!!!!!
-            // if (liked==='true') {
-            //     this.rows[index].liked = false;
-            // } else {
-            //     this.rows[index].liked = true;
-            // }
             console.log('before changed liked is ', liked)
             liked = liked === 'true' ? liked = 'false' : liked = 'true'
             console.log('changed liked is ', liked)

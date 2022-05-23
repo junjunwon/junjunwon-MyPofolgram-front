@@ -31,7 +31,7 @@
         <div v-if="!isEmpty">
             <div v-for="(post) in localPosts" class="myPost" v-bind:key="post">
             <!-- <div class="post"> -->
-                <img :src=post.imgUrl alt="" @click="showPost=true"/>
+                <img :src=post.imgUrl alt="" @click="openMyPost"/>
             </div>
             
         </div>
@@ -160,10 +160,10 @@
 <script>
 
 // import modal from '../components/modal.vue'
-import confirmModal from '../components/confirmModal.vue'
-import postList from '../components/PostList.vue'
+import confirmModal from '../../components/confirmModal.vue'
+import postList from '../../components/PostList.vue'
 // import axios from 'axios'
-import http from '../utils/http'
+import http from '../../utils/http'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
@@ -282,8 +282,8 @@ export default {
                 path : '/login'
             })
         },
-        test() {
-            alert("Test")
+        openMyPost() {
+            this.$router.push({ path: '/mypage/mypostlist' });
         }
     },
 };

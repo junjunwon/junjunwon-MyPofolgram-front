@@ -40,10 +40,19 @@ const routes = [
     },
     {
         path:'/mypage',
-        component: () => import("../views/Mypage.vue"),
+        component: () => import("../views/mypage/Mypage.vue"),
         beforeEnter: beforeAuth(true),
         props : true,
         meta: {
+        }
+    },
+    {
+        path:'/mypage/mypostlist',
+        component : () => import("../views/mypage/MyPostList.vue"),
+        beforeEnter: beforeAuth(true),
+        props : true,
+        meta : {
+
         }
     },
     {

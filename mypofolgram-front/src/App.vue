@@ -21,7 +21,7 @@ export default {
     },
     computed:{
         showHeader(){
-            let hidePaths = ["/mypage", "/activity", "/comment", "/login"];
+            let hidePaths = ["/mypage", "/activity", "/comment", "/login", "/mypostlist"];
             hidePaths = hidePaths.filter((e) => this.$route.path.startsWith(e));
             return hidePaths.length ===0;
         },
