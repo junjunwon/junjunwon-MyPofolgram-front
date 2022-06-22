@@ -31,9 +31,6 @@ $ npm install
 $ npm run dev
 ```
 
-## 백엔드 깃허브 주소
-https://github.com/junjunwon/MyPofolgram-back
-
 ## 협업방식
 1. 각자 브랜치를 생성해서 작업한다.
   - 브랜치의 명명규칙은 구글 스프레드시트 **task_num**을 바탕으로 한다. ex) git branch home-01
