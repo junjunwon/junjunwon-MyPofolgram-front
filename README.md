@@ -6,18 +6,18 @@ https://github.com/junjunwon/MyPofolgram-back
 
 
 ## 기술 스택
-프론트엔드
+#### 프론트엔드
 - Node.js : v17.8.0
 - @vue/cli : 4.5.15
 - vue : v2
-백엔드
+#### 백엔드
 - SringBoot : v2.6.4
 - JDK : Java Open Jdk 11.0.2
-데이터베이스
+#### 데이터베이스
 - heroku-PostgreSql
-Cloud
-- Heroku for deploy Backend server
-- AWS S3 for storing images
+#### Cloud
+- Heroku : deploy Backend server
+- AWS S3 : storing images
 
 
 ## 실행방법
