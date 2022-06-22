@@ -1,6 +1,25 @@
 # MyPofolgram
 나의 포폴그램은 '인스타그램'에서 아이디어를 얻어 시작한, 나의 포트폴리오를 **뽐**내기 위한 프로젝트입니다.
 
+## 백엔드 깃허브 주소
+https://github.com/junjunwon/MyPofolgram-back
+
+
+## 기술 스택
+프론트엔드
+- Node.js : v17.8.0
+- @vue/cli : 4.5.15
+- vue : v2
+백엔드
+- SringBoot : v2.6.4
+- JDK : Java Open Jdk 11.0.2
+데이터베이스
+- heroku-PostgreSql
+Cloud
+- Heroku for deploy Backend server
+- AWS S3 for storing images
+
+
 ## 실행방법
 ```
 $ npm install -g @vue/cli
